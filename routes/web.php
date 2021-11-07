@@ -29,7 +29,7 @@ Route::get('/admin','AdminController@index');
 Route::get('/dashboard','AdminController@show_dashboard');
 Route::get('/logout','AdminController@logout');
 Route::post('/admin-dashboard','AdminController@dashboard');
-
+Route::post('/filter-by-date','AdminController@filter_by_date');
 
 //Category Product
 Route::get('/add-category-product','CategoryProduct@add_category_product');

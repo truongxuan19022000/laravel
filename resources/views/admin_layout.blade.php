@@ -38,9 +38,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="{{asset('public/backend/js/jquery2.0.3.min.js')}}"></script>
 <script src="{{asset('public/backend/js/raphael-min.js')}}"></script>
 <script src="{{asset('public/backend/js/morris.js')}}"></script>
-<!-- Báo cáo thống kê -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
 </head>
 <body>
 <section id="container">
@@ -225,9 +223,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="{{asset('public/dashboard/dist/js/demo.js')}}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('public/dashboard/dist/js/pages/dashboard3.js')}}"></script>
-<!-- Báo cáo thống kê -->
-<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
-<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
   
 <script type="text/javascript">
     $('.price_format').simpleMoneyFormat();
@@ -236,56 +232,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="text/javascript">
 $(document).ready(function(){
 
-        chart60daysorder();
+        /* chart60daysorder();
 
         var chart = new Morris.Bar({
              
-              element: 'chart',
-              //option chart
-              lineColors: ['#819C79', '#fc8710','#FF6541', '#A4ADD3', '#766B56'],
-                parseTime: false,
-                hideHover: 'auto',
-                xkey: 'period',
-                ykeys: ['order','sales','profit','quantity'],
-                labels: ['đơn hàng','doanh số','lợi nhuận','số lượng']
-            
+          
             });
 
 
        
         function chart60daysorder(){
-            var _token = $('input[name="_token"]').val();
-            $.ajax({
-                url:"{{url('/days-order')}}",
-                method:"POST",
-                dataType:"JSON",
-                data:{_token:_token},
-                
-                success:function(data)
-                    {
-                        chart.setData(data);
-                    }   
-            });
+          
         }
 
     $('.dashboard-filter').change(function(){
-        var dashboard_value = $(this).val();
-        var _token = $('input[name="_token"]').val();
-         
-        $.ajax({
-            url:"{{url('/dashboard-filter')}}",
-            method:"POST",
-            dataType:"JSON",
-            data:{dashboard_value:dashboard_value,_token:_token},
-            
-            success:function(data)
-                {
-                    console.log(data);
-                    //chart.setData(data);
-                }   
-            });
+        
 
-    });
+    }); */
 
     $('#btn-dashboard-filter').click(function(){
          var _token = $('input[name="_token"]').val();
@@ -293,17 +256,16 @@ $(document).ready(function(){
         var from_date = $('#datepicker').val();
         var to_date = $('#datepicker2').val();
          $.ajax({
-            url:"{{url('/filt   er-by-date')}}",
+            url:"{{url('/filter-by-date')}}",
             method:"POST",
-            dataType:"JSON",
             data:{from_date:from_date,to_date:to_date,_token:_token},
-            
             success:function(data)
                 {
-                    chart.setData(data);
+                    console.log(data);
+                    //chart.setData(data);
                 }   
+            
         }); 
-
     });
 
 });
