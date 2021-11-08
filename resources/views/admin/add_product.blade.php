@@ -10,7 +10,7 @@
                          use Illuminate\Support\Facades\Session;
                             $message = Session::get('message');
                             if($message){
-                                echo '<div id="error" class="alert alert-primary" role="alert">' . $message . '</div>';
+                                echo '<div id="error" class="alert alert-success" role="alert">' . $message . '</div>';
                                 Session::put('message', null);
                             }
                             ?>
@@ -21,13 +21,13 @@
                                     {{ csrf_field() }}
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tên sản phẩm</label>
-                                    <input type="text" data-validation="length" data-validation-length="min10" data-validation-error-msg="Làm ơn điền ít nhất 10 ký tự" name="product_name" class="form-control " id="slug" placeholder="Tên danh mục" onkeyup="ChangeToSlug();"> 
+                                    <input type="text" data-validation="length" data-validation-length="min10" data-validation-error-msg="Làm ơn điền ít nhất 10 ký tự" name="product_name" class="form-control " id="slug" placeholder="Tên danh mục" > 
                                 </div>
                                  <div class="form-group">
                                     <label for="exampleInputEmail1">SL sản phẩm</label>
                                     <input type="text" data-validation="number" data-validation-error-msg="Làm ơn điền số lượng" name="product_quantity" class="form-control" id="exampleInputEmail1" placeholder="Điền số lượng">
                                 </div>
-                                 <div class="form-group">
+                                <!--  <div class="form-group">
                                     <label for="exampleInputEmail1">Ngày sản xuất</label>
                                     <input type="date" data-validation="number" data-validation-error-msg="Làm ơn điền số lượng" name="product_quantity" class="form-control" id="exampleInputEmail1" placeholder="Điền số lượng">
                                 </div>
@@ -35,11 +35,8 @@
                                     <label for="exampleInputEmail1">Ngày hết hạn</label>
                                     <input type="date" data-validation="number" data-validation-error-msg="Làm ơn điền số lượng" name="product_quantity" class="form-control" id="exampleInputEmail1" placeholder="Điền số lượng">
                                 </div>
+                                -->
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Slug</label>
-                                    <input type="text" name="product_slug" class="form-control " id="convert_slug" placeholder="Tên danh mục">
-                                </div>
-                                     <div class="form-group">
                                     <label for="exampleInputEmail1">Giá sản phẩm</label>
                                     <input type="text" data-validation="number" data-validation-error-msg="Làm ơn điền số tiền" name="product_price" class="form-control" id="" placeholder="Tên danh mục">
                                 </div>

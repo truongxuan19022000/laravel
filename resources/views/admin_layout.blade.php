@@ -211,7 +211,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="{{asset('public/backend/js/jquery.form-validator.min.js')}}"></script>
 <script src="{{asset('public/backend/js/jquery.dataTables.min.js')}}"></script>
 <!-- css dashboard -->
-<script src="{{asset('public/dashboard/plugins/jquery/jquery.min.js')}}"></script>
+<script src="{{asset('public/backend/js/jquery.form-validator.min.js')}}"></script>
 <!-- Bootstrap -->
 <script src="{{asset('public/dashboard/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- AdminLTE -->
@@ -224,7 +224,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('public/dashboard/dist/js/pages/dashboard3.js')}}"></script>
   <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
-  
+  <script type="text/javascript">
+    $(document).ready( function () {
+    $('#myTable').DataTable();
+    } );
+</script>
+<script type="text/javascript">
+        $.validate({
+            
+        });
+</script>
 <script type="text/javascript">
     $('.price_format').simpleMoneyFormat();
 
@@ -232,23 +241,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="text/javascript">
 $(document).ready(function(){
 
-        /* chart60daysorder();
-
-        var chart = new Morris.Bar({
-             
-          
-            });
-
-
-       
-        function chart60daysorder(){
-          
-        }
-
-    $('.dashboard-filter').change(function(){
         
-
-    }); */
 
     $('#btn-dashboard-filter').click(function(){
          var _token = $('input[name="_token"]').val();
@@ -293,43 +286,15 @@ $(document).ready(function(){
    
   } );
   </script>
-<script type="text/javascript">
  
-    function ChangeToSlug()
-        {
-            var slug;
-         
-            //Lấy text từ thẻ input title 
-            slug = document.getElementById("slug").value;
-            slug = slug.toLowerCase();
-            //Đổi ký tự có dấu thành không dấu
-                slug = slug.replace(/á|à|ả|ạ|ã|ă|ắ|ằ|ẳ|ẵ|ặ|â|ấ|ầ|ẩ|ẫ|ậ/gi, 'a');
-                slug = slug.replace(/é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ/gi, 'e');
-                slug = slug.replace(/i|í|ì|ỉ|ĩ|ị/gi, 'i');
-                slug = slug.replace(/ó|ò|ỏ|õ|ọ|ô|ố|ồ|ổ|ỗ|ộ|ơ|ớ|ờ|ở|ỡ|ợ/gi, 'o');
-                slug = slug.replace(/ú|ù|ủ|ũ|ụ|ư|ứ|ừ|ử|ữ|ự/gi, 'u');
-                slug = slug.replace(/ý|ỳ|ỷ|ỹ|ỵ/gi, 'y');
-                slug = slug.replace(/đ/gi, 'd');
-                //Xóa các ký tự đặt biệt
-                slug = slug.replace(/\`|\~|\!|\@|\#|\||\$|\%|\^|\&|\*|\(|\)|\+|\=|\,|\.|\/|\?|\>|\<|\'|\"|\:|\;|_/gi, '');
-                //Đổi khoảng trắng thành ký tự gạch ngang
-                slug = slug.replace(/ /gi, "-");
-                //Đổi nhiều ký tự gạch ngang liên tiếp thành 1 ký tự gạch ngang
-                //Phòng trường hợp người nhập vào quá nhiều ký tự trắng
-                slug = slug.replace(/\-\-\-\-\-/gi, '-');
-                slug = slug.replace(/\-\-\-\-/gi, '-');
-                slug = slug.replace(/\-\-\-/gi, '-');
-                slug = slug.replace(/\-\-/gi, '-');
-                //Xóa các ký tự gạch ngang ở đầu và cuối
-                slug = '@' + slug + '@';
-                slug = slug.replace(/\@\-|\-\@|\@/gi, '');
-                //In slug ra textbox có id “slug”
-            document.getElementById('convert_slug').value = slug;
-        }
-         
-
-   
-   
+ <script>
+       // Replace the <textarea id="editor1"> with a CKEditor
+       // instance, using default configuration.
+        CKEDITOR.replace('ckeditor');
+        CKEDITOR.replace('ckeditor1');
+        CKEDITOR.replace('ckeditor2');
+        CKEDITOR.replace('ckeditor3');
+        CKEDITOR.replace('id4');
 </script>
 <script type="text/javascript">
     $('.update_quantity_order').click(function(){
@@ -509,25 +474,6 @@ function huydonhang(order_code){
     })
 
 
-</script>
-<script type="text/javascript">
-    $(document).ready( function () {
-    $('#myTable').DataTable();
-    } );
-</script>
-<script type="text/javascript">
-        $.validate({
-            
-        });
-</script>
- <script>
-       // Replace the <textarea id="editor1"> with a CKEditor
-       // instance, using default configuration.
-        CKEDITOR.replace('ckeditor');
-        CKEDITOR.replace('ckeditor1');
-        CKEDITOR.replace('ckeditor2');
-        CKEDITOR.replace('ckeditor3');
-        CKEDITOR.replace('id4');
 </script>
 
 <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/flot-chart/excanvas.min.js"></script><![endif]-->

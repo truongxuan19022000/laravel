@@ -21,7 +21,7 @@
                                     {{ csrf_field() }}
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tên danh mục</label>
-                                    <input type="text"  class="form-control"  onkeyup="ChangeToSlug();" name="category_product_name"  id="slug" placeholder="danh mục" >
+                                    <input type="text" data-validation="length" data-validation-length="min4" data-validation-error-msg="Làm ơn điền ít nhất 4 ký tự"  class="form-control" name="category_product_name"  id="slug" placeholder="danh mục" >
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Slug</label>
