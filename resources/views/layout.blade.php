@@ -129,7 +129,6 @@
 										<li><a href="single-blog.html">Blog details</a></li>
 									</ul>
 								</li>
-
 								<li><a href="contact.html">Contact Us</a></li> -->
                                 <li><a href="{{URL::to('/trang-chu')}}" class="active"><i class="fa fa-home"></i> Trang chủ</a></li>
                                 <li class="dropdown submenu">
@@ -141,8 +140,6 @@
 									</ul>
 								</li>
                                 <?php
-
-
                                     $customer_id = Session::get('customer_id');
                                    $shipping_id = Session::get('shipping_id');
                                    if($customer_id!=NULL && $shipping_id==NULL){
@@ -558,7 +555,6 @@
         
         <script src="{{asset('public/layout/js/theme.js')}}"></script>
     <script type="text/javascript">
-
           $(document).ready(function(){
             $('.send_order').click(function(){
                 swal({
@@ -568,7 +564,6 @@
                   showCancelButton: true,
                   confirmButtonClass: "btn-danger",
                   confirmButtonText: "Cảm ơn, Mua hàng",
-
                     cancelButtonText: "Đóng,chưa mua",
                     closeOnConfirm: false,
                     closeOnCancel: false
@@ -584,7 +579,6 @@
                         var order_fee = $('.order_fee').val();
                         var order_coupon = $('.order_coupon').val();
                         var _token = $('input[name="_token"]').val();
-
                         $.ajax({
                             url: '{{url('/confirm-order')}}',
                             method: 'POST',
@@ -593,28 +587,19 @@
                                swal("Đơn hàng", "Đơn hàng của bạn đã được gửi thành công", "success");
                             }
                         });
-
                         window.setTimeout(function(){
                             location.reload();
                         } ,3000);
-
                       } else {
                         swal("Đóng", "Đơn hàng chưa được gửi, làm ơn hoàn tất đơn hàng", "error");
-
                       }
-
                 });
-
-
             });
         });
-
-
     </script>
     <script type="text/javascript">
         $(document).ready(function(){
             $('.add-to-cart').click(function(){
-
                 var id = $(this).data('id_product');
                 // alert(id);
                 var cart_product_id = $('.cart_product_id_' + id).val();
@@ -633,7 +618,6 @@
                         method: 'POST',
                         data:{cart_product_id:cart_product_id,cart_product_name:cart_product_name,cart_product_image:cart_product_image,cart_product_price:cart_product_price,cart_product_qty:cart_product_qty,_token:_token,cart_product_quantity:cart_product_quantity},
                         success:function(){
-
                             swal({
                                     title: "Đã thêm sản phẩm vào giỏ hàng",
                                     text: "Bạn có thể mua hàng tiếp hoặc tới giỏ hàng để tiến hành thanh toán",
@@ -646,13 +630,9 @@
                                 function() {
                                     window.location.href = "{{url('/gio-hang')}}";
                                 });
-
                         }
-
                     });
                 }
-
-
             });
         });
     </script>
@@ -663,7 +643,6 @@
             var ma_id = $(this).val();
             var _token = $('input[name="_token"]').val();
             var result = '';
-
             if(action=='city'){
                 result = 'province';
             }else{
@@ -679,7 +658,6 @@
             });
         });
         });
-
     </script>
     <script type="text/javascript">
         $(document).ready(function(){

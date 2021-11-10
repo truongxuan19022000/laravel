@@ -79,8 +79,9 @@
               <!-- ./col -->
             </div>
             <!-- /.row -->
-<div class="row">
 		<p class="title_thongke">Thống kê đơn hàng doanh số</p>
+
+<div class="row ">
 
 		<form autocomplete="off">
 			@csrf
@@ -117,6 +118,15 @@
 </div>
 <div id="myfirstchart" style="height: 250px;"></div>
 
+
+</div>
+
+<div class="row">
+
+	<div class="col-md-4 col-xs-12">
+		<p class="title_thongke">Thống kê tổng sản phẩm bài viết đơn hàng</p>
+		<div id="donut"></div>	
+	</div>
 
 </div>
 

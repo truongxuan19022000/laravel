@@ -46,7 +46,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- //font-awesome icons -->
     <script src="{{asset('public/backend/js/jquery2.0.3.min.js')}}"></script>
     <script src="{{asset('public/backend/js/raphael-min.js')}}"></script>
-    <script src="{{asset('public/backend/js/morris.js')}}"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+ <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
 </head>
 
@@ -188,8 +189,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <span>Customer</span>
                             </a>
                             <ul class="sub">
-                                <li><a href="{{URL::to('/add-users')}}">Thêm Khách hàng</a></li>
-                                <li><a href="{{URL::to('/users')}}">Liệt kê Khách hàng</a></li>
+                                <li><a href="{{URL::to('/all_customers')}}">Liệt kê Khách hàng</a></li>
 
                             </ul>
                         </li>
@@ -286,6 +286,33 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             });
         });
     </script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+      
+        //     });
+        var donut = Morris.Donut({
+          element: 'donut',
+          resize: true,
+          colors: [
+            '#a8328e',
+            '#61a1ce',
+            '#f5b942',
+            '#4842f5'
+            
+          ],
+          //labelColor:"#cccccc", // text color
+          //backgroundColor: '#333333', // border color
+          data: [
+            {label:"Sản phẩm", value:<?php echo $products ?>},
+            {label:"Đơn hàng", value:<?php echo $orders ?>},
+            {label:"Khách hàng", value:<?php echo $customers ?>},
+            {label:"Tài khoản", value:<?php echo $users ?>}
+          ]
+        });
+     
+});
+</script>
 
     <script type="text/javascript">
         $(function() {

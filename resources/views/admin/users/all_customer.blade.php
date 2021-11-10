@@ -29,9 +29,9 @@
     <div class="table-responsive">
                       <?php
 
-                            use Illuminate\Support\Facades\Session;
+                        use Illuminate\Support\Facades\Session;
 
-                            $message = Session::get('message');
+                        $message = Session::get('message');
                             if($message){
                                 echo '<span class="text-alert">'.$message.'</span>';
                                 Session::put('message',null);
@@ -50,17 +50,13 @@
             <th>Email</th>
             <th>Phone</th>
             <th>Password</th>
-            <th>Author</th>
-            <th>Admin</th>
-            <th>User</th>
             
             <th style="width:30px;"></th>
           </tr>
         </thead>
         <tbody>
           @foreach($admin as $key => $user)
-            <form action="{{url('/assign-roles')}}" method="POST">
-              @csrf
+           @if($user->hasRole('user'))
               <tr>
                
                 <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
@@ -68,19 +64,11 @@
                 <td>{{ $user->admin_email }} <input type="hidden" name="admin_email" value="{{ $user->admin_email }}"></td>
                 <td>{{ $user->admin_phone }}</td>
                 <td>{{ $user->admin_password }}</td>
-                <td><input type="checkbox" name="author_role" {{$user->hasRole('author') ? 'checked' : ''}}></td>
+              <!--   <td><input type="checkbox" name="author_role" {{$user->hasRole('author') ? 'checked' : ''}}></td>
                 <td><input type="checkbox" name="admin_role"  {{$user->hasRole('admin') ? 'checked' : ''}}></td>
-                <td><input type="checkbox" name="user_role"  {{$user->hasRole('user') ? 'checked' : ''}}></td>
-
-              <td>
-                  
-                    
-                 <input type="submit" value="Assign roles" class="btn btn-sm btn-default">
-                
-              </td> 
-
+                <td><input type="checkbox" name="user_role"  {{$user->hasRole('user') ? 'checked' : ''}}></td> -->
               </tr>
-            </form>
+              @endif
           @endforeach
         </tbody>
       </table>

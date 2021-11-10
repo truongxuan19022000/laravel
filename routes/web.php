@@ -22,7 +22,7 @@ Route::post('/tim-kiem','HomeController@search');
 //Danh muc san pham trang chu
 Route::get('/danh-muc/{slug_category_product}','CategoryProduct@show_category_home');
 Route::get('/thuong-hieu/{brand_slug}','BrandProduct@show_brand_home');
-Route::get('/chi-tiet/{product_slug}','ProductController@details_product');
+Route::get('/chi-tiet/{product_id}','ProductController@details_product');
 
 //Backend
 Route::get('/admin','AdminController@index');
@@ -84,6 +84,7 @@ Route::get('users',
 			// 'roles' => ['admin','author']
 		]);
 Route::get('add-users','UserController@add_users');
+Route::get('all_customers','UserController@all_customers');
 Route::post('store-users','UserController@store_users');
 Route::post('assign-roles','UserController@assign_roles');
 
