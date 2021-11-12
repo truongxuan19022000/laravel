@@ -3,7 +3,7 @@
     <div class="table-agile-info">
   <div class="panel panel-default">
     <div class="panel-heading">
-      Liệt kê users
+      Thông tin khách hàng
     </div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">

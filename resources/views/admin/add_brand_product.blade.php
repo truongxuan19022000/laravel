@@ -11,7 +11,7 @@
                             $message = Session::get('message');
                             if($message){
                                 
-                                echo '<div id="error" class="alert alert-primary" role="alert">' . $message . '</div>';
+                                echo '<div id="error" class="alert alert-success" role="alert">' . $message . '</div>';
                                 Session::put('message', null);
                             }
                             ?>

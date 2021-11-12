@@ -87,14 +87,14 @@
 			@csrf
 
 			<div class="col-md-2">
-				<p>Từ ngày: <input type="text" id="datepicker" class="form-control"></p>
+				<p>Từ ngày: <input type="date" id="datepicker" class="form-control"></p>
 
 				<input type="button" id="btn-dashboard-filter" class="btn btn-primary btn-sm" value="Lọc kết quả"></p>
 
 			</div>
 
 			<div class="col-md-2">
-				<p>Đến ngày: <input type="text" id="datepicker2" class="form-control"></p>
+				<p>Đến ngày: <input type="date" id="datepicker2" class="form-control"></p>
 			
 			</div>
 

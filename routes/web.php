@@ -136,7 +136,7 @@ Route::get('/delete-order/{order_code}','OrderController@order_code');
 Route::get('/print-order/{checkout_code}','OrderController@print_order');
 Route::get('/manage-order','OrderController@manage_order');
 Route::get('/view-order/{order_code}','OrderController@view_order');
-Route::post('/update-order-qty','OrderController@update_order_qty');
+Route::post('/update_order_qty','OrderController@update_order_qty');
 Route::post('/update-qty','OrderController@update_qty');
 Route::post('/huy_don_hang','OrderController@huy_don_hang');
 
