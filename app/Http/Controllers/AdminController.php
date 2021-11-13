@@ -17,6 +17,7 @@ use Validator;
 use App\Statistic;
 use App\Rules\Captcha;
 use App\User;
+use Carbon\Carbon;
 
 class AdminController extends Controller
 {
@@ -134,7 +135,8 @@ class AdminController extends Controller
     public function show_dashboard()
     {
         $this->AuthLogin();
-        $products = Product::all()->count();
+        $today = Carbon::now('Asia/Ho_Chi_Minh')->format('Y/m/d');
+        $products = Product::Where('expiry','==',1)->count();
         $orders = Order::all()->count();
         $customers = Customer::all()->count();
         $users =User::all()->count();

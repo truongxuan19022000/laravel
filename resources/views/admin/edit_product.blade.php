@@ -29,8 +29,20 @@
                                     <input type="text" data-validation="number" data-validation-error-msg="Làm ơn điền số lượng" name="product_quantity" class="form-control" id="convert_slug" value="{{$pro->product_quantity}}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Giá sản phẩm</label>
+                                    <label for="exampleInputEmail1">Ngày sản xuất</label>
+                                    <input type="text" value="{{$pro->ManufactureDate}}"  name="ManufactureDate" class="form-control"  id="priceban">
+                                </div>
+                                 <div class="form-group">
+                                    <label for="exampleInputEmail1">Ngày hết hạn</label>
+                                    <input type="text" value="{{$pro->ExpirationDate}}"  name="ExpirationDate" class="form-control" id="pricesp" >
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Giá bán</label>
                                     <input type="text" value="{{$pro->product_price}}" name="product_price" class="form-control" id="exampleInputEmail1" >
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Giá sản phẩm</label>
+                                    <input type="text" value="{{$pro->price_cost}}"  data-validation="number" data-validation-error-msg="Làm ơn điền số tiền" name="price_cost" class="form-control" id="" >
                                 </div>
                                   <div class="form-group">
                                     <label for="exampleInputEmail1">Hình ảnh sản phẩm</label>
@@ -40,10 +52,6 @@
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Mô tả sản phẩm</label>
                                     <textarea style="resize: none" rows="8" class="form-control" name="product_desc" id="ckeditor2">{{$pro->product_desc}}</textarea>
-                                </div>
-                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Nội dung sản phẩm</label>
-                                    <textarea style="resize: none" rows="8" class="form-control" name="product_content" id="ckeditor3" >{{$pro->product_content}}</textarea>
                                 </div>
                                  <div class="form-group">
                                     <label for="exampleInputPassword1">Danh mục sản phẩm</label>

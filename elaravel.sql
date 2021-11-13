@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 26, 2020 lúc 07:11 PM
--- Phiên bản máy phục vụ: 10.1.40-MariaDB
--- Phiên bản PHP: 7.3.5
+-- Thời gian đã tạo: Th10 13, 2021 lúc 05:03 PM
+-- Phiên bản máy phục vụ: 10.4.18-MariaDB
+-- Phiên bản PHP: 7.3.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -25,13 +24,42 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `admin_roles`
+--
+
+CREATE TABLE `admin_roles` (
+  `id_admin_roles` int(11) NOT NULL,
+  `admin_admin_id` int(10) UNSIGNED NOT NULL,
+  `roles_id_roles` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Đang đổ dữ liệu cho bảng `admin_roles`
+--
+
+INSERT INTO `admin_roles` (`id_admin_roles`, `admin_admin_id`, `roles_id_roles`) VALUES
+(30, 8, 3),
+(47, 1, 2),
+(48, 1, 3),
+(60, 3, 3),
+(69, 2, 2),
+(70, 2, 3),
+(73, 6, 3),
+(74, 6, 1),
+(75, 5, 3),
+(76, 5, 1),
+(77, 4, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `password_resets`
 --
 
 CREATE TABLE `password_resets` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -55,7 +83,9 @@ CREATE TABLE `tbl_admin` (
 --
 
 INSERT INTO `tbl_admin` (`admin_id`, `admin_email`, `admin_password`, `admin_name`, `admin_phone`, `created_at`, `updated_at`) VALUES
-(1, 'admin@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'hieu tan', '0932023992', NULL, NULL);
+(4, 'xuantruong20000219@gmail.com', 'ebbb855092f574cef61b6f3ce7640d87', 'Xuân', '0836785998', NULL, NULL),
+(5, 'minkngoc2k@gmail.com', 'c92f1d1f2619172bf87a12e5915702a6', 'Minh', '0836785998', NULL, NULL),
+(6, 'linhhee2k@gmail.com', '11967d5e9addc5416ea9224eee0e91fc', 'Huy', '07465734656', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -78,9 +108,12 @@ CREATE TABLE `tbl_brand` (
 --
 
 INSERT INTO `tbl_brand` (`brand_id`, `brand_name`, `brand_slug`, `brand_desc`, `brand_status`, `created_at`, `updated_at`) VALUES
-(1, 'Sony', 'sony', 'Sony', 0, NULL, NULL),
-(2, 'Samsung', 'samsung', 'Samsung ok lắm ,xài rât ổn định', 0, NULL, NULL),
-(3, 'Dell', 'dell', 'Dell ok lắm dùng rất bền', 0, NULL, NULL);
+(14, 'Kinh đô bánh', 'kinh-do-banh', 'Kinh đô bánh', 0, NULL, NULL),
+(15, 'Tous les Jours', 'tous-les-jours', 'Tous les Jours', 0, NULL, NULL),
+(16, 'Givral', 'givral', 'Givral', 0, NULL, NULL),
+(17, 'Brodard 1948', 'brodard-1948', 'Brodard 1948', 0, NULL, NULL),
+(18, '123', 'dfdf', 'sdfsdf', 0, NULL, NULL),
+(19, 'cake shop bran', 'cake', 'cake shop bran là thương hiệu bánh ngọt của shop', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -104,11 +137,11 @@ CREATE TABLE `tbl_category_product` (
 --
 
 INSERT INTO `tbl_category_product` (`category_id`, `meta_keywords`, `category_name`, `slug_category_product`, `category_desc`, `category_status`, `created_at`, `updated_at`) VALUES
-(1, 'xbox game,mua game xbox ,xbox 360', 'Xbox one', 'xbox-one', 'Xbox 360 là thế hệ thứ 2 của dòng máy chơi game console do Microsoft phát triển, cạnh tranh trực tiếp với Playstation 3 của Sony.', 0, NULL, NULL),
-(2, 'ps4,may choi game ps4', 'Máy PS4', 'may-ps4', 'PS4 là game cầm tay hay nhất mọi thời đại', 0, NULL, NULL),
-(3, 'tay cam ps4,tay cầm ps4', 'Tay cầm chơi game', 'tay-cam-choi-game', 'Tay cầm chơi game hạng nhất từ các hãng sản xuất số 1 hàng đầu châu mỹ', 0, NULL, NULL),
-(5, 'dia-ps4-gaming', 'Đĩa PS4 gaming', 'dia-ps4-gaming', 'Dia cd ps4', 0, NULL, NULL),
-(6, 'Màn hình gaming,gaming', 'Màn hình gaming', 'man-hinh-gaming', 'Màn hình gaming', 0, NULL, NULL);
+(20, 'Bánh ngọt', 'Bánh ngọt', 'banh-ngot', 'Bánh ngọt', 0, NULL, NULL),
+(21, 'Bánh trái cây', 'Bánh trái cây', 'banh-trai-cay', 'Bánh trái cây', 0, NULL, NULL),
+(22, 'Bánh Sinh nhật', 'Bánh Sinh nhật', 'banh-sinh-nhat', 'Bánh Sinh nhật', 0, NULL, NULL),
+(23, 'Bánh kem', 'Bánh kem', 'banh-kem', 'Bánh kem', 0, NULL, NULL),
+(24, 'Bánh su kem', 'Bánh su kem', 'banh-su-kem', 'Bánh su kem', 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -131,7 +164,11 @@ CREATE TABLE `tbl_coupon` (
 
 INSERT INTO `tbl_coupon` (`coupon_id`, `coupon_name`, `coupon_time`, `coupon_condition`, `coupon_number`, `coupon_code`) VALUES
 (1, 'Giảm giá 30/4', 10, 1, 10, 'HDH375Y'),
-(4, 'Giảm giá Covid', 5, 2, 100000, 'COVID99');
+(6, 'Giảm giá Covid', 10, 2, 200000, 'COVID99'),
+(7, 'Giảm giá 30%', 10, 1, 200000, 'dk1'),
+(8, 'Bạn xuan truong', 10, 2, 20000, 'Xt20'),
+(9, 'Giảm giá 30%', 10, 1, 100, 'Xt20'),
+(10, 'Giảm giá 30%', 2, 2, -29000, 'tt');
 
 -- --------------------------------------------------------
 
@@ -157,7 +194,10 @@ INSERT INTO `tbl_customers` (`customer_id`, `customer_name`, `customer_email`, `
 (4, 'Hiếu Tấn', 'tanhieu@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '0932023992', NULL, NULL),
 (5, 'Hoàng thị yến vi', 'yenvi@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '0932023992', NULL, NULL),
 (6, 'Trương Ngọc Tấn Hiếu', 'hieu123@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '0932023992', NULL, NULL),
-(7, 'Anh hieu dep giai 123', 'depgiai123@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '0932023992', NULL, NULL);
+(7, 'Anh hieu dep giai 123', 'depgiai123@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '0932023992', NULL, NULL),
+(8, 'Nguyen Truong xuan', 'xuantruong19022000@gmail.com', 'ebbb855092f574cef61b6f3ce7640d87', '0836785998', NULL, NULL),
+(9, 'Nguyen Truong xuan', 'xuantruong20000219@gmail.com', 'ebbb855092f574cef61b6f3ce7640d87', '0836785998', NULL, NULL),
+(10, 'Thơm dương', 'Thom@gmail.com', '736ff6a958d6b1c54b897be957323698', '0836785998', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -178,11 +218,13 @@ CREATE TABLE `tbl_feeship` (
 --
 
 INSERT INTO `tbl_feeship` (`fee_id`, `fee_matp`, `fee_maqh`, `fee_xaid`, `fee_feeship`) VALUES
-(1, 1, 1, 1, '50.000'),
+(1, 1, 1, 1, '50000'),
 (2, 1, 1, 16, '60000'),
 (3, 1, 2, 40, '150000'),
 (4, 2, 26, 712, '60000'),
-(5, 79, 760, 26734, '80000');
+(5, 79, 760, 26734, '80000'),
+(6, 8, 74, 2374, '15000'),
+(7, 77, 748, 26548, '60000');
 
 -- --------------------------------------------------------
 
@@ -196,6 +238,8 @@ CREATE TABLE `tbl_order` (
   `shipping_id` int(11) NOT NULL,
   `order_status` int(20) NOT NULL,
   `order_code` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `order_destroy` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `order_date` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -204,18 +248,10 @@ CREATE TABLE `tbl_order` (
 -- Đang đổ dữ liệu cho bảng `tbl_order`
 --
 
-INSERT INTO `tbl_order` (`order_id`, `customer_id`, `shipping_id`, `order_status`, `order_code`, `created_at`, `updated_at`) VALUES
-(6, 4, 7, 1, '3790e', '2020-05-01 05:53:31', NULL),
-(7, 4, 8, 1, '699d7', '2020-05-01 05:55:22', NULL),
-(8, 4, 9, 1, '346b1', '2020-05-01 05:57:42', NULL),
-(9, 4, 10, 1, 'b0374', '2020-05-01 06:01:54', NULL),
-(10, 4, 11, 1, '2c7fc', '2020-05-01 06:02:58', NULL),
-(11, 4, 12, 1, 'e8c05', '2020-05-01 06:04:51', NULL),
-(12, 4, 13, 1, 'baca3', '2020-05-01 06:05:59', NULL),
-(13, 4, 14, 1, 'a094f', '2020-05-01 06:07:20', NULL),
-(14, 5, 15, 2, '168cf', '2020-05-26 11:34:17', NULL),
-(15, 6, 16, 1, 'd8ba7', '2020-05-26 16:46:05', NULL),
-(16, 7, 17, 2, '9681f', '2020-05-26 16:55:17', NULL);
+INSERT INTO `tbl_order` (`order_id`, `customer_id`, `shipping_id`, `order_status`, `order_code`, `order_destroy`, `order_date`, `created_at`, `updated_at`) VALUES
+(22, 8, 23, 1, '6599c', '', '2020-10-24', '2020-10-24 02:22:46', NULL),
+(23, 9, 24, 2, '399b0', NULL, '2021-10-19', '2021-10-19 04:21:09', NULL),
+(24, 10, 33, 3, 'f212e', 'ko thít mua nữa !', '2021-11-12', '2021-11-12 14:01:49', NULL);
 
 -- --------------------------------------------------------
 
@@ -241,37 +277,26 @@ CREATE TABLE `tbl_order_details` (
 --
 
 INSERT INTO `tbl_order_details` (`order_details_id`, `order_code`, `product_id`, `product_name`, `product_price`, `product_sales_quantity`, `product_coupon`, `product_feeship`, `created_at`, `updated_at`) VALUES
-(16, '3790e', 11, 'Tay cầm chơi game PS4 màu trắng', '500000', 2, 'COVID99', '50000', NULL, NULL),
-(17, '3790e', 10, 'Tay cầm chơi game PS4 màu đỏ', '60000', 2, 'COVID99', '50000', NULL, NULL),
-(18, '3790e', 9, 'Máy PS4 màu đỏ', '5000000', 1, 'COVID99', '50000', NULL, NULL),
-(19, '3790e', 7, 'Tay cầm chơi game PS4 màu đỏ', '60000', 2, 'COVID99', '50000', NULL, NULL),
-(20, '3790e', 8, 'Tay cầm chơi game PS4 màu trắng', '500000', 2, 'COVID99', '50000', NULL, NULL),
-(21, '699d7', 11, 'Tay cầm chơi game PS4 màu trắng', '500000', 2, 'COVID99', '50000', NULL, NULL),
-(22, '699d7', 10, 'Tay cầm chơi game PS4 màu đỏ', '60000', 6, 'COVID99', '50000', NULL, NULL),
-(23, '699d7', 9, 'Máy PS4 màu đỏ', '5000000', 4, 'COVID99', '50000', NULL, NULL),
-(24, '699d7', 7, 'Tay cầm chơi game PS4 màu đỏ', '60000', 3, 'COVID99', '50000', NULL, NULL),
-(25, '699d7', 8, 'Tay cầm chơi game PS4 màu trắng', '500000', 2, 'COVID99', '50000', NULL, NULL),
-(26, '346b1', 11, 'Tay cầm chơi game PS4 màu trắng', '500000', 1, 'HDH375Y', '10000', NULL, NULL),
-(27, '346b1', 12, 'Máy PS4 màu đỏ', '5000000', 1, 'HDH375Y', '10000', NULL, NULL),
-(28, 'b0374', 11, 'Tay cầm chơi game PS4 màu trắng', '500000', 1, 'no', '10000', NULL, NULL),
-(29, 'b0374', 10, 'Tay cầm chơi game PS4 màu đỏ', '60000', 1, 'no', '10000', NULL, NULL),
-(30, '2c7fc', 11, 'Tay cầm chơi game PS4 màu trắng', '500000', 1, 'no', '10000', NULL, NULL),
-(31, 'baca3', 11, 'Tay cầm chơi game PS4 màu trắng', '500000', 1, 'no', '10000', NULL, NULL),
-(32, 'baca3', 12, 'Máy PS4 màu đỏ', '5000000', 1, 'no', '10000', NULL, NULL),
-(33, 'a094f', 10, 'Tay cầm chơi game PS4 màu đỏ', '60000', 1, 'no', '10000', NULL, NULL),
-(34, 'a094f', 8, 'Tay cầm chơi game PS4 màu trắng', '500000', 1, 'no', '10000', NULL, NULL),
-(35, '168cf', 14, 'Xbox 11233', '1500000', 1, 'COVID99', '50000', NULL, NULL),
-(36, '168cf', 12, 'Máy PS4 màu đỏ', '5000000', 1, 'COVID99', '50000', NULL, NULL),
-(37, '168cf', 11, 'Tay cầm chơi game PS4 màu trắng', '500000', 1, 'COVID99', '50000', NULL, NULL),
-(38, 'd8ba7', 2, 'Tay cầm chơi game PS4 màu trắng', '500000', 10, 'COVID99', '25000', NULL, NULL),
-(39, 'd8ba7', 11, 'Tay cầm chơi game PS4 màu trắng', '500000', 3, 'COVID99', '25000', NULL, NULL),
-(40, 'd8ba7', 14, 'Xbox 11233', '1500000', 5, 'COVID99', '25000', NULL, NULL),
-(41, 'd8ba7', 7, 'Tay cầm chơi game PS4 màu đỏ', '60000', 4, 'COVID99', '25000', NULL, NULL),
-(42, 'd8ba7', 9, 'Máy PS4 màu đỏ', '5006000', 8, 'COVID99', '25000', NULL, NULL),
-(43, '9681f', 2, 'Tay cầm chơi game PS4 màu trắng', '500000', 6, 'HDH375Y', '50000', NULL, NULL),
-(44, '9681f', 1, 'Tay cầm chơi game PS4 màu đỏ', '60000', 5, 'HDH375Y', '50000', NULL, NULL),
-(45, '9681f', 7, 'Tay cầm chơi game PS4 màu đỏ', '60000', 10, 'HDH375Y', '50000', NULL, NULL),
-(46, '9681f', 5, 'Tay cầm chơi game PS4 màu trắng', '500000', 5, 'HDH375Y', '50000', NULL, NULL);
+(47, '3fc48', 6, 'Royal Canin Urinary Canine Dog 2kg - Dành cho chó bị sỏi thận-10kg', '431000', 5, 'COVID99', '50000', NULL, NULL),
+(48, '3fc48', 7, 'Thức ăn cho chó nhỏ trưởng thành Farmina N&D PUMPKIN vị heo, bí ngô và táo 3kg', '230000', 1, 'COVID99', '50000', NULL, NULL),
+(49, '3fc48', 8, 'Thức ăn cho chó nhỏ trưởng thành Farmina N&D PUMPKIN vị heo, bí ngô và táo 7kg', '135000', 1, 'COVID99', '50000', NULL, NULL),
+(50, '1778b', 24, 'Sách ngôn tình hồ ly tinh', '500000', 1, 'HDH375Y', '60000', NULL, NULL),
+(51, '1778b', 22, 'Máy PS4 slim Mega pack 2', '7550000', 1, 'HDH375Y', '60000', NULL, NULL),
+(52, '1778b', 20, 'Áo Thun Nam Y2010 Basic AI08', '286000', 1, 'HDH375Y', '60000', NULL, NULL),
+(53, '1778b', 7, 'Thức ăn cho chó nhỏ trưởng thành Farmina N&D PUMPKIN vị heo, bí ngô và táo 3kg', '230000', 1, 'HDH375Y', '60000', NULL, NULL),
+(54, '1778b', 6, 'Royal Canin Urinary Canine Dog 2kg - Dành cho chó bị sỏi thận-10kg', '431000', 1, 'HDH375Y', '60000', NULL, NULL),
+(55, '37996', 11, 'Thức ăn ướt Me-o Delite vị cá ngừ và thịt gà xé 70gr', '25000', 1, 'COVID99', '10000', NULL, NULL),
+(56, '37996', 19, 'Áo Thun Nam Y2010 Basic AI06', '285000', 1, 'COVID99', '10000', NULL, NULL),
+(57, '37996', 7, 'Thức ăn cho chó nhỏ trưởng thành Farmina N&D PUMPKIN vị heo, bí ngô và táo 3kg', '230000', 1, 'COVID99', '10000', NULL, NULL),
+(58, '44013', 14, 'Áo Thun Nam Y2010 Basic AI05', '135000', 1, 'no', '25000', NULL, NULL),
+(59, '5f239', 20, 'Áo Thun Nam Y2010 Basic AI08', '286000', 1, 'no', '10000', NULL, NULL),
+(60, '5f239', 19, 'Áo Thun Nam Y2010 Basic AI06', '285000', 1, 'no', '10000', NULL, NULL),
+(61, '5f239', 22, 'Máy PS4 slim Mega pack 2', '7550000', 1, 'no', '10000', NULL, NULL),
+(62, '5f239', 25, 'Bánh crepe', '200000000', 1, 'no', '10000', NULL, NULL),
+(63, '6599c', 6, 'Bánh kem sinh nhật', '150000', 10, 'no', '10000', NULL, NULL),
+(64, '399b0', 2, 'bánh  crepe mật ngọt', '15000', 20, 'Xt20', '10000', NULL, NULL),
+(65, 'f212e', 1, 'Bánh dâu', '20000', 20, 'no', '10000', NULL, NULL),
+(66, 'f212e', 2, 'bánh  crepe mật ngọt', '15000', 10, 'no', '10000', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -283,15 +308,18 @@ CREATE TABLE `tbl_product` (
   `product_id` int(10) UNSIGNED NOT NULL,
   `product_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `product_quantity` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `product_sold` int(11) NOT NULL,
-  `product_slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `category_id` int(11) NOT NULL,
-  `brand_id` int(11) NOT NULL,
+  `product_sold` int(11) DEFAULT NULL,
+  `category_id` int(11) UNSIGNED NOT NULL,
+  `brand_id` int(11) UNSIGNED NOT NULL,
+  `ManufactureDate` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ExpirationDate` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `product_desc` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `product_content` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `product_content` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `product_price` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `price_cost` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `product_image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `product_status` int(11) NOT NULL,
+  `product_status` int(11) DEFAULT NULL,
+  `expiry` int(11) NOT NULL DEFAULT 1,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -300,20 +328,21 @@ CREATE TABLE `tbl_product` (
 -- Đang đổ dữ liệu cho bảng `tbl_product`
 --
 
-INSERT INTO `tbl_product` (`product_id`, `product_name`, `product_quantity`, `product_sold`, `product_slug`, `category_id`, `brand_id`, `product_desc`, `product_content`, `product_price`, `product_image`, `product_status`, `created_at`, `updated_at`) VALUES
-(1, 'Tay cầm chơi game PS4 màu đỏ', '5', 5, 'tay-cam-ps4-1', 3, 1, 'Tay cầm chơi game PS4 màu đỏ', 'Tay cầm chơi game PS4 màu đỏ', '60000', 'Tay-cầm-PS4-Slim-Chính-Hãng-Màu-Đỏ-Dualshock-4-red-GameStation8.jpg', 0, NULL, NULL),
-(2, 'Tay cầm chơi game PS4 màu trắng', '44', 6, 'tay-cam-choi-game-ps4-mau-trang-1', 3, 1, 'Tay cầm chơi game PS4 màu trắng', 'Tay cầm chơi game PS4 màu trắng', '500000', 'Tay-cầm-PS4-Slim-Chính-Hãng-Màu-Trắng-Dualshock-4-white-GameStation89.jpg', 0, NULL, NULL),
-(3, 'Máy PS4 màu đỏ', '30', 0, 'may-ps4-mau-do', 2, 1, 'Máy PS4 màu đỏ', 'Máy PS4 màu đỏ', '3500000', 'sony-tung-ra-thi-truong-may-ps4-pro-marvels-spider-man-phien-ban-gioi-han-anh-382.jpg', 0, NULL, NULL),
-(4, 'Tay cầm chơi game PS4 màu đỏ', '30', 0, 'tay-cam-ps4-2', 3, 1, 'Tay cầm chơi game PS4 màu đỏ', 'Tay cầm chơi game PS4 màu đỏ', '60000', 'Tay-cầm-PS4-Slim-Chính-Hãng-Màu-Đỏ-Dualshock-4-red-GameStation8.jpg', 0, NULL, NULL),
-(5, 'Tay cầm chơi game PS4 màu trắng', '15', 5, 'tay-cam-choi-game-ps4-mau-trang-2', 3, 1, 'Tay cầm chơi game PS4 màu trắng', 'Tay cầm chơi game PS4 màu trắng', '500000', 'Tay-cầm-PS4-Slim-Chính-Hãng-Màu-Trắng-Dualshock-4-white-GameStation89.jpg', 0, NULL, NULL),
-(6, 'Máy PS4 màu đỏ', '70', 0, 'may-ps4-mau-do', 2, 1, 'Máy PS4 màu đỏ', 'Máy PS4 màu đỏ', '5600000', 'sony-tung-ra-thi-truong-may-ps4-pro-marvels-spider-man-phien-ban-gioi-han-anh-382.jpg', 0, NULL, NULL),
-(7, 'Tay cầm chơi game PS4 màu đỏ', '70', 127, 'tay-cam-ps4-3', 3, 1, 'Tay cầm chơi game PS4 màu đỏ', 'Tay cầm chơi game PS4 màu đỏ', '60000', 'Tay-cầm-PS4-Slim-Chính-Hãng-Màu-Đỏ-Dualshock-4-red-GameStation8.jpg', 0, NULL, NULL),
-(8, 'Tay cầm chơi game PS4 màu trắng', '50', 20, 'tay-cam-choi-game-ps4-mau-trang-3', 3, 1, 'Tay cầm chơi game PS4 màu trắng', 'Tay cầm chơi game PS4 màu trắng', '500000', 'Tay-cầm-PS4-Slim-Chính-Hãng-Màu-Trắng-Dualshock-4-white-GameStation89.jpg', 0, NULL, NULL),
-(9, 'Máy PS4 màu đỏ', '30', 27, 'may-ps4-mau-do', 2, 1, 'Máy PS4 màu đỏ', 'Máy PS4 màu đỏ', '5006000', 'sony-tung-ra-thi-truong-may-ps4-pro-marvels-spider-man-phien-ban-gioi-han-anh-382.jpg', 0, NULL, NULL),
-(10, 'Tay cầm chơi game PS4 màu đỏ', '20', 30, 'tay-cam-ps4-4', 3, 1, 'Tay cầm chơi game PS4 màu đỏ', 'Tay cầm chơi game PS4 màu đỏ', '60000', 'Tay-cầm-PS4-Slim-Chính-Hãng-Màu-Đỏ-Dualshock-4-red-GameStation8.jpg', 0, NULL, NULL),
-(11, 'Tay cầm chơi game PS4 màu trắng', '9', 11, 'tay-cam-choi-game-ps4-mau-trang-4', 3, 1, 'Tay cầm chơi game PS4 màu trắng', 'Tay cầm chơi game PS4 màu trắng', '500000', 'Tay-cầm-PS4-Slim-Chính-Hãng-Màu-Trắng-Dualshock-4-white-GameStation89.jpg', 0, NULL, NULL),
-(12, 'Máy PS4 màu đỏ', '49', 1, 'may-ps4-mau-do', 2, 1, 'Máy PS4 màu đỏ', 'Máy PS4 màu đỏ', '5000000', 'sony-tung-ra-thi-truong-may-ps4-pro-marvels-spider-man-phien-ban-gioi-han-anh-382.jpg', 0, NULL, NULL),
-(14, 'Xbox 11233', '19', 1, 'xbox-1-1', 1, 1, '<p>dasdasd</p>', '<p>asdasd</p>', '1500000', '471937-microsoft-xbox-one-x69.jpg', 0, NULL, NULL);
+INSERT INTO `tbl_product` (`product_id`, `product_name`, `product_quantity`, `product_sold`, `category_id`, `brand_id`, `ManufactureDate`, `ExpirationDate`, `product_desc`, `product_content`, `product_price`, `price_cost`, `product_image`, `product_status`, `expiry`, `created_at`, `updated_at`) VALUES
+(1, 'Bánh dâu', '30', 60, 20, 14, '2021/11/25', '2021/11/30', '<p>Ra đời từ những năm 1948, thương hiệu b&aacute;nh&nbsp;<strong>Brodard 1948</strong>&nbsp;đ&atilde; kế thừa nhiều c&ocirc;ng nghệ sản xuất cũng như kỹ thuật l&agrave;m&nbsp;<strong>b&aacute;nh ngọt</strong>&nbsp;ti&ecirc;n tiến của Ph&aacute;p,&hellip;&nbsp;<strong>Brodard 1948</strong>&nbsp;nổi tiếng với c&aacute;c loại&nbsp;<strong>b&aacute;nh ngọt</strong>&nbsp;mang hương vị Ph&aacute;p như: pat&eacute; chaud, croissant, muffin, b&aacute;nh gateaux, tiramisu&hellip; Đặc điểm của c&aacute;c loại b&aacute;nh n&agrave;y l&agrave; được chế biến v&agrave; sản xuất ngay trong ng&agrave;y, n&ecirc;n c&oacute; thể đảm bảo được độ tươi ngon cần thiết sản phẩm. Ngo&agrave;i ra th&igrave; b&aacute;nh kem tại&nbsp;<strong>Brodard 1948</strong>&nbsp;cũng kh&aacute; ngon, c&aacute;c sản phẩm b&aacute;nh kem đang chiếm rất nhiều thiện cảm của người ti&ecirc;u d&ugrave;ng. Mỗi khi đến những dịp lễ hội, Trung Thu, Gi&aacute;ng Sinh,...&nbsp;<strong>Brodard 1948</strong>&nbsp;thường cho ra l&ograve; những loại b&aacute;nh mang đậm chất lễ hội đ&oacute;. C&aacute;c sản phẩm&nbsp;<strong>b</strong><strong>&aacute;nh ngọt Brodard 1948&nbsp;</strong>thường kh&ocirc;ng chỉ chăm ch&uacute;t về nguy&ecirc;n vật liệu, m&agrave; c&ograve;n được chăm ch&uacute;t về h&igrave;nh thức, c&aacute;ch tr&igrave;nh b&agrave;y sản phẩm.</p>', NULL, '20000', '10000', 'c-feature-194.jpg', 0, 0, NULL, NULL),
+(2, 'bánh  crepe mật ngọt', '30', 120, 20, 14, '2021/12/01', '2021/12/15', '<p>Ra đời từ những năm 1948, thương hiệu b&aacute;nh&nbsp;<strong>Brodard 1948</strong>&nbsp;đ&atilde; kế thừa nhiều c&ocirc;ng nghệ sản xuất cũng như kỹ thuật l&agrave;m&nbsp;<strong>b&aacute;nh ngọt</strong>&nbsp;ti&ecirc;n tiến của Ph&aacute;p,&hellip;&nbsp;<strong>Brodard 1948</strong>&nbsp;nổi tiếng với c&aacute;c loại&nbsp;<strong>b&aacute;nh ngọt</strong>&nbsp;mang hương vị Ph&aacute;p như: pat&eacute; chaud, croissant, muffin, b&aacute;nh gateaux, tiramisu&hellip; Đặc điểm của c&aacute;c loại b&aacute;nh n&agrave;y l&agrave; được chế biến v&agrave; sản xuất ngay trong ng&agrave;y, n&ecirc;n c&oacute; thể đảm bảo được độ tươi ngon cần thiết sản phẩm. Ngo&agrave;i ra th&igrave; b&aacute;nh kem tại&nbsp;<strong>Brodard 1948</strong>&nbsp;cũng kh&aacute; ngon, c&aacute;c sản phẩm b&aacute;nh kem đang chiếm rất nhiều thiện cảm của người ti&ecirc;u d&ugrave;ng. Mỗi khi đến những dịp lễ hội, Trung Thu, Gi&aacute;ng Sinh,...&nbsp;<strong>Brodard 1948</strong>&nbsp;thường cho ra l&ograve; những loại b&aacute;nh mang đậm chất lễ hội đ&oacute;. C&aacute;c sản phẩm&nbsp;<strong>b</strong><strong>&aacute;nh ngọt Brodard 1948&nbsp;</strong>thường kh&ocirc;ng chỉ chăm ch&uacute;t về nguy&ecirc;n vật liệu, m&agrave; c&ograve;n được chăm ch&uacute;t về h&igrave;nh thức, c&aacute;ch tr&igrave;nh b&agrave;y sản phẩm.</p>', '<p>Ra đời từ những năm 1948, thương hiệu b&aacute;nh&nbsp;<strong>Brodard 1948</strong>&nbsp;đ&atilde; kế thừa nhiều c&ocirc;ng nghệ sản xuất cũng như kỹ thuật l&agrave;m&nbsp;<strong>b&aacute;nh ngọt</strong>&nbsp;ti&ecirc;n tiến của Ph&aacute;p,&hellip;&nbsp;<strong>Brodard 1948</strong>&nbsp;nổi tiếng với c&aacute;c loại&nbsp;<strong>b&aacute;nh ngọt</strong>&nbsp;mang hương vị Ph&aacute;p như: pat&eacute; chaud, croissant, muffin, b&aacute;nh gateaux, tiramisu&hellip;</p>', '15000', '5000', 'c-feature-485.jpg', 0, 0, NULL, NULL),
+(3, 'Bánh trà xanh', '30', NULL, 21, 17, '2021/11/14', '2021/11/17', '<p>Ra đời từ những năm 1948, thương hiệu b&aacute;nh&nbsp;<strong>Brodard 1948</strong>&nbsp;đ&atilde; kế thừa nhiều c&ocirc;ng nghệ sản xuất cũng như kỹ thuật l&agrave;m&nbsp;<strong>b&aacute;nh ngọt</strong>&nbsp;ti&ecirc;n tiến của Ph&aacute;p,&hellip;&nbsp;<strong>Brodard 1948</strong>&nbsp;nổi tiếng với c&aacute;c loại&nbsp;<strong>b&aacute;nh ngọt</strong>&nbsp;mang hương vị Ph&aacute;p như: pat&eacute; chaud, croissant, muffin, b&aacute;nh gateaux, tiramisu&hellip;</p>', '<p>Đặc điểm của c&aacute;c loại b&aacute;nh n&agrave;y l&agrave; được chế biến v&agrave; sản xuất ngay trong ng&agrave;y, n&ecirc;n c&oacute; thể đảm bảo được độ tươi ngon cần thiết sản phẩm. Ngo&agrave;i ra th&igrave; b&aacute;nh kem tại&nbsp;<strong>Brodard 1948</strong>&nbsp;cũng kh&aacute; ngon, c&aacute;c sản phẩm b&aacute;nh kem đang chiếm rất nhiều thiện cảm của người ti&ecirc;u d&ugrave;ng. Mỗi khi đến những dịp lễ hội, Trung Thu, Gi&aacute;ng Sinh,...&nbsp;<strong>Brodard 1948</strong>&nbsp;thường cho ra l&ograve; những loại b&aacute;nh mang đậm chất lễ hội đ&oacute;. C&aacute;c sản phẩm&nbsp;<strong>b</strong><strong>&aacute;nh ngọt Brodard 1948&nbsp;</strong>thường kh&ocirc;ng chỉ chăm ch&uacute;t về nguy&ecirc;n vật liệu, m&agrave; c&ograve;n được chăm ch&uacute;t về h&igrave;nh thức, c&aacute;ch tr&igrave;nh b&agrave;y sản phẩm.</p>', '25000', '15000', 'c-feature-27.jpg', 0, 0, NULL, NULL),
+(4, 'Bánh caramen', '100', NULL, 19, 15, '2021/11/24', '2021/11/28', '<p>Đặc điểm của c&aacute;c loại b&aacute;nh n&agrave;y l&agrave; được chế biến v&agrave; sản xuất ngay trong ng&agrave;y, n&ecirc;n c&oacute; thể đảm bảo được độ tươi ngon cần thiết sản phẩm. Ngo&agrave;i ra th&igrave; b&aacute;nh kem tại&nbsp;<strong>Brodard 1948</strong>&nbsp;cũng kh&aacute; ngon, c&aacute;c sản phẩm b&aacute;nh kem đang chiếm rất nhiều thiện cảm của người ti&ecirc;u d&ugrave;ng. Mỗi khi đến những dịp lễ hội, Trung Thu, Gi&aacute;ng Sinh,...&nbsp;<strong>Brodard 1948</strong>&nbsp;thường cho ra l&ograve; những loại b&aacute;nh mang đậm chất lễ hội đ&oacute;. C&aacute;c sản phẩm&nbsp;<strong>b</strong><strong>&aacute;nh ngọt Brodard 1948&nbsp;</strong>thường kh&ocirc;ng chỉ chăm ch&uacute;t về nguy&ecirc;n vật liệu, m&agrave; c&ograve;n được chăm ch&uacute;t về h&igrave;nh thức, c&aacute;ch tr&igrave;nh b&agrave;y sản phẩm.</p>', '<p>Đặc điểm của c&aacute;c loại b&aacute;nh n&agrave;y l&agrave; được chế biến v&agrave; sản xuất ngay trong ng&agrave;y, n&ecirc;n c&oacute; thể đảm bảo được độ tươi ngon cần thiết sản phẩm. Ngo&agrave;i ra th&igrave; b&aacute;nh kem tại&nbsp;<strong>Brodard 1948</strong>&nbsp;cũng kh&aacute; ngon, c&aacute;c sản phẩm b&aacute;nh kem đang chiếm rất nhiều thiện cảm của người ti&ecirc;u d&ugrave;ng. Mỗi khi đến những dịp lễ hội, Trung Thu, Gi&aacute;ng Sinh,...&nbsp;<strong>Brodard 1948</strong>&nbsp;thường cho ra l&ograve; những loại b&aacute;nh mang đậm chất lễ hội đ&oacute;. C&aacute;c sản phẩm&nbsp;<strong>b</strong><strong>&aacute;nh ngọt Brodard 1948&nbsp;</strong>thường kh&ocirc;ng chỉ chăm ch&uacute;t về nguy&ecirc;n vật liệu, m&agrave; c&ograve;n được chăm ch&uacute;t về h&igrave;nh thức, c&aacute;ch tr&igrave;nh b&agrave;y sản phẩm.</p>', '17000', '12000', 'c-feature-472.jpg', 0, 0, NULL, NULL),
+(5, 'Bánh nướng phu thê', '70', NULL, 24, 14, '2021/10/19', '2021/10/22', '<p><strong>Kinh Đ&ocirc; Bakery</strong>&nbsp;l&agrave; một trong những thương hiệu b&aacute;nh ngọt c&oacute; truyền thống l&acirc;u đời nhất tại Việt Nam, với kiểu d&aacute;ng sản phẩm đơn giản, ấn tượng, bắt mắt b&ecirc;n ngo&agrave;i h&ograve;a lẫn hương vị thơm ngon b&ecirc;n trong. Sản phẩm đ&atilde; thu h&uacute;t kh&aacute;ch h&agrave;ng từ c&aacute;i nh&igrave;n đầu ti&ecirc;n. Khi đến với&nbsp;<strong>Kinh Đ&ocirc; Bakery</strong>&nbsp;kh&aacute;ch h&agrave;ng c&oacute; thể cảm nhận m&ugrave;i vị tuyệt vời đến từ những chiếc b&aacute;nh mới thơm ngon. Người thợ l&agrave;m b&aacute;nh của&nbsp;<strong>Kinh Đ&ocirc; Bakery</strong>&nbsp;đ&atilde; kh&ocirc;ng ngừng học hỏi v&agrave; t&igrave;m kiếm những c&ocirc;ng thức l&agrave;m b&aacute;nh. Nguy&ecirc;n vật liệu m&agrave;&nbsp;<strong>Kinh Đ&ocirc; Bakery</strong>&nbsp;sử dụng để l&agrave;m b&aacute;nh l&agrave; những vật liệu tươi ngon nhất.</p>', '<p><strong>Kinh Đ&ocirc; Bakery</strong>&nbsp;l&agrave; một trong những thương hiệu b&aacute;nh ngọt c&oacute; truyền thống l&acirc;u đời nhất tại Việt Nam, với kiểu d&aacute;ng sản phẩm đơn giản, ấn tượng, bắt mắt b&ecirc;n ngo&agrave;i h&ograve;a lẫn hương vị thơm ngon b&ecirc;n trong. Sản phẩm đ&atilde; thu h&uacute;t kh&aacute;ch h&agrave;ng từ c&aacute;i nh&igrave;n đầu ti&ecirc;n. Khi đến với&nbsp;<strong>Kinh Đ&ocirc; Bakery</strong>&nbsp;kh&aacute;ch h&agrave;ng c&oacute; thể cảm nhận m&ugrave;i vị tuyệt vời đến từ những chiếc b&aacute;nh mới thơm ngon. Người thợ l&agrave;m b&aacute;nh của&nbsp;<strong>Kinh Đ&ocirc; Bakery</strong>&nbsp;đ&atilde; kh&ocirc;ng ngừng học hỏi v&agrave; t&igrave;m kiếm những c&ocirc;ng thức l&agrave;m b&aacute;nh. Nguy&ecirc;n vật liệu m&agrave;&nbsp;<strong>Kinh Đ&ocirc; Bakery</strong>&nbsp;sử dụng để l&agrave;m b&aacute;nh l&agrave; những vật liệu tươi ngon nhất.</p>', '20000', '13000', 'c-feature-341.jpg', 0, 0, NULL, NULL),
+(6, 'Bánh kem sinh nhật', '40', 40, 22, 16, '2021/10/30', '2021/11/05', '<p><strong>Givral&nbsp;</strong>l&agrave; một thương hiệu b&aacute;nh ngọt danh tiếng của S&agrave;i G&ograve;n c&oacute; bề d&agrave;y lịch sử hơn 60 năm.&nbsp;<strong>Givral</strong>&nbsp;đ&atilde; thực sự mang đến n&eacute;t tao nh&atilde;, tinh tế của nền văn h&oacute;a ẩm thực Ph&aacute;p v&agrave;o trong những sản phẩm của m&igrave;nh.Trong suốt qu&atilde;ng thời gian vừa qua, b&aacute;nh&nbsp;<strong>Givral</strong>&nbsp;đ&atilde; nổi bật tr&ecirc;n thị trường b&aacute;nh ngọt l&agrave; thương hiệu b&aacute;nh hướng đến người ti&ecirc;u d&ugrave;ng, v&igrave; sức khỏe người ti&ecirc;u d&ugrave;ng. N&oacute;i đến&nbsp;<strong>Givral</strong>&nbsp;l&agrave; n&oacute;i đến c&aacute;c d&ograve;ng b&aacute;nh tươi, ho&agrave;n to&agrave;n kh&ocirc;ng c&oacute; c&aacute;c chất bảo quản hay phụ gia g&acirc;y ảnh hưởng đến sức khỏe người d&ugrave;ng. Nguy&ecirc;n vật liệu l&agrave;m b&aacute;nh được&nbsp;<strong>Givral</strong>&nbsp;mua từ những nguồn h&agrave;ng chất lượng, được ch&iacute;nh&nbsp;<strong>Givral</strong>&nbsp;tiến h&agrave;nh kiểm tra chất lượng đầu v&agrave;o.</p>', '<p><strong>Givral&nbsp;</strong>l&agrave; một thương hiệu b&aacute;nh ngọt danh tiếng của S&agrave;i G&ograve;n c&oacute; bề d&agrave;y lịch sử hơn 60 năm.&nbsp;<strong>Givral</strong>&nbsp;đ&atilde; thực sự mang đến n&eacute;t tao nh&atilde;, tinh tế của nền văn h&oacute;a ẩm thực Ph&aacute;p v&agrave;o trong những sản phẩm của m&igrave;nh.Trong suốt qu&atilde;ng thời gian vừa qua, b&aacute;nh&nbsp;<strong>Givral</strong>&nbsp;đ&atilde; nổi bật tr&ecirc;n thị trường b&aacute;nh ngọt l&agrave; thương hiệu b&aacute;nh hướng đến người ti&ecirc;u d&ugrave;ng, v&igrave; sức khỏe người ti&ecirc;u d&ugrave;ng. N&oacute;i đến&nbsp;<strong>Givral</strong>&nbsp;l&agrave; n&oacute;i đến c&aacute;c d&ograve;ng b&aacute;nh tươi, ho&agrave;n to&agrave;n kh&ocirc;ng c&oacute; c&aacute;c chất bảo quản hay phụ gia g&acirc;y ảnh hưởng đến sức khỏe người d&ugrave;ng. Nguy&ecirc;n vật liệu l&agrave;m b&aacute;nh được&nbsp;<strong>Givral</strong>&nbsp;mua từ những nguồn h&agrave;ng chất lượng, được ch&iacute;nh&nbsp;<strong>Givral</strong>&nbsp;tiến h&agrave;nh kiểm tra chất lượng đầu v&agrave;o.</p>', '150000', '12000', 'c-feature-646.jpg', 1, 0, NULL, NULL),
+(8, 'banh gao câmry', '2', NULL, 24, 19, '2021/11/29', '2021/12/04', '<p>fdsfs</p>', '<p>sdfdf</p>', '100000', '80000', 'special-121.png', 0, 0, NULL, NULL),
+(9, 'Bánh bông lan', '100', NULL, 24, 19, '2021/11/22', '2021/11/28', '<p>ok</p>', '<p>ok</p>', '300000', '250000', 'bakery-113.jpg', 0, 0, NULL, NULL),
+(10, 'Bánh phu thê mật ngot', '50', NULL, 20, 15, '2021/12/22', '2021/12/24', '<p>ok</p>', '<p>ok</p>', '20000', '1500', 'ok15.jpg', 0, 0, NULL, NULL),
+(11, 'Bánh caramen pháp', '30', NULL, 24, 19, '2021/11/07', '2021/11/25', '<p>ok</p>', NULL, '100000', '60000', 'bakery-318.jpg', 0, 0, NULL, NULL),
+(12, 'bánh sinh nhật xuan truong', '100', NULL, 22, 14, '2021-11-05', '2021-11-09', '<p>qu&aacute; l&agrave; ok lu&ocirc;n</p>', NULL, '250000', '150000', 'portfolio-370.jpg', 0, 1, NULL, NULL),
+(13, 'bánh trung thu hendtai', '75', NULL, 20, 14, '2021-11-20', '2021-11-26', '<p>sản phẩm ok</p>', NULL, '75000', '50000', 'portfolio-393.jpg', 0, 0, NULL, NULL),
+(14, 'bánh xoài tây', '120', NULL, 24, 19, '2021-11-14', '2021-11-27', '<p>ok</p>', NULL, '130000', '76000', 'portfolio-749.jpg', 1, 1, NULL, NULL),
+(15, 'bánh xoài xanh', '150', NULL, 24, 19, '2021/11/17', '2021/11/21', '<p>ok đấy</p>', NULL, '240000', '190000', 'comming-bg86.jpg', 1, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1050,6 +1079,26 @@ INSERT INTO `tbl_quanhuyen` (`maqh`, `name_quanhuyen`, `type`, `matp`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `tbl_roles`
+--
+
+CREATE TABLE `tbl_roles` (
+  `id_roles` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Đang đổ dữ liệu cho bảng `tbl_roles`
+--
+
+INSERT INTO `tbl_roles` (`id_roles`, `name`) VALUES
+(1, 'admin'),
+(2, 'author'),
+(3, 'user');
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `tbl_shipping`
 --
 
@@ -1070,7 +1119,23 @@ CREATE TABLE `tbl_shipping` (
 --
 
 INSERT INTO `tbl_shipping` (`shipping_id`, `shipping_name`, `shipping_address`, `shipping_phone`, `shipping_email`, `shipping_notes`, `shipping_method`, `created_at`, `updated_at`) VALUES
-(17, 'Hieu Tấn', '245 Nguyễn Văn Khạ, Tân An Hội .Thị trấn Củ Chi,TPHCM', '0932023992', 'Hieu dep giai', 'Nhanh nha mày', 1, NULL, NULL);
+(17, 'Hieu Tấn', '245 Nguyễn Văn Khạ, Tân An Hội .Thị trấn Củ Chi,TPHCM', '0932023992', 'Hieu dep giai', 'Nhanh nha mày', 1, NULL, NULL),
+(18, 'Hieu tấn', '123/123', '0932023992', 'dsadas@gmail.com', 'dasdasdasdas', 1, NULL, NULL),
+(19, 'Hieu tấn', '123/123', '0932023992', 'dsadas@gmail.com', 'dasdasdasdas', 0, NULL, NULL),
+(20, 'xuan truong', 'ha noi', '08394743434', 'xuantruong20000219@gmail.com', 'ol', 1, NULL, NULL),
+(21, 'xuan truong', 'ha noi', '08394743434', 'xuantruong20000219@gmail.com', 'okok', 0, NULL, NULL),
+(22, 'lan', 'ha noi', '08394743434', 'lanhoang@gmail.com', 'thêm nhiều gia vị', 0, NULL, NULL),
+(23, 'xuan truong', 'ha noi', '08394743434', 'xuantruong20000219@gmail.com', 'bánh sinh nhật nhiều nến', 1, NULL, NULL),
+(24, 'xuan truong', 'ha noi', '08394743434', 'xuantruong20000219@gmail.com', 'thêm nhiều gia vị', 1, NULL, NULL),
+(25, 'hoài anh', 'ha noi', '08394743434', 'lanhoang@gmail.com', 'bánh ngon lắm', 1, NULL, NULL),
+(26, 'xuan truong', 'ha noi', '08394743434', 'lanhoang@gmail.com', 'sdfsdfsdf', 0, NULL, NULL),
+(27, 'thom', 'thom duong', '0923848034', 'lanhoang@gmail.com', 'ưejrwerpiwpj', 1, NULL, NULL),
+(28, 'la hoai', 'ha noi', '0923848034', 'xuantruong20000219@gmail.com', 'ok', 0, NULL, NULL),
+(29, 'thom', 'thom duong', '0923848034', 'lanhoang@gmail.com', 'okok', 1, NULL, NULL),
+(30, 'thom', 'thom duong', '08394743434', 'lanhoang@gmail.com', 'ok em ey', 1, NULL, NULL),
+(31, 'la hoai', 'thom duong', '0923848034', 'lanhoang@gmail.com', 'okook', 0, NULL, NULL),
+(32, 'la hoai', 'thom duong', '08394743434', 'xuantruong20000219@gmail.com', 'okok', 0, NULL, NULL),
+(33, 'la hoai', 'thom duong', '0923848034', 'xuantruong20000219@gmail.com', 'okok', 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1091,10 +1156,10 @@ CREATE TABLE `tbl_slider` (
 --
 
 INSERT INTO `tbl_slider` (`slider_id`, `slider_name`, `slider_status`, `slider_image`, `slider_desc`) VALUES
-(1, 'Slider 1', 1, 'slider149.jpg', 'Thông tin khuyến mãi nạp thẻ game'),
-(2, 'Slider 1', 1, 'slider188.jpg', 'dasdasdasdasdasd'),
 (3, 'Slider 2', 1, 'slider275.jpg', 'dsadasdas'),
-(4, 'Slider 3', 0, 'slider318.jpg', 'dasdasdasd');
+(6, 'Slider quan áo', 1, '091216-casualfalloutifts-slider-2png18.png', 'Slider quan áo'),
+(7, 'Slider Thú cưng', 1, 'banner-template-concept-pet-shop_23-214843688821.jpg', 'Slider Thú cưng'),
+(8, 'Book slider', 1, 'bookslider43.jpg', 'Book slider');
 
 -- --------------------------------------------------------
 
@@ -1115,7 +1180,99 @@ CREATE TABLE `tbl_social` (
 
 INSERT INTO `tbl_social` (`user_id`, `provider_user_id`, `provider`, `user`) VALUES
 (6, '221605442317143', 'facebook', 6),
-(13, '111257400060277532733', 'GOOGLE', 12);
+(13, '111257400060277532733', 'GOOGLE', 12),
+(14, '111264198467826812391', 'GOOGLE', 2),
+(15, '108162077516942840028', 'GOOGLE', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `tbl_statistical`
+--
+
+CREATE TABLE `tbl_statistical` (
+  `id_statistical` int(11) NOT NULL,
+  `order_date` varchar(100) NOT NULL,
+  `sales` varchar(200) NOT NULL,
+  `profit` varchar(200) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `total_order` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Đang đổ dữ liệu cho bảng `tbl_statistical`
+--
+
+INSERT INTO `tbl_statistical` (`id_statistical`, `order_date`, `sales`, `profit`, `quantity`, `total_order`) VALUES
+(1, '2021-10-19', '600000', '400000', 40, 2),
+(2, '2021-11-12', '550000', '300000', 30, 2),
+(3, '2020-11-06', '30000000', '3000000', 45, 7),
+(4, '2020-11-05', '45000000', '3800000', 30, 9),
+(5, '2020-11-04', '30000000', '1500000', 15, 12),
+(6, '2020-11-03', '8000000', '700000', 65, 30),
+(7, '2020-11-02', '28000000', '23000000', 32, 20),
+(8, '2020-11-01', '25000000', '20000000', 7, 6),
+(9, '2020-10-31', '36000000', '28000000', 40, 15),
+(10, '2020-10-30', '50000000', '13000000', 89, 19),
+(11, '2020-10-29', '20000000', '15000000', 63, 11),
+(12, '2020-10-28', '25000000', '16000000', 94, 14),
+(13, '2020-10-27', '32000000', '17000000', 16, 10),
+(14, '2020-10-26', '33000000', '19000000', 14, 5),
+(15, '2020-10-25', '36000000', '18000000', 22, 12),
+(16, '2020-10-24', '1500000', '1499000', 10, 1),
+(17, '2020-10-23', '25000000', '16000000', 94, 14),
+(18, '2020-10-22', '12000000', '7000000', 16, 10),
+(19, '2020-10-21', '63000000', '19000000', 14, 5),
+(20, '2020-10-20', '66000000', '18000000', 22, 12),
+(21, '2020-10-19', '74000000', '20000000', 33, 20),
+(22, '2020-10-18', '63000000', '19000000', 14, 5),
+(23, '2020-10-17', '66000000', '18000000', 23, 12),
+(24, '2020-10-16', '74000000', '20000000', 32, 20),
+(25, '2020-10-15', '63000000', '19000000', 14, 5),
+(26, '2020-10-14', '66000000', '18000000', 23, 12),
+(27, '2020-10-13', '74000000', '20000000', 33, 20),
+(28, '2020-10-12', '66000000', '18000000', 23, 12),
+(29, '2020-10-11', '74000000', '20000000', 10, 20),
+(30, '2020-10-10', '63000000', '19000000', 14, 5),
+(31, '2020-10-09', '66000000', '18000000', 23, 12),
+(32, '2020-10-08', '74000000', '20000000', 15, 20),
+(33, '2020-10-07', '66000000', '18000000', 23, 12),
+(34, '2020-10-06', '74000000', '20000000', 30, 22),
+(35, '2020-10-05', '66000000', '18000000', 23, 12),
+(36, '2020-10-04', '74000000', '20000000', 32, 20),
+(37, '2020-10-03', '63000000', '19000000', 14, 5),
+(38, '2020-10-02', '66000000', '18000000', 23, 12),
+(39, '2020-10-01', '74000000', '20000000', 32, 20),
+(40, '2020-09-30', '63000000', '19000000', 14, 5),
+(41, '2020-09-29', '66000000', '18000000', 23, 12),
+(42, '2020-09-28', '74000000', '20000000', 15, 20),
+(43, '2020-09-27', '66000000', '18000000', 23, 12),
+(44, '2020-09-26', '74000000', '20000000', 30, 22),
+(45, '2020-09-25', '66000000', '18000000', 23, 12),
+(46, '2020-09-24', '74000000', '20000000', 32, 20),
+(47, '2020-09-23', '63000000', '19000000', 14, 5),
+(48, '2020-09-22', '66000000', '18000000', 23, 12),
+(49, '2020-09-21', '74000000', '20000000', 32, 20),
+(50, '2020-09-20', '63000000', '19000000', 14, 5),
+(51, '2020-09-19', '66000000', '18000000', 23, 12),
+(52, '2020-09-18', '74000000', '20000000', 15, 20),
+(53, '2020-09-17', '66000000', '18000000', 23, 12),
+(54, '2020-09-16', '74000000', '20000000', 30, 22),
+(55, '2020-09-15', '66000000', '18000000', 23, 12),
+(56, '2020-09-14', '74000000', '20000000', 32, 20),
+(57, '2020-09-13', '63000000', '19000000', 14, 5),
+(58, '2020-09-12', '66000000', '18000000', 23, 12),
+(59, '2020-09-11', '74000000', '20000000', 32, 20),
+(60, '2020-09-10', '63000000', '19000000', 14, 5),
+(61, '2020-09-09', '66000000', '18000000', 23, 12),
+(62, '2020-09-08', '74000000', '20000000', 15, 20),
+(63, '2020-09-07', '66000000', '18000000', 23, 12),
+(64, '2020-09-06', '74000000', '20000000', 30, 22),
+(65, '2020-09-05', '66000000', '18000000', 23, 12),
+(66, '2020-09-04', '74000000', '20000000', 32, 20),
+(67, '2020-09-03', '63000000', '19000000', 14, 5),
+(68, '2020-09-02', '66000000', '18000000', 23, 12),
+(69, '2020-09-01', '74000000', '20000000', 32, 20);
 
 -- --------------------------------------------------------
 
@@ -12409,6 +12566,12 @@ CREATE TABLE `users` (
 --
 
 --
+-- Chỉ mục cho bảng `admin_roles`
+--
+ALTER TABLE `admin_roles`
+  ADD PRIMARY KEY (`id_admin_roles`);
+
+--
 -- Chỉ mục cho bảng `tbl_admin`
 --
 ALTER TABLE `tbl_admin`
@@ -12469,6 +12632,12 @@ ALTER TABLE `tbl_quanhuyen`
   ADD PRIMARY KEY (`maqh`);
 
 --
+-- Chỉ mục cho bảng `tbl_roles`
+--
+ALTER TABLE `tbl_roles`
+  ADD PRIMARY KEY (`id_roles`);
+
+--
 -- Chỉ mục cho bảng `tbl_shipping`
 --
 ALTER TABLE `tbl_shipping`
@@ -12485,6 +12654,12 @@ ALTER TABLE `tbl_slider`
 --
 ALTER TABLE `tbl_social`
   ADD PRIMARY KEY (`user_id`);
+
+--
+-- Chỉ mục cho bảng `tbl_statistical`
+--
+ALTER TABLE `tbl_statistical`
+  ADD PRIMARY KEY (`id_statistical`);
 
 --
 -- Chỉ mục cho bảng `tbl_tinhthanhpho`
@@ -12509,76 +12684,94 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT cho bảng `admin_roles`
+--
+ALTER TABLE `admin_roles`
+  MODIFY `id_admin_roles` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+
+--
 -- AUTO_INCREMENT cho bảng `tbl_admin`
 --
 ALTER TABLE `tbl_admin`
-  MODIFY `admin_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `admin_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_brand`
 --
 ALTER TABLE `tbl_brand`
-  MODIFY `brand_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `brand_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_category_product`
 --
 ALTER TABLE `tbl_category_product`
-  MODIFY `category_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `category_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_coupon`
 --
 ALTER TABLE `tbl_coupon`
-  MODIFY `coupon_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `coupon_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_customers`
 --
 ALTER TABLE `tbl_customers`
-  MODIFY `customer_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `customer_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_feeship`
 --
 ALTER TABLE `tbl_feeship`
-  MODIFY `fee_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `fee_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_order`
 --
 ALTER TABLE `tbl_order`
-  MODIFY `order_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `order_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_order_details`
 --
 ALTER TABLE `tbl_order_details`
-  MODIFY `order_details_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `order_details_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_product`
 --
 ALTER TABLE `tbl_product`
-  MODIFY `product_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `product_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT cho bảng `tbl_roles`
+--
+ALTER TABLE `tbl_roles`
+  MODIFY `id_roles` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_shipping`
 --
 ALTER TABLE `tbl_shipping`
-  MODIFY `shipping_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `shipping_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_slider`
 --
 ALTER TABLE `tbl_slider`
-  MODIFY `slider_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `slider_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT cho bảng `tbl_social`
 --
 ALTER TABLE `tbl_social`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT cho bảng `tbl_statistical`
+--
+ALTER TABLE `tbl_statistical`
+  MODIFY `id_statistical` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT cho bảng `users`

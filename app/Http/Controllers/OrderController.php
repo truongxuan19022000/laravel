@@ -70,6 +70,7 @@ class OrderController extends Controller
 				$product_sold = $product->product_sold;
 				//them
 				$product_price = $product->product_price;
+				$price_cost = $product->price_cost;
 				$now = Carbon::now('Asia/Ho_Chi_Minh')->toDateString();
 
 				foreach($data['quantity'] as $key2 => $qty){
@@ -83,7 +84,7 @@ class OrderController extends Controller
 						$quantity+=$qty;
 						$total_order+=1;
 						$sales+=$product_price*$qty;
-						$profit = $sales - 1000;
+						$profit += ($product_price*$qty)-($price_cost*$qty);
 					}
 
 				}

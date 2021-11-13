@@ -15,6 +15,7 @@
         				<div class="row product_item_inner">
         					
                         @foreach($all_product as $key => $product)
+						@if($product->ExpirationDate>$today)
                         <div class="col-sm-4">
                             <div class="product-image-wrapper">
                            
@@ -46,6 +47,7 @@
                                 </div>
                             </div>
                         </div>
+						@endif
                         @endforeach
         					
         				</div>

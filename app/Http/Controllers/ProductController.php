@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use App\Slider;
 use App\Http\Requests;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Redirect;
 session_start();
 class ProductController extends Controller
@@ -31,11 +32,12 @@ class ProductController extends Controller
     }
     public function all_product(){
         $this->AuthLogin();
+        $today = Carbon::now('Asia/Ho_Chi_Minh')->format('Y/m/d');
     	$all_product = DB::table('tbl_product')
         ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
         ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')
         ->orderby('tbl_product.product_id','desc')->paginate(5);
-    	$manager_product  = view('admin.all_product')->with('all_product',$all_product);
+    	$manager_product  = view('admin.all_product')->with('all_product',$all_product)->with('today',$today);
     	return view('admin_layout')->with('admin.all_product', $manager_product);
 
     }
@@ -45,10 +47,13 @@ class ProductController extends Controller
     	$data['product_name'] = $request->product_name;
         $data['product_quantity'] = $request->product_quantity;
     	$data['product_price'] = $request->product_price;
+        $data['price_cost'] = $request->price_cost;
     	$data['product_desc'] = $request->product_desc;
         $data['product_content'] = $request->product_content;
         $data['category_id'] = $request->product_cate;
         $data['brand_id'] = $request->product_brand;
+        $data['ManufactureDate'] = $request->ManufactureDate;
+        $data['ExpirationDate'] = $request->ExpirationDate;
         $data['product_status'] = $request->product_status;
         $data['product_image'] = $request->product_status;
         $get_image = $request->file('product_image');
@@ -98,10 +103,13 @@ class ProductController extends Controller
         $data['product_name'] = $request->product_name;
         $data['product_quantity'] = $request->product_quantity;
         $data['product_price'] = $request->product_price;
+        $data['price_cost'] = $request->price_cost;
         $data['product_desc'] = $request->product_desc;
         $data['product_content'] = $request->product_content;
         $data['category_id'] = $request->product_cate;
         $data['brand_id'] = $request->product_brand;
+        $data['ManufactureDate'] = $request->ManufactureDate;
+        $data['ExpirationDate'] = $request->ExpirationDate;
         $data['product_status'] = $request->product_status;
         $get_image = $request->file('product_image');
         

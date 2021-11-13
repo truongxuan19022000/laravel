@@ -84,10 +84,10 @@
               </div>
               @endif
               <a href="{{URL::to('/view-order/'.$ord->order_code)}}" class="active styling-edit" ui-toggle-class="">
-                <i class="fa fa-eye text-success text-active"></i></a>
+              <button style="margin-top:10px;" type="button" class="btn btn-success">Xem đơn </button></a>
                 @if($ord->order_status ==3)
               <a onclick="return confirm('Bạn có chắc là muốn xóa đơn hàng này ko?')" href="{{URL::to('/delete-order/'.$ord->order_code)}}" class="active styling-edit" ui-toggle-class="">
-                <i class="fa fa-times text-danger text"></i>
+              <button style="margin-top:10px;" type="button" class="btn btn-danger">Xóa đơn</button></i>
               </a>
               @endif
             </td>

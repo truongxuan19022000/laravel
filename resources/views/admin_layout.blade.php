@@ -7,10 +7,11 @@
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- bootstrap-css -->
-<link rel="stylesheet" href="{{asset('public/backend/css/bootstrap.min.css')}}" >
 
 <!-- //bootstrap-css -->
 <!-- Custom CSS -->
+<link rel="stylesheet" href="{{asset('public/backend/css/bootstrap.min.css')}}" >
+
 <link href="{{asset('public/backend/css/admins.css')}}" rel='stylesheet' type='text/css' />
 <link href="{{asset('public/backend/css/style-responsive.css')}}" rel="stylesheet"/>
 <link href="{{asset('public/backend/css/jquery.dataTables.min.css')}}" rel="stylesheet"/>
@@ -20,9 +21,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link rel="stylesheet" href="{{asset('public/backend/css/font.css')}}" type="text/css"/>
 <link href="{{asset('public/backend/css/font-awesome.css')}}" rel="stylesheet"> 
 <link rel="stylesheet" href="{{asset('public/backend/css/morris.css')}}" type="text/css"/>
-
+  <!-- Theme style -->
+    <!-- IonIcons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 <!-- calendar -->
+
 <link rel="stylesheet" href="{{asset('public/backend/css/monthly.css')}}">
+
 <!-- //calendar -->
 <!-- //font-awesome icons -->
 <script src="{{asset('public/backend/js/jquery2.0.3.min.js')}}"></script>
@@ -30,6 +35,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="{{asset('public/backend/js/morris.js')}}"></script>
 <script src="{{asset('public/backend/js/morris.js')}}"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
 </head>
 <body>
@@ -94,18 +100,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <span>Tổng quan</span>
                     </a>
                 </li>
-                 
-                <li class="sub-menu">
-                    <a href="javascript:;">
-                        <i class="fa fa-book"></i>
-                        <span>Slider</span>
-                    </a>
-                    <ul class="sub">
-                        <li><a href="{{URL::to('/manage-slider')}}">Liệt kê slider</a></li>
-                        <li><a href="{{URL::to('/add-slider')}}">Thêm slider</a></li>
-                    </ul>
-                </li>
-                   
                 </li>
                  <li class="sub-menu">
                     <a href="javascript:;">
@@ -116,16 +110,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li><a href="{{URL::to('/manage-order')}}">Quản lý đơn hàng</a></li>
 						
                       
-                    </ul>
-                </li>
-                 <li class="sub-menu">
-                    <a href="javascript:;">
-                        <i class="fa fa-book"></i>
-                        <span>Mã giảm giá</span>
-                    </a>
-                    <ul class="sub">
-                        <li><a href="{{URL::to('/insert-coupon')}}">Quản lý mã giảm giá</a></li>
-                        <li><a href="{{URL::to('/list-coupon')}}">Liệt kê mã giảm giá</a></li>
                     </ul>
                 </li>
                  <li class="sub-menu">
@@ -184,6 +168,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                       
                     </ul>
                 </li>
+                 <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span>Customer</span>
+                    </a>
+                    <ul class="sub">
+                        <li><a href="{{URL::to('/all_customers')}}">Liệt kê Customer</a></li>
+                      
+                    </ul>
+                </li>
              
             </ul>            </div>
         <!-- sidebar menu end-->
@@ -208,7 +202,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="{{asset('public/backend/js/jquery.dataTables.min.js')}}"></script>
 
 <script src="{{asset('public/dashboard/dist/js/adminlte.js')}}"></script>
-
+<!-- AdminLTE for demo purposes -->
+<script src="{{asset('public/dashboard/dist/js/demo.js')}}"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="{{asset('public/dashboard/dist/js/pages/dashboard3.js')}}"></script>
 <!-- OPTIONAL SCRIPTS -->
 <script src="{{asset('public/dashboard/plugins/chart.js/Chart.min.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
@@ -354,7 +351,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 <script type="text/javascript">
         $(document).ready(function() {
-            var myfirstchart = new Morris.Area({
+            var myfirstchart = new Morris.Bar({
               
                 element: 'myfirstchart',
                 
@@ -367,7 +364,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 data: [0,0],
                 xkey: 'period',
                 ykeys: ['order','sales','profit','quantity'],
-                labels: ['đơn hàng','doanh số','lợi nhuận','số lượng']
+                labels: ['Sản phẩm đã bán','Doanh số','Lợi nhuận','Số lượng']
                 
             });
             $('#btn-dashboard-filter').click(function() {
@@ -420,17 +417,17 @@ $(document).ready(function(){
     <script type="text/javascript">
         $(function() {
             $(function() {
-                $("#datepicker").datepicker({
+                $("#priceban").datepicker({
                     prevText: "Tháng trước",
                     nextText: "Tháng sau",
-                    dateFormat: "dd/mm/yy",
+                    dateFormat: "yy/mm/dd",
                     dayNamesMin: ["Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ nhật"],
                     duration: "slow"
                 });
-                $("#datepicker2").datepicker({
+                $("#pricesp").datepicker({
                     prevText: "Tháng trước",
                     nextText: "Tháng sau",
-                    dateFormat: "dd/mm/yy",
+                    dateFormat: "yy/mm/dd",
                     dayNamesMin: ["Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ nhật"],
                     duration: "slow"
                 });
