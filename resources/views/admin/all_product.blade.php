@@ -30,10 +30,13 @@
       <?php
 
       use Illuminate\Support\Facades\Session;
-        if (Session::get('success')) {
-            echo '<div id="error" class="alert alert-success" role="alert">' . Session::get('success') . '</div>';
-            Session::put('success', null);
-        ?>
+
+      $message = Session::get('message');
+      if ($message) {
+        echo '<div id="error" class="alert alert-success" role="alert">' . $message . '</div>';
+        Session::put('message', null);
+      }
+      ?>
       <table class="table table-striped b-t b-light">
         <thead>
           <tr>
@@ -44,7 +47,6 @@
             <th>Giá gốc</th>
             <th>Hình sản phẩm</th>
             <th>Danh mục</th>
-            <th>Thương hiệu</th>
             <th>Ngày sản xuất</th>
             <th>Ngày hết hạn</th>
             <th>Hạn</th>
@@ -62,7 +64,6 @@
             <td>{{ number_format($pro->price_cost,0,',','.') }}đ</td>
             <td><img src="public/uploads/product/{{ $pro->product_image }}" height="100" width="100"></td>
             <td>{{ $pro->category_name }}</td>
-            <td>{{ $pro->brand_name }}</td>
             <td>{{ $pro->ManufactureDate }}</td>
             <td>{{ $pro->ExpirationDate }}</td>
             <td>

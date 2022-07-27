@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use App\Slider;
 use App\Exports\ExcelExports;
@@ -40,7 +41,6 @@ class ProductController extends Controller
         $today = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d');
     	$all_product = DB::table('tbl_product')
         ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
-        ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')
         ->orderby('tbl_product.product_id','desc')->paginate(5);
     	$manager_product  = view('admin.all_product')->with('all_product',$all_product)->with('today',$today);
     	return view('admin_layout')->with('admin.all_product', $manager_product);
@@ -57,7 +57,6 @@ class ProductController extends Controller
             $data['product_desc'] = $request->product_desc;
             $data['product_content'] = $request->product_content;
             $data['category_id'] = $request->product_cate;
-            $data['brand_id'] = $request->product_brand;
             $data['ManufactureDate'] = $request->ManufactureDate;
             $data['ExpirationDate'] = $request->ExpirationDate;
             $data['product_status'] = $request->product_status;
@@ -71,16 +70,17 @@ class ProductController extends Controller
                 $get_image->move('public/uploads/product',$new_image);
                 $data['product_image'] = $new_image;
                 DB::table('tbl_product')->insert($data);
-                Session::put('success','Thêm sản phẩm thành công');
-                return Redirect::to('all-product');
+                Session::put('message','Thêm sản phẩm thành công');
+                Log::info('Thanh cong');
+                return Redirect::to('add-product');
             }
             $data['product_image'] = '';
             DB::table('tbl_product')->insert($data);
-            Session::put('success','Thêm sản phẩm thành công');
+            Session::put('message','Thêm sản phẩm thành công');
             return Redirect::to('all-product');
-        }catch (\Exception $exception){
-            Session::put('error','Thêm sản phẩm thất bại!');
-            return Redirect::to('add-product');
+        }catch (\Throwable $ex){
+            Log::info('Thất bại cong');
+            Session::put('message','Thêm sản phẩm thất bại');
         }
 
     }
