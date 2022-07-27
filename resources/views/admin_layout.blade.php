@@ -7,12 +7,11 @@
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- bootstrap-css -->
-<link rel="stylesheet" href="{{asset('public/backend/css/bootstrap.min.css')}}" >
 
 <!-- //bootstrap-css -->
- <!-- Custom fonts for this template-->
- 
 <!-- Custom CSS -->
+<link rel="stylesheet" href="{{asset('public/backend/css/bootstrap.min.css')}}" >
+
 <link href="{{asset('public/backend/css/admins.css')}}" rel='stylesheet' type='text/css' />
 <link href="{{asset('public/backend/css/style-responsive.css')}}" rel="stylesheet"/>
 <link href="{{asset('public/backend/css/jquery.dataTables.min.css')}}" rel="stylesheet"/>
@@ -22,23 +21,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link rel="stylesheet" href="{{asset('public/backend/css/font.css')}}" type="text/css"/>
 <link href="{{asset('public/backend/css/font-awesome.css')}}" rel="stylesheet"> 
 <link rel="stylesheet" href="{{asset('public/backend/css/morris.css')}}" type="text/css"/>
-<!-- content dashboard layout new-->
-<!-- Google Font: Source Sans Pro -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="public/plugins/fontawesome-free/css/all.min.css">
-  <!-- IonIcons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="public/dashboard/dist/css/adminlte.min.css">
+    <!-- IonIcons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 <!-- calendar -->
+
 <link rel="stylesheet" href="{{asset('public/backend/css/monthly.css')}}">
+
 <!-- //calendar -->
 <!-- //font-awesome icons -->
 <script src="{{asset('public/backend/js/jquery2.0.3.min.js')}}"></script>
 <script src="{{asset('public/backend/js/raphael-min.js')}}"></script>
 <script src="{{asset('public/backend/js/morris.js')}}"></script>
+<script src="{{asset('public/backend/js/morris.js')}}"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
 </head>
 <body>
 <section id="container">
@@ -67,17 +65,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <img alt="" src="{{('public/backend/images/2.png')}}">
                 <span class="username">
                 	<?php
-
-                        use Illuminate\Support\Facades\Session;
-
-                        $name = Session::get('admin_name');
-                        if($name){
-                            echo $name;
-                            
-                        }
-                        ?>
+					$name = Session::get('admin_name');
+					if($name){
+						echo $name;
+						
+					}
+					?>
 
                 </span>
+                <b class="caret"></b>
             </a>
             <ul class="dropdown-menu extended logout">
                 <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
@@ -104,11 +100,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <span>Tổng quan</span>
                     </a>
                 </li>
-                 
                 </li>
                  <li class="sub-menu">
                     <a href="javascript:;">
-                    <i class="fa fa-cart-plus"></i>
+                        <i class="fa fa-book"></i>
                         <span>Đơn hàng</span>
                     </a>
                     <ul class="sub">
@@ -119,7 +114,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </li>
                  <li class="sub-menu">
                     <a href="javascript:;">
-                    <i class="fa fa-ambulance"></i>
+                        <i class="fa fa-book"></i>
                         <span>Vận chuyển</span>
                     </a>
                     <ul class="sub">
@@ -131,7 +126,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </li>
                 <li class="sub-menu">
                     <a href="javascript:;">
-                    <i class="fa fa-list"></i>
+                        <i class="fa fa-book"></i>
                         <span>Danh mục sản phẩm</span>
                     </a>
                     <ul class="sub">
@@ -142,7 +137,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </li>
                  <li class="sub-menu">
                     <a href="javascript:;">
-                    <i class="fa fa-star"></i>
+                        <i class="fa fa-book"></i>
                         <span>Thương hiệu sản phẩm</span>
                     </a>
                     <ul class="sub">
@@ -153,7 +148,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </li>
                   <li class="sub-menu">
                     <a href="javascript:;">
-                    <i class="fa fa-birthday-cake"></i>
+                        <i class="fa fa-book"></i>
                         <span>Sản phẩm</span>
                     </a>
                     <ul class="sub">
@@ -164,7 +159,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </li>
                  <li class="sub-menu">
                     <a href="javascript:;">
-                        <i class="fa fa-user"></i>
+                        <i class="fa fa-book"></i>
                         <span>Users</span>
                     </a>
                     <ul class="sub">
@@ -175,12 +170,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </li>
                  <li class="sub-menu">
                     <a href="javascript:;">
-                        <i class="fa fa-user"></i>
+                        <i class="fa fa-book"></i>
                         <span>Customer</span>
                     </a>
                     <ul class="sub">
-                         <li><a href="{{URL::to('/add-users')}}">Thêm Khách hàng</a></li>
-                        <li><a href="{{URL::to('/users')}}">Liệt kê Khách hàng</a></li>
+                        <li><a href="{{URL::to('/all_customers')}}">Liệt kê Customer</a></li>
                       
                     </ul>
                 </li>
@@ -195,9 +189,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<section class="wrapper">
         @yield('admin_content')
     </section>
- <!-- footer -->
-		 
-  <!-- / footer -->
 </section>
 <!--main content end-->
 </section>
@@ -207,16 +198,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="{{asset('public/backend/js/jquery.slimscroll.js')}}"></script>
 <script src="{{asset('public/backend/js/jquery.nicescroll.js')}}"></script>
 <script src="{{asset('public/backend/ckeditor/ckeditor.js')}}"></script>
-
 <script src="{{asset('public/backend/js/jquery.form-validator.min.js')}}"></script>
 <script src="{{asset('public/backend/js/jquery.dataTables.min.js')}}"></script>
-<!-- css dashboard -->
-<script src="{{asset('public/dashboard/plugins/jquery/jquery.min.js')}}"></script>
-<!-- Bootstrap -->
-<script src="{{asset('public/dashboard/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-<!-- AdminLTE -->
-<script src="{{asset('public/dashboard/dist/js/adminlte.js')}}"></script>
 
+<script src="{{asset('public/dashboard/dist/js/adminlte.js')}}"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{{asset('public/dashboard/dist/js/demo.js')}}"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="{{asset('public/dashboard/dist/js/pages/dashboard3.js')}}"></script>
 <!-- OPTIONAL SCRIPTS -->
 <script src="{{asset('public/dashboard/plugins/chart.js/Chart.min.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
@@ -226,73 +215,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
   
 <script type="text/javascript">
-    $('.price_format').simpleMoneyFormat();
-
-</script>
-<script type="text/javascript">
-$(document).ready(function(){
-
-        /* chart60daysorder();
-
-        var chart = new Morris.Bar({
-             
-          
+        function huydonhang(id) {
+            var order_code = id;
+            var lydo = $('.lydohuydon').val();
+            var _token = $('input[name="_token"]').val();
+            $.ajax({
+                url: '{{url('/huy_don_hang')}}',
+                method: "POST",
+                data: {
+                    order_code: order_code,
+                    lydo: lydo,
+                    _token: _token
+                },
+                success: function(data) {
+                    alert('Hủy đơn hàng thành công!');
+                    location.reload();
+                }
             });
-
-
-       
-        function chart60daysorder(){
-          
         }
-
-    $('.dashboard-filter').change(function(){
-        
-
-    }); */
-
-    $('#btn-dashboard-filter').click(function(){
-         var _token = $('input[name="_token"]').val();
-
-        var from_date = $('#datepicker').val();
-        var to_date = $('#datepicker2').val();
-         $.ajax({
-            url:"{{url('/filter-by-date')}}",
-            method:"POST",
-            data:{from_date:from_date,to_date:to_date,_token:_token},
-            success:function(data)
-                {
-                    console.log(data);
-                    //chart.setData(data);
-                }   
-            
-        }); 
-    });
-
-});
-    
-</script>
-
-<script type="text/javascript">
-  $( function() {
-    $( function() {
-    $( "#datepicker" ).datepicker({
-        prevText:"Tháng trước",
-        nextText:"Tháng sau",
-        dateFormat:"dd/mm/yy",
-        dayNamesMin: [ "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ nhật" ],
-        duration: "slow"
-    });
-    $( "#datepicker2" ).datepicker({
-        prevText:"Tháng trước",
-        nextText:"Tháng sau",
-        dateFormat:"dd/mm/yy",
-        dayNamesMin: [ "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ nhật" ],
-        duration: "slow"
-    });
-  } );
-   
-  } );
-  </script>
+    </script>
 <script type="text/javascript">
  
     function ChangeToSlug()
@@ -362,26 +303,6 @@ $(document).ready(function(){
     });
 </script>
 <script type="text/javascript">
-function huydonhang(order_code){
-    var order_code=order_code;
-    var lydo=$('.lydohuydon').val();
-    var _token = $('input[name="_token"]').val();
-    $.ajax({
-        url : '{{url('/huy_don_hang')}}',
-        method: "POST",
-        data: {
-            order_code:order_code,
-            lydo:lydo,
-            _token:_token
-        },
-        success:function(data) {
-            alert('Hủy đơn hàng thành công!');
-            location.reload();
-        }
-    });
-}
-</script>
-<script type="text/javascript">
     $('.order_details').change(function(){
         var order_status = $(this).val();
         var order_id = $(this).children(":selected").attr("id");
@@ -415,7 +336,7 @@ function huydonhang(order_code){
         if(j==0){
           
                 $.ajax({
-                        url : '{{url('/update-order-qty')}}',
+                        url : '{{url('/update_order_qty')}}',
                             method: 'POST',
                             data:{_token:_token, order_status:order_status ,order_id:order_id ,quantity:quantity, order_product_id:order_product_id},
                             success:function(data){
@@ -428,6 +349,91 @@ function huydonhang(order_code){
 
     });
 </script>
+<script type="text/javascript">
+        $(document).ready(function() {
+            var myfirstchart = new Morris.Bar({
+              
+                element: 'myfirstchart',
+                
+                fillOpacity:0.6,  
+                 parseTime: false,
+                hideHover: 'auto',
+                pointFillColors:['#fffff'],
+                pointStrokeColors:['black'],
+                // The name of the data record attribute that contains x-values.
+                data: [0,0],
+                xkey: 'period',
+                ykeys: ['order','sales','profit','quantity'],
+                labels: ['Sản phẩm đã bán','Doanh số','Lợi nhuận','Số lượng']
+                
+            });
+            $('#btn-dashboard-filter').click(function() {
+                var _token = $('input[name="_token"]').val();
+                var from_date = $('#datepicker').val();
+                var to_date = $('#datepicker2').val();
+                $.ajax({
+                    url: "{{url('/filter-by-date')}}",
+                    method: "POST",
+                    data: {
+                        from_date: from_date,
+                        to_date: to_date,
+                        _token: _token
+                    },
+                    success: function(data) {
+                        myfirstchart.setData(JSON.parse(data));
+                    }
+                });
+            });
+        });
+    </script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+      
+        //     });
+        var donut = Morris.Donut({
+          element: 'donut',
+          resize: true,
+          colors: [
+            '#a8328e',
+            '#61a1ce',
+            '#f5b942',
+            '#4842f5'
+            
+          ],
+          //labelColor:"#cccccc", // text color
+          //backgroundColor: '#333333', // border color
+          data: [
+            {label:"Sản phẩm", value:<?php echo $app_product ?>},
+            {label:"Đơn hàng", value:<?php echo $app_order ?>},
+            {label:"Khách hàng", value:<?php echo $app_customer ?>},
+            {label:"Tài khoản", value:<?php echo $app_users ?>}
+          ]
+        });
+     
+});
+</script>
+
+    <script type="text/javascript">
+        $(function() {
+            $(function() {
+                $("#priceban").datepicker({
+                    prevText: "Tháng trước",
+                    nextText: "Tháng sau",
+                    dateFormat: "yy/mm/dd",
+                    dayNamesMin: ["Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ nhật"],
+                    duration: "slow"
+                });
+                $("#pricesp").datepicker({
+                    prevText: "Tháng trước",
+                    nextText: "Tháng sau",
+                    dateFormat: "yy/mm/dd",
+                    dayNamesMin: ["Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ nhật"],
+                    duration: "slow"
+                });
+            });
+        });
+    </script>
 <script type="text/javascript">
     $(document).ready(function(){
 

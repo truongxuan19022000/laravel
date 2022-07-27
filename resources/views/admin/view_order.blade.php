@@ -103,7 +103,7 @@
     <div class="panel-heading">
       Liệt kê chi tiết đơn hàng
     </div>
-   
+  
     <div class="table-responsive">
                       <?php
                             $message = Session::get('message');
@@ -126,7 +126,8 @@
             <th>Mã giảm giá</th>
             <th>Phí ship hàng</th>
             <th>Số lượng</th>
-            <th>Giá sản phẩm</th>
+            <th>Giá bán</th>
+            <th>Giá gốc</th>
             <th>Tổng tiền</th>
             
             <th style="width:30px;"></th>
@@ -158,7 +159,7 @@
             <td>{{number_format($details->product_feeship ,0,',','.')}}đ</td>
             <td>
 
-              <input type="number" min="1" {{$order_status==2 ? 'disabled' : ''}} class="order_qty_{{$details->product_id}}" value="{{$details->product_sales_quantity}}" name="product_sales_quantity">
+              <input type="number" min="1" class="order_qty_{{$details->product_id}}" value="{{$details->product_sales_quantity}}" name="product_sales_quantity">
 
               <input type="hidden" name="order_qty_storage" class="order_qty_storage_{{$details->product_id}}" value="{{$details->product->product_quantity}}">
 
@@ -174,6 +175,7 @@
 
             </td>
             <td>{{number_format($details->product_price ,0,',','.')}}đ</td>
+            <td>{{number_format($details->product->price_cost ,0,',','.')}}đ</td>
             <td>{{number_format($subtotal ,0,',','.')}}đ</td>
           </tr>
         @endforeach
@@ -218,7 +220,7 @@
                   @csrf
                   <select class="form-control order_details">
                     <option value="">----Chọn hình thức đơn hàng-----</option>
-                    <option id="{{$or->order_id}}" value="1">Chưa xử lý</option>
+                    <option disabled id="{{$or->order_id}}" value="1">Chưa xử lý</option>
                     <option id="{{$or->order_id}}" selected value="2">Đã xử lý-Đã giao hàng</option>
                     <option id="{{$or->order_id}}" value="3">Hủy đơn hàng-tạm giữ</option>
                   </select>
@@ -233,6 +235,8 @@
                     <option id="{{$or->order_id}}"  value="2">Đã xử lý-Đã giao hàng</option>
                     <option id="{{$or->order_id}}" selected value="3">Hủy đơn hàng-tạm giữ</option>
                   </select>
+                  
+
                 </form>
 
                 @endif

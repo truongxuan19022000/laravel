@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Session;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Mail;
 use App\Slider;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Redirect;
 session_start();
 
@@ -35,6 +36,7 @@ class HomeController extends Controller
 
     public function index(Request $request){
         //slide
+        $today = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d');
         $slider = Slider::orderBy('slider_id','DESC')->where('slider_status','1')->take(4)->get();
         //seo 
         $meta_desc = "Chuyên bán những bánh ngọt ,các loại bánh"; 
@@ -51,9 +53,9 @@ class HomeController extends Controller
         // ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')
         // ->orderby('tbl_product.product_id','desc')->get();
         
-        $all_product = DB::table('tbl_product')->where('product_status','0')->orderby(DB::raw('RAND()'))->paginate(6); 
+        $all_product = DB::table('tbl_product')->where('ExpirationDate','>',$today)->paginate(6); 
 
-    	return view('pages.home')->with('category',$cate_product)->with('brand',$brand_product)->with('all_product',$all_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('slider',$slider); //1
+    	return view('pages.home')->with('category',$cate_product)->with('brand',$brand_product)->with('all_product',$all_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('slider',$slider)->with('today',$today); //1
         // return view('pages.home')->with(compact('cate_product','brand_product','all_product')); //2
     }
     public function search(Request $request){

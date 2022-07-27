@@ -12,9 +12,7 @@
     </div>
     <div class="table-responsive">
       <?php
-
       use Illuminate\Support\Facades\Session;
-
       $message = Session::get('message');
       if ($message) {
         echo '<span class="text-alert">' . $message . '</span>';
@@ -57,8 +55,9 @@
             <td>  <span class="text text-danger">{{ $ord->order_destroy }}</span></td>
 
             <td>
+              @if($ord->order_status !=3)
               <!-- Trigger the modal with a button -->
-              <p><button type="button"  class="btn btn-danger" data-toggle="modal" data-target="#huydon">Hủy đơn hàng</button></p>
+              <p><button type="button"  class="btn btn-danger" id="{{ $ord->order_code }}"  data-toggle="modal" data-target="#huydon">Hủy đơn hàng</button></p>
 
               <!-- Modal -->
               <div id="huydon" class="modal fade" role="dialog">
@@ -76,21 +75,21 @@
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-                      <button type="button" id="{{ $ord->order_code }}" onclick="huydonhang(this.id)" class="btn btn-primary" >Gửi lý do</button>
+                      <button type="button" id="{{$ord->order_code}}" onclick="huydonhang(this.id)" class="btn btn-primary" >Gửi lý do</button>
                     </div>
                   </div>
                 </form>
 
                 </div>
               </div>
-
+              @endif
               <a href="{{URL::to('/view-order/'.$ord->order_code)}}" class="active styling-edit" ui-toggle-class="">
-                <i class="fa fa-eye text-success text-active"></i></a>
-
+              <button style="margin-top:10px;" type="button" class="btn btn-success">Xem đơn </button></a>
+                @if($ord->order_status ==3)
               <a onclick="return confirm('Bạn có chắc là muốn xóa đơn hàng này ko?')" href="{{URL::to('/delete-order/'.$ord->order_code)}}" class="active styling-edit" ui-toggle-class="">
-                <i class="fa fa-times text-danger text"></i>
+              <button style="margin-top:10px;" type="button" class="btn btn-danger">Xóa đơn</button></i>
               </a>
-
+              @endif
             </td>
           </tr>
           @endforeach

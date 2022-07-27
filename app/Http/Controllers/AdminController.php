@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -10,10 +11,13 @@ use Laravel\Socialite\Facades\Socialite;
 use App\Login;
 use App\Http\Requests;
 use App\Order;
+use App\Product;
 use Illuminate\Support\Facades\Redirect;
 use Validator;
 use App\Statistic;
 use App\Rules\Captcha;
+use App\User;
+use Carbon\Carbon;
 
 class AdminController extends Controller
 {
@@ -131,7 +135,12 @@ class AdminController extends Controller
     public function show_dashboard()
     {
         $this->AuthLogin();
-        return view('admin.dashboard');
+        $today = Carbon::now('Asia/Ho_Chi_Minh')->format('Y/m/d');
+        $products = Product::Where('expiry','==',1)->count();
+        $orders = Order::all()->count();
+        $customers = Customer::all()->count();
+        $users =User::all()->count();
+        return view('admin.dashboard')->with(compact('products','orders','customers','users'));
     }
 
     public function filter_by_date(Request $request)

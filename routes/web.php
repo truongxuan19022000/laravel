@@ -22,7 +22,7 @@ Route::post('/tim-kiem','HomeController@search');
 //Danh muc san pham trang chu
 Route::get('/danh-muc/{slug_category_product}','CategoryProduct@show_category_home');
 Route::get('/thuong-hieu/{brand_slug}','BrandProduct@show_brand_home');
-Route::get('/chi-tiet/{product_slug}','ProductController@details_product');
+Route::get('/chi-tiet/{product_id}','ProductController@details_product');
 
 //Backend
 Route::get('/admin','AdminController@index');
@@ -36,11 +36,23 @@ Route::get('/add-category-product','CategoryProduct@add_category_product');
 Route::get('/edit-category-product/{category_product_id}','CategoryProduct@edit_category_product');
 Route::get('/delete-category-product/{category_product_id}','CategoryProduct@delete_category_product');
 Route::get('/all-category-product','CategoryProduct@all_category_product');
-
+/* im export category */
 Route::post('/export-csv','CategoryProduct@export_csv');
 Route::post('/import-csv','CategoryProduct@import_csv');
+/* im export Product */
 
+Route::post('/exportProduct-csv','ProductController@exportProduct_csv');
+Route::post('/importProduct-csv','ProductController@importProduct_csv');
 
+//Suppliers
+Route::get('/all-suppliers','SuppliersController@index');
+Route::get('/add-supplier','SuppliersController@add_supplier');
+Route::post('/save-suppliers','SuppliersController@store');
+Route::get('/print-supplier/{id_supplier}','SuppliersController@print_supplier');
+//end-Suppliers
+//warehouse
+Route::get('/warehouse','warehouse@warehouse');
+//endwarehouse
 Route::get('/unactive-category-product/{category_product_id}','CategoryProduct@unactive_category_product');
 Route::get('/active-category-product/{category_product_id}','CategoryProduct@active_category_product');
 
@@ -84,6 +96,7 @@ Route::get('users',
 			// 'roles' => ['admin','author']
 		]);
 Route::get('add-users','UserController@add_users');
+Route::get('all_customers','UserController@all_customers');
 Route::post('store-users','UserController@store_users');
 Route::post('assign-roles','UserController@assign_roles');
 
@@ -135,7 +148,7 @@ Route::get('/delete-order/{order_code}','OrderController@order_code');
 Route::get('/print-order/{checkout_code}','OrderController@print_order');
 Route::get('/manage-order','OrderController@manage_order');
 Route::get('/view-order/{order_code}','OrderController@view_order');
-Route::post('/update-order-qty','OrderController@update_order_qty');
+Route::post('/update_order_qty','OrderController@update_order_qty');
 Route::post('/update-qty','OrderController@update_qty');
 Route::post('/huy_don_hang','OrderController@huy_don_hang');
 

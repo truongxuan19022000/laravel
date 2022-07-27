@@ -70,13 +70,6 @@
               ?>
             </span></td>
            
-            <td>
-              <a href="{{URL::to('/edit-brand-product/'.$brand_pro->brand_id)}}" class="active styling-edit" ui-toggle-class="">
-                <i class="fa fa-pencil-square-o text-success text-active"></i></a>
-              <a onclick="return confirm('Xóa thương hiệu sẽ ảnh hưởng đến sản phẩm cùng thương hiệu,Bạn có chắc là muốn xóa thương hiệu này ko?')" href="{{URL::to('/delete-brand-product/'.$brand_pro->brand_id)}}" class="active styling-edit" ui-toggle-class="">
-                <i class="fa fa-times text-danger text"></i>
-              </a>
-            </td>
           </tr>
           @endforeach
         </tbody>

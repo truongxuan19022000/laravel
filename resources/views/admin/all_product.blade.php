@@ -30,63 +30,55 @@
       <?php
 
       use Illuminate\Support\Facades\Session;
-
-      $message = Session::get('message');
-      if ($message) {
-        echo '<div id="error" class="alert alert-success" role="alert">' . $message . '</div>';
-        Session::put('message', null);
-      }
-      ?>
+        if (Session::get('success')) {
+            echo '<div id="error" class="alert alert-success" role="alert">' . Session::get('success') . '</div>';
+            Session::put('success', null);
+        ?>
       <table class="table table-striped b-t b-light">
         <thead>
           <tr>
-            <th style="width:20px;">
-              <label class="i-checks m-b-none">
-                <input type="checkbox"><i></i>
-              </label>
-            </th>
+            <th>STT</th>
             <th>Tên sản phẩm</th>
             <th>Số lượng</th>
-            <th>Ngày sản xuất</th>
-            <th>Ngày hết hạn</th>
-            <th>Giá</th>
+            <th>Giá bán</th>
+            <th>Giá gốc</th>
             <th>Hình sản phẩm</th>
             <th>Danh mục</th>
             <th>Thương hiệu</th>
-
-            <th>Hiển thị</th>
-
+            <th>Ngày sản xuất</th>
+            <th>Ngày hết hạn</th>
+            <th>Hạn</th>
             <th style="width:30px;"></th>
           </tr>
         </thead>
         <tbody>
+          <?php $stt=1;?>
           @foreach($all_product as $key => $pro)
           <tr>
-            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
+            <td><?php echo $stt++ ?></td>
             <td>{{ $pro->product_name }}</td>
             <td>{{ $pro->product_quantity }}</td>
             <td>{{ number_format($pro->product_price,0,',','.') }}đ</td>
+            <td>{{ number_format($pro->price_cost,0,',','.') }}đ</td>
             <td><img src="public/uploads/product/{{ $pro->product_image }}" height="100" width="100"></td>
             <td>{{ $pro->category_name }}</td>
             <td>{{ $pro->brand_name }}</td>
+            <td>{{ $pro->ManufactureDate }}</td>
+            <td>{{ $pro->ExpirationDate }}</td>
+            <td>
+              @if($pro->ExpirationDate>$today)
+              <span class="text text-success">Còn hạn</span>
+              @else
+              <span class="text text-danger">Hết hạn</span>
+              @endif
+            </td>
 
-            <td><span class="text-ellipsis">
-                <?php
-                if ($pro->product_status == 0) {
-                ?>
-                  <a href="{{URL::to('/unactive-product/'.$pro->product_id)}}"><span class="fa-thumb-styling fa fa-thumbs-up"></span></a>
-                <?php
-                } else {
-                ?>
-                  <a href="{{URL::to('/active-product/'.$pro->product_id)}}"><span class="fa-thumb-styling fa fa-thumbs-down"></span></a>
-                <?php
-                }
-                ?>
-              </span></td>
 
             <td>
+              @if($pro->ExpirationDate>$today)
               <a href="{{URL::to('/edit-product/'.$pro->product_id)}}" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-pencil-square-o text-success text-active"></i></a>
+                @endif
               <a onclick="return confirm('Bạn có chắc là muốn xóa sản phẩm này ko?')" href="{{URL::to('/delete-product/'.$pro->product_id)}}" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-times text-danger text"></i>
               </a>
@@ -95,6 +87,22 @@
           @endforeach
         </tbody>
       </table>
+
+      <!-----import data---->
+      <form action="{{url('importProduct-csv')}}" method="POST" enctype="multipart/form-data">
+          @csrf
+
+        <input type="file" name="file" accept=".xlsx"><br>
+
+       <input type="submit" value="Import file Excel" name="import_csv" class="btn btn-warning">
+      </form>
+
+    <!-----export data---->
+       <form action="{{url('exportProduct-csv')}}" method="POST">
+          @csrf
+       <input type="submit" value="Export file Excel" name="export_csv" class="btn btn-success">
+      </form>
+
     </div>
     <footer class="panel-footer">
       <div class="row">
