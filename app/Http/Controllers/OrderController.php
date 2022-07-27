@@ -187,7 +187,7 @@ class OrderController extends Controller
 		}
 		</style>
 		<h4><center>Cửa hàng bánh Cake Bakery</center></h4>
-		<h4><center>Độc lập - Tự do - Hạnh phúc</center></h4>
+		<h4><center>Chi tiết phiếu đặt hàng</center></h4>
 		<p>Người đặt hàng</p>
 		<table class="table-styling">
 				<thead>

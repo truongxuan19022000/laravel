@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class TblOrder extends Migration
+class  TblOrder extends Migration
 {
     /**
      * Run the migrations.
@@ -20,7 +20,7 @@ class TblOrder extends Migration
             $table->integer('payment_id');
             $table->float('order_total');
             $table->integer('order_status');
-         
+
             $table->timestamps();
         });
     }

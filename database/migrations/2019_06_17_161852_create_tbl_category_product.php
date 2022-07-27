@@ -13,10 +13,12 @@ class CreateTblCategoryProduct extends Migration
      */
     public function up()
     {
-        Schema::create('tbl_category_product', function (Blueprint $table) {
+        Schema::create('tbl_category', function (Blueprint $table) {
             $table->Increments('category_id');
             $table->string('category_name');
+            $table->string('slug_category_product')->nullable();
             $table->text('category_desc');
+            $table->text('meta_keywords')->nullable();
             $table->integer('category_status');
             $table->timestamps();
         });

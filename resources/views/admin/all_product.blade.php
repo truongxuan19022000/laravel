@@ -30,13 +30,10 @@
       <?php
 
       use Illuminate\Support\Facades\Session;
-
-      $message = Session::get('message');
-      if ($message) {
-        echo '<div id="error" class="alert alert-success" role="alert">' . $message . '</div>';
-        Session::put('message', null);
-      }
-      ?>
+        if (Session::get('success')) {
+            echo '<div id="error" class="alert alert-success" role="alert">' . Session::get('success') . '</div>';
+            Session::put('success', null);
+        ?>
       <table class="table table-striped b-t b-light">
         <thead>
           <tr>
@@ -90,6 +87,22 @@
           @endforeach
         </tbody>
       </table>
+
+      <!-----import data---->
+      <form action="{{url('importProduct-csv')}}" method="POST" enctype="multipart/form-data">
+          @csrf
+
+        <input type="file" name="file" accept=".xlsx"><br>
+
+       <input type="submit" value="Import file Excel" name="import_csv" class="btn btn-warning">
+      </form>
+
+    <!-----export data---->
+       <form action="{{url('exportProduct-csv')}}" method="POST">
+          @csrf
+       <input type="submit" value="Export file Excel" name="export_csv" class="btn btn-success">
+      </form>
+
     </div>
     <footer class="panel-footer">
       <div class="row">

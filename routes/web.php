@@ -36,11 +36,23 @@ Route::get('/add-category-product','CategoryProduct@add_category_product');
 Route::get('/edit-category-product/{category_product_id}','CategoryProduct@edit_category_product');
 Route::get('/delete-category-product/{category_product_id}','CategoryProduct@delete_category_product');
 Route::get('/all-category-product','CategoryProduct@all_category_product');
-
+/* im export category */
 Route::post('/export-csv','CategoryProduct@export_csv');
 Route::post('/import-csv','CategoryProduct@import_csv');
+/* im export Product */
 
+Route::post('/exportProduct-csv','ProductController@exportProduct_csv');
+Route::post('/importProduct-csv','ProductController@importProduct_csv');
 
+//Suppliers
+Route::get('/all-suppliers','SuppliersController@index');
+Route::get('/add-supplier','SuppliersController@add_supplier');
+Route::post('/save-suppliers','SuppliersController@store');
+Route::get('/print-supplier/{id_supplier}','SuppliersController@print_supplier');
+//end-Suppliers
+//warehouse
+Route::get('/warehouse','warehouse@warehouse');
+//endwarehouse
 Route::get('/unactive-category-product/{category_product_id}','CategoryProduct@unactive_category_product');
 Route::get('/active-category-product/{category_product_id}','CategoryProduct@active_category_product');
 

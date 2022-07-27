@@ -30,7 +30,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer('*',function($view) {
-            $today = Carbon::now('Asia/Ho_Chi_Minh')->format('Y/m/d');
+            $today = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d');
             $min_price = Product::min('product_price');
             $max_price = Product::max('product_price');
 

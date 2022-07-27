@@ -16,12 +16,14 @@ class CreateTblProduct extends Migration
         Schema::create('tbl_product', function (Blueprint $table) {
             $table->Increments('product_id');
             $table->string('product_name');
+            $table->string('product_sold');
+            $table->bigInteger('product_quantity');
             $table->integer('category_id');
-            $table->integer('brand_id');
-            $table->text('product_desc');
-            $table->text('product_content');
-            $table->string('product_price');
-            $table->string('product_image');
+            $table->string('expirationDate');
+            $table->text('product_desc')->nullable();
+            $table->text('product_content')->nullable();
+            $table->string('product_price')->nullable();
+            $table->string('product_image')->nullable();
             $table->integer('product_status');
             $table->timestamps();
         });
