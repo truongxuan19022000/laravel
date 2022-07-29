@@ -10,11 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-//Frontend 
+//Frontend
 
 use Illuminate\Support\Facades\Route;
-
-Route::get('/','HomeController@index' );
+Route::get('/','HomeController@index' )->name('home');
 Route::get('/trang-chu','HomeController@index');
 Route::get('/404','HomeController@error_page');
 Route::post('/tim-kiem','HomeController@search');
@@ -22,7 +21,7 @@ Route::post('/tim-kiem','HomeController@search');
 //Danh muc san pham trang chu
 Route::get('/danh-muc/{slug_category_product}','CategoryProduct@show_category_home');
 Route::get('/thuong-hieu/{brand_slug}','BrandProduct@show_brand_home');
-Route::get('/chi-tiet/{product_id}','ProductController@details_product');
+Route::get('/chi-tiet/{product_id}','ProductController@details_product')->name('product_detail');
 
 //Backend
 Route::get('/admin','AdminController@index');
@@ -56,7 +55,7 @@ Route::get('/warehouse','warehouse@warehouse');
 Route::get('/unactive-category-product/{category_product_id}','CategoryProduct@unactive_category_product');
 Route::get('/active-category-product/{category_product_id}','CategoryProduct@active_category_product');
 
-//Send Mail 
+//Send Mail
 Route::get('/send-mail','HomeController@send_mail');
 
 //Login facebook
@@ -123,7 +122,7 @@ Route::post('/update-cart-quantity','CartController@update_cart_quantity');
 Route::post('/update-cart','CartController@update_cart');
 Route::post('/save-cart','CartController@save_cart');
 Route::post('/add-cart-ajax','CartController@add_cart_ajax');
-Route::get('/gio-hang','CartController@gio_hang');
+Route::get('/gio-hang','CartController@gio_hang')->name('cart');
 Route::get('/delete-to-cart/{rowId}','CartController@delete_to_cart');
 Route::get('/del-product/{session_id}','CartController@delete_product');
 Route::get('/del-all-product','CartController@delete_all_product');
