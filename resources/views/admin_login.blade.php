@@ -1,154 +1,325 @@
-<!DOCTYPE html>
-
+<!doctype html>
+<html lang="en">
 <head>
-	<title>Trang quản lý Admin Web</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="keywords" content="Visitors Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-	<script type="application/x-javascript">
-		addEventListener("load", function() {
-			setTimeout(hideURLbar, 0);
-		}, false);
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-		function hideURLbar() {
-			window.scrollTo(0, 1);
-		}
-	</script>
-	<!-- bootstrap-css -->
-	<link rel="icon" type="image/png" href="{{asset('public/login/images/icons/favicon.ico')}}" />
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{asset('public/login/vendor/bootstrap/css/bootstrap.min.css')}}">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{asset('public/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{asset('public/login/fonts/Linearicons-Free-v1.0.0/icon-font.min.css')}}">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{asset('public/login/vendor/animate/animate.css')}}">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{asset('public/login/vendor/css-hamburgers/hamburgers.min.css')}}">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{asset('public/login/vendor/animsition/css/animsition.min.css')}}">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{asset('public/login/vendor/select2/select2.min.css')}}">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{asset('public/login/vendor/daterangepicker/daterangepicker.css')}}">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{asset('public/login/css/util.css')}}">
-	<link rel="stylesheet" type="text/css" href="{{asset('public/login/css/main.css')}}">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<style>
-		#error {
-			color: red;
-		}
-	</style>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    <style>
+        body{
 
+            padding-top: 50px;
+            padding-bottom:150px;
+            background:
+                linear-gradient(
+                    rgba(251, 139, 166, 0.70),
+                    rgba(224, 140, 194, 0.8),
+                    rgba(194,139,228, 0.9)
+                );
+            background-size: cover;
+
+        }
+
+        #square {
+            position: relative;
+            width: 800px;
+            height: 450px;
+            display: block;
+            margin: auto;
+            background: #F3F6F8;
+            z-index: 3;
+        }
+
+        #leftSquare {
+            width: 40%;
+            display: block;
+            margin:  auto;
+            height: 100%;
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            background:linear-gradient(
+                rgba(251, 139, 166, 0.70),
+                rgba(224, 140, 194, 0.8),
+                rgba(194,139,228, 0.9)
+            ),  url("https://images.pexels.com/photos/1852/dawn-landscape-mountains-nature.jpg?h=350&auto=compress");
+            background-size: cover;
+            border-radius: 0%;
+            z-index: 1;
+        }
+
+        #rightSquare {
+            width: 60%;
+            display: block;
+            margin:  auto;
+            height: 100%;
+            position: absolute;
+            top: 0%;
+            right: 0%;
+            background:none;
+            background-size: cover;
+            border-radius: 0%;
+            z-index: 1;
+        }
+
+        #circle{
+            border-radius: 50%;
+            width: 60%;
+            height: 40%;
+            display: block;
+            margin: auto;
+            position: absolute;
+            top: 8%;
+            right: 20%;
+        }
+
+        .brand{
+            position: absolute;
+            display: block;
+            top: 38%;
+            left: 25%;
+            margin: auto;
+            width: 50%;
+            height: 60%;
+            z-index: 1;
+
+        }
+
+        #title{
+            position: absolute;
+            left: 21%;
+            bottom: 37%;
+            color: white;
+            font-family:"lato";
+            font-size: 20px;
+            font-weight: 800;
+            text-align: center;
+            z-index: 3;
+        }
+        #subtitle{
+            position: absolute;
+            left: 7%;
+            bottom: 32%;
+            color: white;
+            font-family:"lato";
+            font-size: 13px;
+            font-weight: 400;
+            text-align: center;
+            z-index: 3;
+        }
+
+        #container{
+
+            margin-top: 15%;
+        }
+
+        .signup{
+            color: rgb(228, 162, 208);
+            font-family:"lato";
+            font-size: 2em;
+            font-weight: 800;
+            text-align: center;
+            text-transform: uppercase;
+            z-index: 3;
+        }
+
+        .button{
+            display: block;
+            margin: auto;
+            margin-bottom: 20px;
+            z-index: 3;
+            background: #2BA0EE;
+        }
+
+        #twitter{
+
+            padding-left: 10px;
+        }
+
+        #footer{
+            display: block;
+            margin: auto;
+            color: #333333;
+            font-family:"lato";
+            font-size: 10px;
+            font-weight: 400;
+            text-align: center;
+            z-index: 3;
+        }
+
+        #terms{
+            cursor: pointer;
+            color: #FBADC1;
+        }
+
+
+        form{
+
+            padding: 20px 0;
+            position: relative;
+        }
+
+        .optin{
+
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            outline: 0;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            background-color: rgba(255, 255, 255, 0.8);
+            width: 75%;
+            margin: auto;
+            display: block;
+            margin-bottom: 10px;
+            border-radius: 3px;
+            padding: 10px 15px;
+            text-align: left;
+            font-size: 18px;
+            color: #333333;
+            -webkit-transition-duration: 0.25s;
+            transition-duration: 0.25s;
+            font-weight: 300;
+
+
+        }
+        .optin:hover{
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+        .optin:focus {
+            background-color: white;
+            width: 90%;
+            color: #CD98E3;
+        }
+
+        .formError {
+            background: #FDEDF0;
+            border-radius: 2px;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            margin-top: 4px;
+            padding: 8px 14px;
+            color: #E01A48;
+            font-size: 12px;
+            line-height: 16px;
+            font-weight: 500;
+        }
+
+        @media (max-width: 767px) {
+            .formError {
+                font-size: 10px;
+                padding: 8px 6px;
+            }
+        }
+
+        .formError .item {
+            width: 20px;
+            height: 20px;
+            min-width: 20px;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            margin-right: 8px;
+        }
+
+        @media (max-width: 767px) {
+            .formError .item {
+                margin-right: 6px;
+                width: 12px;
+                width: 12px;
+                min-width: 12px;
+            }
+        }
+
+
+    </style>
 </head>
-
 <body>
-
-	<div class="limiter">
-		<div class="container-login100" style="background-image: url('public/login/images/bg-01.jpg');">
-			<div class="wrap-login100 p-l-110 p-r-110 p-t-62 p-b-33">
-				<form action="{{URL::to('/admin-dashboard')}}" method="post" class="login100-form validate-form flex-sb flex-w">
-					{{ csrf_field() }}
-					<span class="login100-form-title p-b-53">
-						Sign In With
-					</span>
-					<?php
-
-use Illuminate\Support\Facades\Session;
-
-$message = Session::get('message');
-					if ($message) {
-						echo '<div id="error" class="alert alert-danger" role="alert">' . $message . '</div>';
-						Session::put('message', null);
-					}
-					?>
-					<a href="{{url('/login-facebook')}}" class="btn-face m-b-20">
-						<i class="fa fa-facebook-official"></i>
-						Facebook
-					</a>
-
-					<a href="{{url('/login-google')}}" class="btn-google m-b-20">
-						<img src="public/login/images/icons/icon-google.png" alt="GOOGLE">
-						Google
-					</a>
-					
-					<div class="p-t-31 p-b-9">
-						<span class="txt1">
-							Username
-						</span>
-					</div>
-					<div class="wrap-input100 validate-input" data-validate = "Username is required">
-					<input type="text" id="email" class="input100 ggg" name="admin_email" placeholder="">
-					<span class="focus-input100"></span>
-					</div>
-					@foreach($errors->all() as $val)
-					<span id="error">{{$val}}</span>
-					@endforeach
-					<div class="p-t-13 p-b-9">
-						<span class="txt1">
-							Password
-						</span>
-
-						<a href="#" class="txt2 bo1 m-l-5">
-							Forgot?
-						</a>
-					</div>
-					<div class="wrap-input100 validate-input" data-validate = "Password is required">
-					<input type="password" id="password"  class="input100 ggg"  name="admin_password" placeholder="">
-					<span class="focus-input100"></span>
-					</div>
-					<div class="clearfix"></div>
-					<div class="container-login100-form-btn m-t-17">
-					<input class="login100-form-btn" type="submit" id="login" value="Sign In" name="login">
-					</div>
-					<div class="w-full text-center p-t-55">
-						<span class="txt2">
-							Not a member?
-						</span>
-
-						<a href="#" class="txt2 bo1">
-							Sign up now
-						</a>
-					</div>
-					{{-- <div class="g-recaptcha" data-sitekey="{{env('CAPTCHA_KEY')}}">
-			</div>
-			<br />
-			@if($errors->has('g-recaptcha-response'))
-			<span class="invalid-feedback" style="display:block">
-				<strong>{{$errors->first('g-recaptcha-response')}}</strong>
-			</span>
-			@endif --}}
-
-			</form>
-			{{-- <p>Don't Have an Account ?<a href="registration.html">Create an account</a></p> --}}
-		</div>
-	</div>
-	</div>
-	<script src="{{asset('public/login/vendor/jquery/jquery-3.2.1.min.js')}}"></script>
-	<!--===============================================================================================-->
-	<script src="{{asset('public/login/vendor/animsition/js/animsition.min.js')}}"></script>
-	<!--===============================================================================================-->
-	<script src="{{asset('public/login/vendor/bootstrap/js/popper.js')}}"></script>
-	<script src="{{asset('public/login/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
-	<!--===============================================================================================-->
-	<script src="{{asset('public/login/vendor/select2/select2.min.js')}}"></script>
-	<!--===============================================================================================-->
-	<script src="{{asset('public/login/vendor/daterangepicker/moment.min.js')}}"></script>
-	<script src="{{asset('public/login/vendor/daterangepicker/daterangepicker.js')}}"></script>
-	<!--===============================================================================================-->
-	<script src="{{asset('public/login/vendor/countdowntime/countdowntime.js')}}"></script>
-	<!--===============================================================================================-->
-	<script src="{{asset('public/login/js/main.js')}}"></script>
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-	<!-- Thu vien validate_form -->
+<form action="{{URL::to('/admin-dashboard')}}" method="post" class="login100-form validate-form flex-sb flex-w">
+    {{ csrf_field() }}
+<div class="animated slideInLeft" id="square">
 
 
-	</script>
+    <div class="animated bounceInUp" id="leftSquare">
+        <div class="animated bounceInUp" id="circle">
+            <img class="brand img-responsive" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/827672/branding.png" />
+
+        </div>
+
+        <h2 id="title">Welcome to Divider</h2>
+        <h3 id="subtitle">You are moments away from your first adventure.</h3>
+
+    </div>
+
+    <div class="animated bounceInDown" id="rightSquare">
+        <div id="container">
+            <h1 class="signup">Sign Up </h1>
+            <form className="animated slideInLeft">
+                <?php
+
+                use Illuminate\Support\Facades\Session;
+
+                $message = Session::get('message');
+                if ($message) {
+                    echo ' <div class="formError optin" >
+                    <div class="formError-text">Email or password does not exist</div>
+                </div>';
+                    Session::put('message', null);
+                }
+                ?>
+                <input
+                        @error('admin_password')
+                        style="border: 1px solid red"
+                        @enderror
+                        class="optin" type="text" name="admin_email" value="{{old('admin_email')}}" placeholder="Email" />
+                @error('admin_email')
+                <div class="formError optin" >
+                                            <span class="item"><img
+                                                    src="{{asset('public/uploads/common/icon-help-error.svg')}}"
+                                                    alt=""></span>
+                    <div class="formError-text">{{$message}}</div>
+                </div>
+                @enderror
+                <input   @error('admin_password')
+                         style="border: 1px solid red"
+                         @enderror
+                         class="optin" type="password" name="admin_password" placeholder="Password" />
+                @error('admin_password')
+                <div class="formError optin">
+                                            <span class="item"><img
+                                                    src="{{asset('public/uploads/common/icon-help-error.svg')}}"
+                                                    alt=""></span>
+                    <div class="formError-text">{{$message}}</div>
+                </div>
+                @enderror
+            </form>
+            <button class="animated infinite pulse button btn btn-info">
+                <span><i class="fa fa-twitter" aria-hidden="true"></i></span><span id="twitter">
+                   <input class="login100-form-btn" type="submit" id="login" value="Sign In" name="login">
+                    </span>
+            </button>
+            <h3 id="footer">By continuing you agree to our <span id="terms">terms & conditions.</span></h3>
+        </div>
+    </div>
+</div>
+</form>
+
 </body>
-
 </html>

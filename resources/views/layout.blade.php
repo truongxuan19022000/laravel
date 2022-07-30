@@ -30,13 +30,14 @@
     <!-- Extra plugin css -->
     <link href="{{asset('public/layout/vendors/owl-carousel/owl.carousel.min.css')}}" rel="stylesheet">
     <link href="{{asset('public/layout/vendors/magnifc-popup/magnific-popup.css')}}" rel="stylesheet">
+    <link href="{{asset('public/layout/vendors/nice-select/css/nice-select.css')}}" rel="stylesheet">
 {{--    <link href="{{asset('public/frontend/css/style.css')}}" rel="stylesheet">--}}
     <link href="{{asset('public/frontend/css/style.css')}}" rel="stylesheet">
     <link href="{{asset('public/layout/css/responsive.css')}}" rel="stylesheet">
     <!-- Css layout bánh -->
     <link href="{{asset('public/frontend/css/sweetalert.css')}}" rel="stylesheet">
     <!-- Layout moi  -->
-
+    @stack('custom-css')
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
@@ -283,6 +284,6 @@
     });
 </script>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-
+    @stack('min-script')
 </body>
 </html>

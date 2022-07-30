@@ -181,10 +181,10 @@ class CheckoutController extends Controller
         //--seo
 
     	$cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get();
-        $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get();
         $city = City::orderby('matp','ASC')->get();
+        return view('pages.billing.billing')->with('category',$cate_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('city',$city)->with('slider',$slider);
 
-    	return view('pages.checkout.show_checkout')->with('category',$cate_product)->with('brand',$brand_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('city',$city)->with('slider',$slider);
+//    	return view('pages.checkout.show_checkout')->with('category',$cate_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('city',$city)->with('slider',$slider);
     }
     public function save_checkout_customer(Request $request){
     	$data = array();
@@ -266,7 +266,7 @@ class CheckoutController extends Controller
     	Session::forget('customer_id');
     	return Redirect::to('/dang-nhap');
     }
-    public function login_customer(Request $request){
+    public function login_customer(Requests\storeUser $request){
     	$email = $request->email_account;
     	$password = md5($request->password_account);
     	$result = DB::table('tbl_customers')->where('customer_email',$email)->where('customer_password',$password)->first();

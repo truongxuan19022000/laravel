@@ -10,7 +10,6 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Cake - Bakery</title>
 
-    <title>{{$meta_title}}</title>
     <!-- Css layout bánh -->
     <link href="{{asset('public/layout/css/font-awesome.min.css')}}" rel="stylesheet">
 
@@ -51,7 +50,7 @@
                 <h3>404</h3>
                 <h4>Oops! That page can’t be found</h4>
                 <h5>Sorry, but the page you are looking for does not existing</h5>
-                <a class="pink_btn" href="index.html">Go to home page</a>
+                <a class="pink_btn" href="{{route('home')}}">Go to home page</a>
             </div>
         </div>
     </div>

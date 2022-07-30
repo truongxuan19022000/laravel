@@ -21,7 +21,7 @@ Route::post('/tim-kiem','HomeController@search');
 //Danh muc san pham trang chu
 Route::get('/danh-muc/{slug_category_product}','CategoryProduct@show_category_home');
 Route::get('/thuong-hieu/{brand_slug}','BrandProduct@show_brand_home');
-Route::get('/chi-tiet/{product_id}','ProductController@details_product')->name('product_detail');
+Route::get('/chi-tiet/{product_id}','ProductController@details_product')->name('checkout');
 
 //Backend
 Route::get('/admin','AdminController@index');
@@ -135,7 +135,7 @@ Route::get('/logout-checkout','CheckoutController@logout_checkout');
 Route::post('/add-customer','CheckoutController@add_customer');
 Route::post('/order-place','CheckoutController@order_place');
 Route::post('/login-customer','CheckoutController@login_customer');
-Route::get('/checkout','CheckoutController@checkout');
+Route::get('/checkout','CheckoutController@checkout')->name('billing');
 Route::get('/payment','CheckoutController@payment');
 Route::post('/save-checkout-customer','CheckoutController@save_checkout_customer');
 Route::post('/calculate-fee','CheckoutController@calculate_fee');
