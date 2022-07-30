@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use App\Slider;
 use App\Exports\ExcelExports;
@@ -40,7 +41,6 @@ class ProductController extends Controller
         $today = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d');
     	$all_product = DB::table('tbl_product')
         ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
-        ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')
         ->orderby('tbl_product.product_id','desc')->paginate(5);
     	$manager_product  = view('admin.all_product')->with('all_product',$all_product)->with('today',$today);
     	return view('admin_layout')->with('admin.all_product', $manager_product);
@@ -57,7 +57,6 @@ class ProductController extends Controller
             $data['product_desc'] = $request->product_desc;
             $data['product_content'] = $request->product_content;
             $data['category_id'] = $request->product_cate;
-            $data['brand_id'] = $request->product_brand;
             $data['ManufactureDate'] = $request->ManufactureDate;
             $data['ExpirationDate'] = $request->ExpirationDate;
             $data['product_status'] = $request->product_status;
@@ -71,16 +70,17 @@ class ProductController extends Controller
                 $get_image->move('public/uploads/product',$new_image);
                 $data['product_image'] = $new_image;
                 DB::table('tbl_product')->insert($data);
-                Session::put('success','Thêm sản phẩm thành công');
-                return Redirect::to('all-product');
+                Session::put('message','Thêm sản phẩm thành công');
+                Log::info('Thanh cong');
+                return Redirect::to('add-product');
             }
             $data['product_image'] = '';
             DB::table('tbl_product')->insert($data);
-            Session::put('success','Thêm sản phẩm thành công');
+            Session::put('message','Thêm sản phẩm thành công');
             return Redirect::to('all-product');
-        }catch (\Exception $exception){
-            Session::put('error','Thêm sản phẩm thất bại!');
-            return Redirect::to('add-product');
+        }catch (\Throwable $ex){
+            Log::info('Thất bại cong');
+            Session::put('message','Thêm sản phẩm thất bại');
         }
 
     }
@@ -148,18 +148,16 @@ class ProductController extends Controller
     //End Admin Page
     public function details_product($product_id , Request $request){
          //slide
-        $slider = Slider::orderBy('slider_id','DESC')->where('slider_status','1')->take(4)->get();
+        try {
+            $slider = Slider::orderBy('slider_id','DESC')->where('slider_status','1')->take(4)->get();
+            $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get();
+            $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get();
+            $details_product = DB::table('tbl_product')
+                ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
+                ->where('tbl_product.product_id',$product_id)->get();
 
-        $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id','desc')->get();
-        $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id','desc')->get();
-
-        $details_product = DB::table('tbl_product')
-        ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
-        ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')
-        ->where('tbl_product.product_id',$product_id)->get();
-
-        foreach($details_product as $key => $value){
-            $category_id = $value->category_id;
+            foreach($details_product as $key => $value){
+                $category_id = $value->category_id;
                 //seo
                 $meta_desc = $value->product_desc;
                 $meta_keywords = $value->product_id;
@@ -168,13 +166,14 @@ class ProductController extends Controller
                 //--seo
             }
 
-        $related_product = DB::table('tbl_product')
-        ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
-        ->join('tbl_brand','tbl_brand.brand_id','=','tbl_product.brand_id')
-        ->where('tbl_category_product.category_id',$category_id)->whereNotIn('tbl_product.product_id',[$product_id])->orderby(DB::raw('RAND()'))->paginate(3);
+            $related_product = DB::table('tbl_product')
+                ->join('tbl_category_product','tbl_category_product.category_id','=','tbl_product.category_id')
+                ->where('tbl_category_product.category_id',$category_id)->whereNotIn('tbl_product.product_id',[$product_id])->orderby(DB::raw('RAND()'))->paginate(3);
+            return view('pages.sanpham.show_details')->with('category',$cate_product)->with('brand',$brand_product)->with('product_details',$details_product)->with('relate',$related_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('slider',$slider);
 
-
-        return view('pages.sanpham.show_details')->with('category',$cate_product)->with('brand',$brand_product)->with('product_details',$details_product)->with('relate',$related_product)->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('meta_title',$meta_title)->with('url_canonical',$url_canonical)->with('slider',$slider);
+        }catch (\Throwable $ex){
+            return back();
+        }
 
     }
 

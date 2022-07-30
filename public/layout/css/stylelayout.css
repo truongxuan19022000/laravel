@@ -8,8 +8,6 @@ This file contains the styling for the actual theme, this
 is the file you need to edit to change the look of the
 theme.
 ---------------------------------------------------- */
-
-
 /*=====================================================================
 @Template Name: HillTown
 @Author: Rocky
@@ -28,33 +26,22 @@ Table of Content:
 06/ contact
 07/ feature
 08/ service
-09/ gallery 
-10/ clients 
-11/ blog 
-12/ video 
-13/ banner  
-14/ event  
-15/ room  
-16/ resturant 
+09/ gallery
+10/ clients
+11/ blog
+12/ video
+13/ banner
+14/ event
+15/ room
+16/ resturant
 17/ footer
 =====================================================================*/
-
-
 /*----------------------------------------------------*/
-
-
 /*font Variables*/
-
-
 /*Color Variables*/
-
 @import url("https://fonts.googleapis.com/css?family=Lora:400,400i,700|Montserrat:300,400,500,600,700|Open+Sans:300,400,400i,600,600i,700|Playfair+Display:400,400i,700,900|Lato");
-
 /*---------------------------------------------------- */
-
-
 /*----------------------------------------------------*/
-
 .list_style {
     list-style: none;
     margin: 0px;
@@ -66,8 +53,7 @@ a {
     vertical-align: middle;
 }
 
-a:hover,
-a:focus {
+a:hover, a:focus {
     text-decoration: none;
     outline: none;
 }
@@ -123,24 +109,18 @@ i:before {
     margin-left: 0px !important;
 }
 
-
 /* Container Custome Code css
 ============================================================================================ */
-
 @media (min-width: 1200px) {
     .container {
         max-width: 1200px;
     }
 }
 
-
 /* End Container Custome Code css
 ============================================================================================ */
-
-
 /* Main Tittle css
 ============================================================================================ */
-
 .main_title {
     padding-bottom: 50px;
 }
@@ -354,15 +334,11 @@ i:before {
     background: #acb2b4;
 }
 
-
 /* End Main Tittle css
 ============================================================================================ */
-
-
 /**
  * Simple fade transition,
  */
-
 .mfp-fade.mfp-bg {
     opacity: 0;
     -webkit-transition: all 0.15s ease-out;
@@ -395,16 +371,10 @@ i:before {
     opacity: 0;
 }
 
-
 /*---------------------------------------------------- */
-
-
 /*----------------------------------------------------*/
-
-
 /* Main Header Area css
 ============================================================================================ */
-
 .main_header_area {
     position: absolute;
     left: 0px;
@@ -413,9 +383,9 @@ i:before {
     z-index: 30;
 }
 
-.main_header_area+section,
-.main_header_area+div,
-.main_header_area+.row {}
+.main_header_area + section, .main_header_area + div, .main_header_area + .row {
+    margin-top: 135px;
+}
 
 .main_header_area.navbar_fixed .main_menu_area {
     position: fixed;
@@ -501,7 +471,7 @@ i:before {
     padding-right: 7px;
 }
 
-.top_header_area .float-left a+a {
+.top_header_area .float-left a + a {
     margin-left: 35px;
 }
 
@@ -632,7 +602,7 @@ i:before {
     display: inline-block;
 }
 
-.main_menu_area .navbar.navbar-expand-lg .navbar-brand img+img {
+.main_menu_area .navbar.navbar-expand-lg .navbar-brand img + img {
     display: none;
 }
 
@@ -673,13 +643,11 @@ i:before {
     margin-right: 0px;
 }
 
-.main_menu_area .navbar.navbar-expand-lg .navbar-nav li:hover a,
-.main_menu_area .navbar.navbar-expand-lg .navbar-nav li.active a {
+.main_menu_area .navbar.navbar-expand-lg .navbar-nav li:hover a, .main_menu_area .navbar.navbar-expand-lg .navbar-nav li.active a {
     color: #f195b2;
 }
 
-.main_menu_area .navbar.navbar-expand-lg .navbar-nav li:hover a:before,
-.main_menu_area .navbar.navbar-expand-lg .navbar-nav li.active a:before {
+.main_menu_area .navbar.navbar-expand-lg .navbar-nav li:hover a:before, .main_menu_area .navbar.navbar-expand-lg .navbar-nav li.active a:before {
     width: 25px;
 }
 
@@ -794,7 +762,7 @@ i:before {
 
 .main_menu_two:before {
     content: "";
-    background: url('../img/menu-draw.png') no-repeat scroll center center;
+    background: url(../img/menu-draw.png) no-repeat scroll center center;
     height: 19px;
     width: 100%;
     position: absolute;
@@ -835,13 +803,11 @@ i:before {
     display: none;
 }
 
-.main_menu_two .navbar.navbar-expand-lg .navbar-nav li:hover a,
-.main_menu_two .navbar.navbar-expand-lg .navbar-nav li.active a {
+.main_menu_two .navbar.navbar-expand-lg .navbar-nav li:hover a, .main_menu_two .navbar.navbar-expand-lg .navbar-nav li.active a {
     color: #f195b2;
 }
 
-.main_menu_two .navbar.navbar-expand-lg .navbar-nav li:hover a:before,
-.main_menu_two .navbar.navbar-expand-lg .navbar-nav li.active a:before {
+.main_menu_two .navbar.navbar-expand-lg .navbar-nav li:hover a:before, .main_menu_two .navbar.navbar-expand-lg .navbar-nav li.active a:before {
     width: 25px;
 }
 
@@ -949,14 +915,10 @@ i:before {
     }
 }
 
-
 /* End Main Header Area css
 ============================================================================================ */
-
-
 /* Main Header Three Area css
 ============================================================================================ */
-
 .main_header_three {
     position: absolute;
     top: 0px;
@@ -966,8 +928,7 @@ i:before {
     background: #fff;
 }
 
-.main_header_three+section,
-.main_header_three+div {
+.main_header_three + section, .main_header_three + div {
     margin-top: 175px;
 }
 
@@ -1157,13 +1118,11 @@ i:before {
     width: 1px;
 }
 
-.middle_menu_three .navbar.navbar-expand-lg .navbar-nav li:hover a,
-.middle_menu_three .navbar.navbar-expand-lg .navbar-nav li.active a {
+.middle_menu_three .navbar.navbar-expand-lg .navbar-nav li:hover a, .middle_menu_three .navbar.navbar-expand-lg .navbar-nav li.active a {
     color: #f195b2;
 }
 
-.middle_menu_three .navbar.navbar-expand-lg .navbar-nav li:hover a:before,
-.middle_menu_three .navbar.navbar-expand-lg .navbar-nav li.active a:before {
+.middle_menu_three .navbar.navbar-expand-lg .navbar-nav li:hover a:before, .middle_menu_three .navbar.navbar-expand-lg .navbar-nav li.active a:before {
     width: 25px;
 }
 
@@ -1275,14 +1234,10 @@ i:before {
     margin-right: 0px;
 }
 
-
 /* End Main Header Three Area css
 ============================================================================================ */
-
-
 /* Box Header Four Area css
 ============================================================================================ */
-
 .box_header_four {
     position: absolute;
     z-index: 30;
@@ -1345,8 +1300,7 @@ i:before {
     margin-right: 0px;
 }
 
-.box_menu_four .navbar.navbar-expand-lg .navbar-nav li:hover a,
-.box_menu_four .navbar.navbar-expand-lg .navbar-nav li.active a {
+.box_menu_four .navbar.navbar-expand-lg .navbar-nav li:hover a, .box_menu_four .navbar.navbar-expand-lg .navbar-nav li.active a {
     color: #f195b2;
 }
 
@@ -1475,14 +1429,10 @@ i:before {
     }
 }
 
-
 /* End Box Header Four Area css
 ============================================================================================ */
-
-
 /* Header Five Area css
 ============================================================================================ */
-
 .five_header .top_header_area {
     background: #222222;
 }
@@ -1519,20 +1469,12 @@ i:before {
     bottom: -17px;
 }
 
-
 /* End Header Five Area css
 ============================================================================================ */
-
-
 /*---------------------------------------------------- */
-
-
 /*----------------------------------------------------*/
-
-
 /* Pink Button Area css
 ============================================================================================ */
-
 .pink_btn {
     background: #f195b2;
     color: #fff;
@@ -1799,20 +1741,12 @@ i:before {
     transition: all 550ms cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-
 /* Cake Pink Button Area css
 ============================================================================================ */
-
-
 /*---------------------------------------------------- */
-
-
 /*----------------------------------------------------*/
-
-
 /* Banner Area css
 ============================================================================================ */
-
 .banner_area {
     background: url(../img/banner/banner-bg.jpg) no-repeat scroll center center;
     background-size: cover;
@@ -1875,20 +1809,12 @@ i:before {
     margin-right: 0px;
 }
 
-
 /* End Banner Area css
 ============================================================================================ */
-
-
 /*---------------------------------------------------- */
-
-
 /*----------------------------------------------------*/
-
-
 /* Main Slider Area css
 ============================================================================================ */
-
 .main_slider_area .rev_slider ul li .slider_text_box .first_text {
     color: #fff;
     font-family: "Playfair Display", serif;
@@ -1967,20 +1893,12 @@ i:before {
     font-size: 45px;
 }
 
-
 /* End Main Slider Area css
 ============================================================================================ */
-
-
 /*---------------------------------------------------- */
-
-
 /*----------------------------------------------------*/
-
-
 /* Cake Welcome Feature Area css
 ============================================================================================ */
-
 .welcome_bakery_area {
     background: url(../img/welcome-bg.jpg) no-repeat scroll center center;
     background-size: cover;
@@ -2049,8 +1967,7 @@ i:before {
     margin-right: 10px;
 }
 
-.cake_feature_slider .cake_feature_slider .owl-prev,
-.cake_feature_slider .cake_feature_slider .owl-next {
+.cake_feature_slider .cake_feature_slider .owl-prev, .cake_feature_slider .cake_feature_slider .owl-next {
     display: inline-block;
     width: 40px;
     height: 40px;
@@ -2063,8 +1980,7 @@ i:before {
     transition: all 400ms linear 0s;
 }
 
-.cake_feature_slider .cake_feature_slider .owl-prev:hover,
-.cake_feature_slider .cake_feature_slider .owl-next:hover {
+.cake_feature_slider .cake_feature_slider .owl-prev:hover, .cake_feature_slider .cake_feature_slider .owl-next:hover {
     background: #f195b2;
     color: #fff;
     border-color: #f195b2;
@@ -2217,8 +2133,7 @@ i:before {
     margin-top: 50px;
 }
 
-.pink_cake_feature .cake_feature_inner .cake_feature_slider .cake_feature_slider .owl-prev,
-.pink_cake_feature .cake_feature_inner .cake_feature_slider .cake_feature_slider .owl-next {
+.pink_cake_feature .cake_feature_inner .cake_feature_slider .cake_feature_slider .owl-prev, .pink_cake_feature .cake_feature_inner .cake_feature_slider .cake_feature_slider .owl-next {
     border-color: #fff;
     color: #fff;
 }
@@ -2243,14 +2158,10 @@ i:before {
     font-style: normal;
 }
 
-
 /* End Cake Welcome Feature Area css
 ============================================================================================ */
-
-
 /* Special Recipe Area css
 ============================================================================================ */
-
 .special_recipe_area {
     background: url(../img/recipe/special-recipe.jpg) no-repeat fixed center center;
     background-size: cover;
@@ -2329,14 +2240,10 @@ i:before {
     background: #fff;
 }
 
-
 /* End Special Recipe Area css
 ============================================================================================ */
-
-
 /* Error Page Area css
 ============================================================================================ */
-
 .error_area {
     text-align: center;
     background: url(../img/error-bg.jpg) no-repeat scroll center center;
@@ -2410,14 +2317,10 @@ i:before {
     padding: 0px 55px;
 }
 
-
 /* End Error Page Area css
 ============================================================================================ */
-
-
 /* Faq Area css
 ============================================================================================ */
-
 .faq_area .search_form {
     background: #f2f2f2;
     border-radius: 7px;
@@ -2515,7 +2418,7 @@ i:before {
     font-family: "Montserrat", sans-serif;
 }
 
-.faq_collaps .left_side_collaps .card .card-header button i+i {
+.faq_collaps .left_side_collaps .card .card-header button i + i {
     display: inline-block;
 }
 
@@ -2523,7 +2426,7 @@ i:before {
     display: inline-block;
 }
 
-.faq_collaps .left_side_collaps .card .card-header button.collapsed i+i {
+.faq_collaps .left_side_collaps .card .card-header button.collapsed i + i {
     display: none;
 }
 
@@ -2643,20 +2546,12 @@ i:before {
     font-size: 16px;
 }
 
-
 /* End Faq Area css
 ============================================================================================ */
-
-
 /*---------------------------------------------------- */
-
-
 /*----------------------------------------------------*/
-
-
 /* Service Area css
 ============================================================================================ */
-
 .service_area {
     background: url(../img/service-bg.jpg) no-repeat scroll center center;
     background-size: cover;
@@ -2811,14 +2706,10 @@ i:before {
     margin-top: 100px;
 }
 
-
 /* End Service Area css
 ============================================================================================ */
-
-
 /* End Service Area css
 ============================================================================================ */
-
 .our_bakery_area .our_bakery_text {
     text-align: center;
 }
@@ -2861,14 +2752,10 @@ i:before {
     margin-bottom: 50px;
 }
 
-
 /* End Service Area css
 ============================================================================================ */
-
-
 /* Our Mission Area css
 ============================================================================================ */
-
 .our_mission_inner .mission_inner_text h6 {
     font-size: 20px;
     line-height: 30px;
@@ -2901,14 +2788,10 @@ i:before {
     margin-right: 0px;
 }
 
-
 /* End Our Mission Area css
 ============================================================================================ */
-
-
 /* Service We Offer Area css
 ============================================================================================ */
-
 .service_we_offer_area {
     background: #f195b2;
 }
@@ -3028,14 +2911,10 @@ i:before {
     background: #fff;
 }
 
-
 /* End Service We Offer Area css
 ============================================================================================ */
-
-
 /* End Service We Offer Area css
 ============================================================================================ */
-
 .new_arivals_area .single_pest_title {
     margin-bottom: 50px;
 }
@@ -3186,14 +3065,10 @@ i:before {
     color: #f195b2;
 }
 
-
 /* End Service We Offer Area css
 ============================================================================================ */
-
-
 /* Special Area css
 ============================================================================================ */
-
 .special_item_inner .specail_item {
     border-bottom: 1px solid #e1e1e1;
     padding-bottom: 100px;
@@ -3277,24 +3152,16 @@ i:before {
     color: #797979;
 }
 
-.making_area .main_title p+p {
+.making_area .main_title p + p {
     margin-top: 28px;
 }
 
-
 /* End Special Area css
 ============================================================================================ */
-
-
 /*---------------------------------------------------- */
-
-
 /*----------------------------------------------------*/
-
-
 /* Client Says Area css
 ============================================================================================ */
-
 .client_says_area {
     background: #62c3e7;
 }
@@ -3369,8 +3236,7 @@ i:before {
     margin-right: 10px;
 }
 
-.client_says_slider .client_says_slider .owl-prev,
-.client_says_slider .client_says_slider .owl-next {
+.client_says_slider .client_says_slider .owl-prev, .client_says_slider .client_says_slider .owl-next {
     display: inline-block;
     width: 40px;
     height: 40px;
@@ -3384,22 +3250,17 @@ i:before {
     color: #fff;
 }
 
-.client_says_slider .client_says_slider .owl-prev:hover,
-.client_says_slider .client_says_slider .owl-next:hover {
+.client_says_slider .client_says_slider .owl-prev:hover, .client_says_slider .client_says_slider .owl-next:hover {
     background: #f195b2;
     color: #fff;
     border-color: #f195b2;
     cursor: pointer;
 }
 
-
 /* End Client Says Area css
 ============================================================================================ */
-
-
 /* Testimonials Area css
 ============================================================================================ */
-
 .testimonials_item_area .testi_item_inner {
     max-width: 1030px;
     margin: 0px auto -75px;
@@ -3460,20 +3321,12 @@ i:before {
     padding-top: 30px;
 }
 
-
 /* End Testimonials Area css
 ============================================================================================ */
-
-
 /*---------------------------------------------------- */
-
-
 /*----------------------------------------------------*/
-
-
 /* Our Chef Area css
 ============================================================================================ */
-
 .our_chef_area {
     background: #f6f6f6;
 }
@@ -3586,20 +3439,12 @@ i:before {
     opacity: 1;
 }
 
-
 /* End Our Chef Area css
 ============================================================================================ */
-
-
 /*---------------------------------------------------- */
-
-
 /*----------------------------------------------------*/
-
-
 /* Latest Blog Area css
 ============================================================================================ */
-
 .latest_news_area.gray_bg {
     background: #f5f5f5;
 }
@@ -3711,14 +3556,10 @@ i:before {
     margin-bottom: 0px;
 }
 
-
 /* End Latest Blog Area css
 ============================================================================================ */
-
-
 /* Main Blog Area css
 ============================================================================================ */
-
 .main_blog_inner {
     padding-right: 30px;
 }
@@ -4100,21 +3941,16 @@ i:before {
     margin-right: 0px;
 }
 
-.blog_pagination .pagination li:hover a,
-.blog_pagination .pagination li.active a {
+.blog_pagination .pagination li:hover a, .blog_pagination .pagination li.active a {
     background: #f195b2;
     color: #fff;
     border-color: #f195b2;
 }
 
-
 /* End Main Blog Area css
 ============================================================================================ */
-
-
 /* Single Blog Area css
 ============================================================================================ */
-
 .b_single_text {
     font-size: 24px;
     color: #3e606b;
@@ -4370,20 +4206,12 @@ i:before {
     padding: 0px 45px;
 }
 
-
 /* End Single Blog Area css
 ============================================================================================ */
-
-
 /*---------------------------------------------------- */
-
-
 /*----------------------------------------------------*/
-
-
 /* Newsletter Area css
 ============================================================================================ */
-
 .newsletter_area {
     background: #f195b2;
     padding: 35px 0px;
@@ -4481,14 +4309,10 @@ i:before {
     box-shadow: none !important;
 }
 
-
 /* End Newsletter Area css
 ============================================================================================ */
-
-
 /* Order Now Area css
 ============================================================================================ */
-
 .order_now_area {
     padding-bottom: 100px;
 }
@@ -4607,14 +4431,10 @@ i:before {
     margin-bottom: 0px;
 }
 
-
 /* End Order Now Area css
 ============================================================================================ */
-
-
 /* Contact Us Area css
 ============================================================================================ */
-
 .contact_form_area .main_title {
     padding-bottom: 55px;
 }
@@ -4735,7 +4555,7 @@ i:before {
     margin-bottom: 0px;
 }
 
-.contact_details .contact_d_item p+p {
+.contact_details .contact_d_item p + p {
     margin-top: 10px;
 }
 
@@ -4754,7 +4574,7 @@ i:before {
     font-weight: normal;
 }
 
-.contact_details .contact_d_item h5+h5 {
+.contact_details .contact_d_item h5 + h5 {
     margin-bottom: 0px;
 }
 
@@ -4762,14 +4582,10 @@ i:before {
     min-height: 485px;
 }
 
-
 /* End Contact Us Area css
 ============================================================================================ */
-
-
 /* Search Popup Area css
 ============================================================================================ */
-
 .search_area {
     position: relative;
     max-width: 950px;
@@ -4868,9 +4684,7 @@ i:before {
     color: #fff;
 }
 
-
 /* start state */
-
 .my-mfp-zoom-in .zoom-anim-dialog {
     opacity: 0;
     -webkit-transition: all 0.2s ease-in-out;
@@ -4884,9 +4698,7 @@ i:before {
     transform: scale(0.8);
 }
 
-
 /* animate in */
-
 .my-mfp-zoom-in.mfp-ready .zoom-anim-dialog {
     opacity: 1;
     -webkit-transform: scale(1);
@@ -4896,9 +4708,7 @@ i:before {
     transform: scale(1);
 }
 
-
 /* animate out */
-
 .my-mfp-zoom-in.mfp-removing .zoom-anim-dialog {
     -webkit-transform: scale(0.8);
     -moz-transform: scale(0.8);
@@ -4908,9 +4718,7 @@ i:before {
     opacity: 0;
 }
 
-
 /* Dark overlay, start state */
-
 .my-mfp-zoom-in.mfp-bg {
     opacity: 0;
     -webkit-transition: opacity 0.3s ease-out;
@@ -4919,28 +4727,20 @@ i:before {
     transition: opacity 0.3s ease-out;
 }
 
-
 /* animate in */
-
 .my-mfp-zoom-in.mfp-ready.mfp-bg {
     opacity: 0.8;
 }
 
-
 /* animate out */
-
 .my-mfp-zoom-in.mfp-removing.mfp-bg {
     opacity: 0;
 }
 
-
 /**
  * Fade-move animation for second dialog
  */
-
-
 /* at start */
-
 .my-mfp-slide-bottom .zoom-anim-dialog {
     opacity: 0;
     -webkit-transition: all 0.2s ease-out;
@@ -4954,9 +4754,7 @@ i:before {
     transform: translateY(-20px) perspective(600px) rotateX(10deg);
 }
 
-
 /* animate in */
-
 .my-mfp-slide-bottom.mfp-ready .zoom-anim-dialog {
     opacity: 1;
     -webkit-transform: translateY(0) perspective(600px) rotateX(0);
@@ -4966,9 +4764,7 @@ i:before {
     transform: translateY(0) perspective(600px) rotateX(0);
 }
 
-
 /* animate out */
-
 .my-mfp-slide-bottom.mfp-removing .zoom-anim-dialog {
     opacity: 0;
     -webkit-transform: translateY(-10px) perspective(600px) rotateX(10deg);
@@ -4978,9 +4774,7 @@ i:before {
     transform: translateY(-10px) perspective(600px) rotateX(10deg);
 }
 
-
 /* Dark overlay, start state */
-
 .my-mfp-slide-bottom.mfp-bg {
     opacity: 0;
     -webkit-transition: opacity 0.3s ease-out;
@@ -4989,28 +4783,20 @@ i:before {
     transition: opacity 0.3s ease-out;
 }
 
-
 /* animate in */
-
 .my-mfp-slide-bottom.mfp-ready.mfp-bg {
     opacity: 0.8;
 }
 
-
 /* animate out */
-
 .my-mfp-slide-bottom.mfp-removing.mfp-bg {
     opacity: 0;
 }
 
-
 /* End Search Popup Area css
 ============================================================================================ */
-
-
 /* Contact Success and error Area css
 ============================================================================================ */
-
 .modal-message .modal-dialog {
     position: absolute;
     top: 36%;
@@ -5053,20 +4839,12 @@ i:before {
     display: block;
 }
 
-
 /* End Contact Success and error Area css
 ============================================================================================ */
-
-
 /*---------------------------------------------------- */
-
-
 /*----------------------------------------------------*/
-
-
 /* Bakery Video Area css
 ============================================================================================ */
-
 .bakery_video_area {
     background: url(../img/video/video-1.jpg) no-repeat scroll center center;
     background-size: cover;
@@ -5128,20 +4906,12 @@ i:before {
     margin-bottom: 0px;
 }
 
-
 /* End Bakery Video Area css
 ============================================================================================ */
-
-
 /*---------------------------------------------------- */
-
-
 /*----------------------------------------------------*/
-
-
 /* Portfolio Area css
 ============================================================================================ */
-
 .portfolio_filter {
     text-align: center;
     margin-bottom: 55px;
@@ -5184,8 +4954,7 @@ i:before {
     margin-right: 0px;
 }
 
-.portfolio_filter ul li:hover a:before,
-.portfolio_filter ul li.active a:before {
+.portfolio_filter ul li:hover a:before, .portfolio_filter ul li.active a:before {
     -webkit-transform: scale(1);
     -ms-transform: scale(1);
     transform: scale(1);
@@ -5283,20 +5052,12 @@ i:before {
     max-width: 20%;
 }
 
-
 /* End Portfolio Area css
 ============================================================================================ */
-
-
 /*---------------------------------------------------- */
-
-
 /*----------------------------------------------------*/
-
-
 /* Coming Soon Area css
 ============================================================================================ */
-
 .coming_soon {
     position: relative;
     overflow: hidden;
@@ -5484,35 +5245,25 @@ i:before {
     width: 50px;
 }
 
-.c-search-form .input-group .input-group-addon button:hover,
-.c-search-form .input-group .input-group-addon button:focus {
+.c-search-form .input-group .input-group-addon button:hover, .c-search-form .input-group .input-group-addon button:focus {
     background: #f195b2;
     color: #fff;
     outline: none;
 }
 
-.c-search-form .input-group .input-group-addon button:hover:before,
-.c-search-form .input-group .input-group-addon button:focus:before {
+.c-search-form .input-group .input-group-addon button:hover:before, .c-search-form .input-group .input-group-addon button:focus:before {
     left: 120%;
     -webkit-transition: all 550ms cubic-bezier(0.19, 1, 0.22, 1);
     -o-transition: all 550ms cubic-bezier(0.19, 1, 0.22, 1);
     transition: all 550ms cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-
 /* End Coming Soon Area css
 ============================================================================================ */
-
-
 /*---------------------------------------------------- */
-
-
 /*----------------------------------------------------*/
-
-
 /* Product Area css
 ============================================================================================ */
-
 .product_area {
     background: url(../img/shop-page-bg.png) no-repeat scroll center center;
     background-size: cover;
@@ -5554,7 +5305,7 @@ i:before {
     line-height: 53px;
 }
 
-.product_task_bar .product_task_inner .float-left a+a {
+.product_task_bar .product_task_inner .float-left a + a {
     margin-left: 7px;
 }
 
@@ -5832,8 +5583,7 @@ i:before {
     transition: all 400ms linear 0s;
 }
 
-.product_pagination .middle_list .pagination li:hover a,
-.product_pagination .middle_list .pagination li.active a {
+.product_pagination .middle_list .pagination li:hover a, .product_pagination .middle_list .pagination li.active a {
     background: #f195b2;
     color: #fff;
     border-color: #f195b2;
@@ -5878,14 +5628,10 @@ i:before {
     color: #fff;
 }
 
-
 /* Product Area css
 ============================================================================================ */
-
-
 /* Product Details Area css
 ============================================================================================ */
-
 .product_details_area .product_d_price {
     margin-bottom: 80px;
 }
@@ -6055,14 +5801,10 @@ i:before {
     margin-bottom: 0px;
 }
 
-
 /* Product Details Area css
 ============================================================================================ */
-
-
 /* Cart Page Area css
 ============================================================================================ */
-
 .cart_table_area .table-responsive .table {
     border: 1px solid #ebebeb;
     margin-bottom: 50px;
@@ -6301,14 +6043,10 @@ i:before {
     padding: 0px 22px;
 }
 
-
 /* End Cart Page Area css
 ============================================================================================ */
-
-
 /* Checkout Area css
 ============================================================================================ */
-
 .billing_details_area .return_option {
     background: #f9f9f9;
     border: 1px solid #ebebeb;
@@ -6386,7 +6124,7 @@ i:before {
     letter-spacing: .30px;
 }
 
-.billing_form .form-group input+input {
+.billing_form .form-group input + input {
     margin-top: 12px;
 }
 
@@ -6678,13 +6416,9 @@ i:before {
     margin-top: 30px;
 }
 
-
 /* End Checkout Area css
 ============================================================================================ */
-
-
 /* SQUARED THREE */
-
 .creat_account {
     width: 100%;
     margin: 0px auto;
@@ -6763,24 +6497,18 @@ i:before {
     top: 1px;
 }
 
-.creat_account input[type=checkbox]:checked~.check::before {
+.creat_account input[type=checkbox]:checked ~ .check::before {
     opacity: 1;
 }
 
-.creat_account input[type=checkbox]:checked~.check::after {
+.creat_account input[type=checkbox]:checked ~ .check::after {
     opacity: 0;
 }
 
-
 /*---------------------------------------------------- */
-
-
 /*----------------------------------------------------*/
-
-
 /* Footer Area css
 ============================================================================================ */
-
 .footer_area {
     background: #303339;
     overflow: hidden;
@@ -6921,12 +6649,8 @@ i:before {
     font-family: "Open Sans", sans-serif;
 }
 
-
 /* End Footer Area css
 ============================================================================================ */
-
-
 /*---------------------------------------------------- */
-
 
 /*# sourceMappingURL=style.css.map */

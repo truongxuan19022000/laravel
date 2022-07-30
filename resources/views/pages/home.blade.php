@@ -1,10 +1,11 @@
 @extends('layout')
 @section('content')
+    <!--================Product Area =================-->
         <div class="container">
         		<div class="row product_inner_row">
         			<div class="col-lg-9">
-        				<div class="row m0 product_task_bar"> 
-							<div class="product_task_inner"> 
+        				<div class="row m0 product_task_bar">
+							<div class="product_task_inner">
 								<div class="float-left">
 									<a class="active" href="#"><i class="fa fa-th-large" aria-hidden="true"></i></a>
 									<a href="#"><i class="fa fa-th-list" aria-hidden="true"></i></a>
@@ -13,43 +14,44 @@
 							</div>
         				</div>
         				<div class="row product_item_inner">
-        					
+
                         @foreach($all_product as $key => $product)
 						@if($product->ExpirationDate>$today)
-                        <div class="col-sm-4">
-                            <div class="product-image-wrapper">
-                           
-                                <div class="single-products">
-                                        <div class="productinfo text-center">
-                                            <form>
-                                                @csrf
+                                    <div class="col-lg-4 col-md-4 col-6">
+                                        <form>
+                                            @csrf
                                             <input type="hidden" value="{{$product->product_id}}" class="cart_product_id_{{$product->product_id}}">
                                             <input type="hidden" value="{{$product->product_name}}" class="cart_product_name_{{$product->product_id}}">
-                                          
+
                                             <input type="hidden" value="{{$product->product_quantity}}" class="cart_product_quantity_{{$product->product_id}}">
-                                            
+
                                             <input type="hidden" value="{{$product->product_image}}" class="cart_product_image_{{$product->product_id}}">
                                             <input type="hidden" value="{{$product->product_price}}" class="cart_product_price_{{$product->product_id}}">
                                             <input type="hidden" value="1" class="cart_product_qty_{{$product->product_id}}">
+                                            <div class="cake_feature_item">
+                                                <a href="{{URL::to('/chi-tiet/'.$product->product_id)}}">
+                                                <div class="cake_img">
+                                                    <img width="270" height="226" src="{{URL::to('public/uploads/product/'.$product->product_image)}}" alt="">
+                                                </div>
+                                                <div class="cake_text">
+{{--                                                    <h4>{{number_format($product->product_price,0,',','.').' '.'VNĐ'}}</h4>--}}
+                                                    <h4>${{number_format($product->product_price,0,',','.').' '.'VNĐ'}}</h4>
+                                                    <h3>{{$product->product_name}}</h3>
+                                                </div>
+                                                </a>
+                                                <input type="button" value="Thêm giỏ hàng"  class="btn btn-default add-to-cart pest_btn" data-id_product="{{$product->product_id}}" name="add-to-cart">
+                                            </div>
+{{--                                            <a href="{{URL::to('/chi-tiet/'.$product->product_id)}}">--}}
+{{--                                                <img src="{{URL::to('public/uploads/product/'.$product->product_image)}}" alt="" />--}}
+{{--                                                <h2>{{number_format($product->product_price,0,',','.').' '.'VNĐ'}}</h2>--}}
+{{--                                                <p>{{$product->product_name}}</p>--}}
+{{--                                            </a>--}}
+                                        </form>
 
-                                            <a href="{{URL::to('/chi-tiet/'.$product->product_id)}}">
-                                                <img src="{{URL::to('public/uploads/product/'.$product->product_image)}}" alt="" />
-                                                <h2>{{number_format($product->product_price,0,',','.').' '.'VNĐ'}}</h2>
-                                                <p>{{$product->product_name}}</p>
-
-                                             
-                                             </a>
-                                            <input type="button" value="Thêm giỏ hàng"  class="btn btn-default add-to-cart pest_btn" data-id_product="{{$product->product_id}}" name="add-to-cart">
-                                            </form>
-
-                                        </div>
-                                      
-                                </div>
-                            </div>
-                        </div>
+                                    </div>
 						@endif
                         @endforeach
-        					
+
         				</div>
         				<div class="product_pagination">
         					<div class="left_btn">
@@ -169,7 +171,7 @@
         			</div>
         		</div>
         	</div>
-        
+
         <!--================End Product Area =================-->
-        
+
 @endsection
