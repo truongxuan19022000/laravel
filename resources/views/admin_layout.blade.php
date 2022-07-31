@@ -10,30 +10,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <!-- //bootstrap-css -->
 <!-- Custom CSS -->
-<link rel="stylesheet" href="{{asset('public/backend/css/bootstrap.min.css')}}" >
+<link rel="stylesheet" href="{{asset('backend/css/bootstrap.min.css')}}" >
 
-<link href="{{asset('public/backend/css/admins.css')}}" rel='stylesheet' type='text/css' />
-<link href="{{asset('public/backend/css/style-responsive.css')}}" rel="stylesheet"/>
-<link href="{{asset('public/backend/css/jquery.dataTables.min.css')}}" rel="stylesheet"/>
+<link href="{{asset('backend/css/admins.css')}}" rel='stylesheet' type='text/css' />
+<link href="{{asset('backend/css/style-responsive.css')}}" rel="stylesheet"/>
+<link href="{{asset('backend/css/jquery.dataTables.min.css')}}" rel="stylesheet"/>
 <!-- font CSS -->
 <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
 <!-- font-awesome icons -->
-<link rel="stylesheet" href="{{asset('public/backend/css/font.css')}}" type="text/css"/>
-<link href="{{asset('public/backend/css/font-awesome.css')}}" rel="stylesheet">
-<link rel="stylesheet" href="{{asset('public/backend/css/morris.css')}}" type="text/css"/>
+<link rel="stylesheet" href="{{asset('backend/css/font.css')}}" type="text/css"/>
+<link href="{{asset('backend/css/font-awesome.css')}}" rel="stylesheet">
+<link rel="stylesheet" href="{{asset('backend/css/morris.css')}}" type="text/css"/>
   <!-- Theme style -->
     <!-- IonIcons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 <!-- calendar -->
 
-<link rel="stylesheet" href="{{asset('public/backend/css/monthly.css')}}">
+<link rel="stylesheet" href="{{asset('backend/css/monthly.css')}}">
 
 <!-- //calendar -->
 <!-- //font-awesome icons -->
-<script src="{{asset('public/backend/js/jquery2.0.3.min.js')}}"></script>
-<script src="{{asset('public/backend/js/raphael-min.js')}}"></script>
-<script src="{{asset('public/backend/js/morris.js')}}"></script>
-<script src="{{asset('public/backend/js/morris.js')}}"></script>
+<script src="{{asset('backend/js/jquery2.0.3.min.js')}}"></script>
+<script src="{{asset('backend/js/raphael-min.js')}}"></script>
+<script src="{{asset('backend/js/morris.js')}}"></script>
+<script src="{{asset('backend/js/morris.js')}}"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
@@ -201,26 +201,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </section>
 <!--main content end-->
 </section>
-<script src="{{asset('public/backend/js/bootstrap.js')}}"></script>
-<script src="{{asset('public/backend/js/jquery.dcjqaccordion.2.7.js')}}"></script>
-<script src="{{asset('public/backend/js/scripts.js')}}"></script>
-<script src="{{asset('public/backend/js/jquery.slimscroll.js')}}"></script>
-<script src="{{asset('public/backend/js/jquery.nicescroll.js')}}"></script>
-<script src="{{asset('public/backend/ckeditor/ckeditor.js')}}"></script>
-<script src="{{asset('public/backend/js/jquery.form-validator.min.js')}}"></script>
-<script src="{{asset('public/backend/js/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('backend/js/bootstrap.js')}}"></script>
+<script src="{{asset('backend/js/jquery.dcjqaccordion.2.7.js')}}"></script>
+<script src="{{asset('backend/js/scripts.js')}}"></script>
+<script src="{{asset('backend/js/jquery.slimscroll.js')}}"></script>
+<script src="{{asset('backend/js/jquery.nicescroll.js')}}"></script>
+<script src="{{asset('backend/ckeditor/ckeditor.js')}}"></script>
+<script src="{{asset('backend/js/jquery.form-validator.min.js')}}"></script>
+<script src="{{asset('backend/js/jquery.dataTables.min.js')}}"></script>
 
-<script src="{{asset('public/dashboard/dist/js/adminlte.js')}}"></script>
+<script src="{{asset('dashboard/dist/js/adminlte.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="{{asset('public/dashboard/dist/js/demo.js')}}"></script>
+<script src="{{asset('dashboard/dist/js/demo.js')}}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{asset('public/dashboard/dist/js/pages/dashboard3.js')}}"></script>
+<script src="{{asset('dashboard/dist/js/pages/dashboard3.js')}}"></script>
 <!-- OPTIONAL SCRIPTS -->
-<script src="{{asset('public/dashboard/plugins/chart.js/Chart.min.js')}}"></script>
+<script src="{{asset('dashboard/plugins/chart.js/Chart.min.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="{{asset('public/dashboard/dist/js/demo.js')}}"></script>
+<script src="{{asset('dashboard/dist/js/demo.js')}}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{asset('public/dashboard/dist/js/pages/dashboard3.js')}}"></script>
+<script src="{{asset('dashboard/dist/js/pages/dashboard3.js')}}"></script>
   <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 
 <script type="text/javascript">
@@ -546,7 +546,7 @@ $(document).ready(function(){
 </script>
 
 <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/flot-chart/excanvas.min.js"></script><![endif]-->
-<script src="{{asset('public/backend/js/jquery.scrollTo.js')}}"></script>
+<script src="{{asset('backend/js/jquery.scrollTo.js')}}"></script>
 <!-- morris JavaScript -->
 <script>
 	$(document).ready(function() {
@@ -604,7 +604,7 @@ $(document).ready(function(){
 	});
 	</script>
 <!-- calendar -->
-	<script type="text/javascript" src="{{asset('public/backend/js/monthly.js')}}"></script>
+	<script type="text/javascript" src="{{asset('backend/js/monthly.js')}}"></script>
 	<script type="text/javascript">
 		$(window).load( function() {
 

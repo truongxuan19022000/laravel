@@ -11,26 +11,26 @@
     <title>Cake - Bakery</title>
 
     <!-- Css layout bánh -->
-    <link href="{{asset('public/layout/css/font-awesome.min.css')}}" rel="stylesheet">
+    <link href="{{asset('layout/css/font-awesome.min.css')}}" rel="stylesheet">
 
 
-    <link href="{{asset('public/layout/vendors/linearicons/style.css')}}" rel="stylesheet">
-    <link href="{{asset('public/layout/vendors/flat-icon/flaticon.css')}}" rel="stylesheet">
+    <link href="{{asset('layout/vendors/linearicons/style.css')}}" rel="stylesheet">
+    <link href="{{asset('layout/vendors/flat-icon/flaticon.css')}}" rel="stylesheet">
     <!-- Bootstrap -->
-    <link href="{{asset('public/layout/css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{asset('public/layout/css/font-awesome.min.css')}}" rel="stylesheet">
+    <link href="{{asset('layout/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('layout/css/font-awesome.min.css')}}" rel="stylesheet">
     <!-- Rev slider css -->
-    <link href="{{asset('public/layout/vendors/revolution/css/settings.css')}}" rel="stylesheet">
-    <link href="{{asset('public/layout/vendors/revolution/css/layers.css')}}" rel="stylesheet">
-    <link href="{{asset('public/layout/vendors/revolution/css/navigation.css')}}" rel="stylesheet">
-    <link href="{{asset('public/layout/vendors/animate-css/animate.css')}}" rel="stylesheet">
+    <link href="{{asset('layout/vendors/revolution/css/settings.css')}}" rel="stylesheet">
+    <link href="{{asset('layout/vendors/revolution/css/layers.css')}}" rel="stylesheet">
+    <link href="{{asset('layout/vendors/revolution/css/navigation.css')}}" rel="stylesheet">
+    <link href="{{asset('layout/vendors/animate-css/animate.css')}}" rel="stylesheet">
 
     <!-- Extra plugin css -->
-    <link href="{{asset('public/layout/vendors/owl-carousel/owl.carousel.min.css')}}" rel="stylesheet">
-    <link href="{{asset('public/layout/vendors/magnifc-popup/magnific-popup.css')}}" rel="stylesheet">
-    {{--    <link href="{{asset('public/frontend/css/style.css')}}" rel="stylesheet">--}}
-    <link href="{{asset('public/frontend/css/style.css')}}" rel="stylesheet">
-    <link href="{{asset('public/layout/css/responsive.css')}}" rel="stylesheet">
+    <link href="{{asset('layout/vendors/owl-carousel/owl.carousel.min.css')}}" rel="stylesheet">
+    <link href="{{asset('layout/vendors/magnifc-popup/magnific-popup.css')}}" rel="stylesheet">
+    {{--    <link href="{{asset('frontend/css/style.css')}}" rel="stylesheet">--}}
+    <link href="{{asset('frontend/css/style.css')}}" rel="stylesheet">
+    <link href="{{asset('layout/css/responsive.css')}}" rel="stylesheet">
     <!-- Css layout bánh -->
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -70,30 +70,30 @@
 
 
 
-<script src="{{asset('public/layout/js/jquery-3.2.1.min.js')}}"></script>
-<script src="{{asset('public/layout/js/popper.min.js')}}"></script>
-<script src="{{asset('public/layout/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('layout/js/jquery-3.2.1.min.js')}}"></script>
+<script src="{{asset('layout/js/popper.min.js')}}"></script>
+<script src="{{asset('layout/js/bootstrap.min.js')}}"></script>
 <!-- Rev slider js -->
-<script src="{{asset('public/layout/vendors/revolution/js/jquery.themepunch.tools.min.js')}}"></script>
-<script src="{{asset('public/layout/vendors/revolution/js/jquery.themepunch.revolution.min.js')}}"></script>
-<script src="{{asset('public/layout/vendors/revolution/js/extensions/revolution.extension.actions.min.js')}}"></script>
-<script src="{{asset('public/layout/vendors/revolution/js/extensions/revolution.extension.video.min.js')}}"></script>
+<script src="{{asset('layout/vendors/revolution/js/jquery.themepunch.tools.min.js')}}"></script>
+<script src="{{asset('layout/vendors/revolution/js/jquery.themepunch.revolution.min.js')}}"></script>
+<script src="{{asset('layout/vendors/revolution/js/extensions/revolution.extension.actions.min.js')}}"></script>
+<script src="{{asset('layout/vendors/revolution/js/extensions/revolution.extension.video.min.js')}}"></script>
 <script
-    src="{{asset('public/layout/vendors/revolution/js/extensions/revolution.extension.slideanims.min.js')}}"></script>
+    src="{{asset('layout/vendors/revolution/js/extensions/revolution.extension.slideanims.min.js')}}"></script>
 <script
-    src="{{asset('public/layout/vendors/revolution/js/extensions/revolution.extension.layeranimation.min.js')}}"></script>
+    src="{{asset('layout/vendors/revolution/js/extensions/revolution.extension.layeranimation.min.js')}}"></script>
 <script
-    src="{{asset('public/layout/vendors/revolution/js/extensions/revolution.extension.navigation.min.js')}}"></script>
+    src="{{asset('layout/vendors/revolution/js/extensions/revolution.extension.navigation.min.js')}}"></script>
 <!-- Extra plugin js -->
-<script src="{{asset('public/layout/vendors/owl-carousel/owl.carousel.min.js')}}"></script>
-<script src="{{asset('public/layout/vendors/magnifc-popup/jquery.magnific-popup.min.js')}}"></script>
-<script src="{{asset('public/layout/vendors/datetime-picker/js/moment.min.js')}}"></script>
-<script src="{{asset('public/layout/vendors/datetime-picker/js/bootstrap-datetimepicker.min.js')}}"></script>
-<script src="{{asset('public/layout/vendors/nice-select/js/jquery.nice-select.min.js')}}"></script>
-<script src="{{asset('public/layout/vendors/jquery-ui/jquery-ui.min.js')}}"></script>
-<script src="{{asset('public/layout/vendors/lightbox/simpleLightbox.min.js')}}"></script>
+<script src="{{asset('layout/vendors/owl-carousel/owl.carousel.min.js')}}"></script>
+<script src="{{asset('layout/vendors/magnifc-popup/jquery.magnific-popup.min.js')}}"></script>
+<script src="{{asset('layout/vendors/datetime-picker/js/moment.min.js')}}"></script>
+<script src="{{asset('layout/vendors/datetime-picker/js/bootstrap-datetimepicker.min.js')}}"></script>
+<script src="{{asset('layout/vendors/nice-select/js/jquery.nice-select.min.js')}}"></script>
+<script src="{{asset('layout/vendors/jquery-ui/jquery-ui.min.js')}}"></script>
+<script src="{{asset('layout/vendors/lightbox/simpleLightbox.min.js')}}"></script>
 
-<script src="{{asset('public/layout/js/theme.js')}}"></script>
+<script src="{{asset('layout/js/theme.js')}}"></script>
 
 </body>
 

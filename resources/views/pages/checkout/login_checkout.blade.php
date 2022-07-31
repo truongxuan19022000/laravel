@@ -156,7 +156,7 @@
                             @error('email_account')
                             <div class="formError optin">
                                             <span class="item"><img
-                                                    src="{{asset('public/uploads/common/icon-help-error.svg')}}"
+                                                    src="{{asset('uploads/common/icon-help-error.svg')}}"
                                                     alt=""></span>
                                 <div class="formError-text">{{$message}}</div>
                             </div>
@@ -169,7 +169,7 @@
                             @error('password_account')
                             <div class="formError optin">
                                             <span class="item"><img
-                                                    src="{{asset('public/uploads/common/icon-help-error.svg')}}"
+                                                    src="{{asset('uploads/common/icon-help-error.svg')}}"
                                                     alt=""></span>
                                 <div class="formError-text">{{$message}}</div>
                             </div>

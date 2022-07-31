@@ -7,7 +7,7 @@
             data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9=""
             data-param10="" data-description="">
             <!-- MAIN IMAGE -->
-            <img src="{{asset('public/layout/img/home-slider/slider-3.jpg')}}" alt="" data-bgposition="center center"
+            <img src="{{asset('layout/img/home-slider/slider-3.jpg')}}" alt="" data-bgposition="center center"
                  data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="5" class="rev-slidebg"
                  data-no-retina>
 
@@ -53,7 +53,7 @@
             data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9=""
             data-param10="" data-description="">
             <!-- MAIN IMAGE -->
-            <img src="{{asset('public/layout/img/home-slider/slider-4.jpg')}}" alt="" data-bgposition="center center"
+            <img src="{{asset('layout/img/home-slider/slider-4.jpg')}}" alt="" data-bgposition="center center"
                  data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="5" class="rev-slidebg"
                  data-no-retina>
             <!-- LAYERS -->
@@ -100,7 +100,7 @@
             data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9=""
             data-param10="" data-description="">
             <!-- MAIN IMAGE -->
-            <img src="{{asset('public/layout/img/home-slider/slider-5.jpg')}}" alt="" data-bgposition="center center"
+            <img src="{{asset('layout/img/home-slider/slider-5.jpg')}}" alt="" data-bgposition="center center"
                  data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="5" class="rev-slidebg"
                  data-no-retina>
             <!-- LAYERS -->
