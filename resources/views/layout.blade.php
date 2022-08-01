@@ -98,15 +98,15 @@
 <!-- Footer -->
 
 
-<script src="{{asset('frontend/js/jquery.js')}}"></script>
-<script src="{{asset('frontend/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('frontend/js/jquery.js?')}}{{\Carbon\Carbon::now()->format('h:i:s')}}"></script>
+<script src="{{asset('frontend/js/bootstrap.min.js?')}}{{\Carbon\Carbon::now()->format('h:i:s')}}"></script>
 <script src="{{asset('frontend/js/jquery.scrollUp.min.js')}}"></script>
 <script src="{{asset('frontend/js/price-range.js')}}"></script>
 <script src="{{asset('frontend/js/jquery.prettyPhoto.js')}}"></script>
 <script src="{{asset('frontend/js/main.js')}}"></script>
 
 
-<script src="{{asset('frontend/js/sweetalert.min.js')}}"></script>
+<script src="{{asset('frontend/js/sweetalert.min.js?')}}{{\Carbon\Carbon::now()->format('h:i:s')}}"></script>
 {{--  <script src="https://www.paypal.com/sdk/js?client-id=sb"></script>
  <script>paypal.Buttons().render('body');</script> --}}
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
@@ -114,7 +114,7 @@
 <script async defer crossorigin="anonymous"
         src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v6.0&appId=2339123679735877&autoLogAppEvents=1"></script>
 <!-- Js layout moi -->
-<script src="{{asset('layout/js/jquery-3.2.1.min.js')}}"></script>
+<script src="{{asset('layout/js/jquery-3.2.1.min.js?')}}{{\Carbon\Carbon::now()->format('h:i:s')}}"></script>
 <script src="{{asset('layout/js/popper.min.js')}}"></script>
 <script src="{{asset('layout/js/bootstrap.min.js')}}"></script>
 <!-- Rev slider js -->
@@ -134,13 +134,14 @@
 <script src="{{asset('layout/vendors/datetime-picker/js/moment.min.js')}}"></script>
 <script src="{{asset('layout/vendors/datetime-picker/js/bootstrap-datetimepicker.min.js')}}"></script>
 <script src="{{asset('layout/vendors/nice-select/js/jquery.nice-select.min.js')}}"></script>
-<script src="{{asset('layout/vendors/jquery-ui/jquery-ui.min.js')}}"></script>
+<script src="{{asset('layout/vendors/jquery-ui/jquery-ui.min.js?')}}{{\Carbon\Carbon::now()->format('h:i:s')}}"></script>
 <script src="{{asset('layout/vendors/lightbox/simpleLightbox.min.js')}}"></script>
 
 <script src="{{asset('layout/js/theme.js')}}"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         $('.send_order').click(function () {
+            console.log($('.shipping_email').val());
             swal({
                     title: "Xác nhận đơn hàng",
                     text: "Đơn hàng sẽ không được hoàn trả khi đặt,bạn có muốn đặt không?",
@@ -179,10 +180,14 @@
                             },
                             success: function () {
                                 swal("Đơn hàng", "Đơn hàng của bạn đã được gửi thành công", "success");
+                                window.setTimeout(function () {
+                                    location.href = '/';
+                                }, 3000);
                             }
                         });
+                        swal("Lỗi đặt hàng", "Bạn vui lòng điền đầy đủ thông tin", "error");
                         window.setTimeout(function () {
-                            location.reload();
+                            location.href = 'gio-hang';
                         }, 3000);
                     } else {
                         swal("Đóng", "Đơn hàng chưa được gửi, làm ơn hoàn tất đơn hàng", "error");

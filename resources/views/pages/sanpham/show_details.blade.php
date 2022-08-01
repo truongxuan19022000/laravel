@@ -6,7 +6,7 @@
             <div class="row product_d_price">
                 <div class="col-lg-6">
                     <div class="product_img"><img class="img-fluid" width="405" height="329"
-                                                  src="{{URL::to('/public/uploads/product/'.$value->product_image)}}" alt=""></div>
+                                                  src="{{URL::to('uploads/product/'.$value->product_image)}}" alt=""></div>
                 </div>
                 <div class="col-lg-6">
                     <div class="product_details_text">
@@ -77,7 +77,7 @@
                 <div class="col-lg-3 col-md-4 col-6">
                     <div class="cake_feature_item">
                         <div class="cake_img">
-                            <img width="270" height="226" src="{{URL::to('public/uploads/product/'.$lienquan->product_image)}}" alt="">
+                            <img width="270" height="226" src="{{URL::to('uploads/product/'.$lienquan->product_image)}}" alt="">
                         </div>
                         <div class="cake_text">
                             <h4>{{number_format($lienquan->product_price,0,',','.').' '.'VNĐ'}}</h4>

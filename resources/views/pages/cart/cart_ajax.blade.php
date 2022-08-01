@@ -1,6 +1,7 @@
 @extends('layout')
 @section('content')
-
+    <form action="{{url('/update-cart')}}" method="POST">
+        @csrf
     <section id="cart_items">
         <div class="container">
             <div class="breadcrumbs">
@@ -19,8 +20,6 @@
                 </div>
             @endif
             <div class="table-responsive cart_info">
-
-                    @csrf
                     <table class="table table-condensed">
                         <thead>
                         <tr class="cart_menu">
@@ -93,15 +92,16 @@
                                 </td>
 
                                 <td>
-
                                 </td>
+                                <td></td>
+                                <td></td>
                             </tr>
                         @else
                             <tr>
                                 <td colspan="5">
                                     <center>
                                         @php
-                                            echo 'Làm ơn thêm sản phẩm vào giỏ hàng';
+                                            echo '';
                                         @endphp
                                     </center>
                                 </td>
@@ -111,34 +111,19 @@
 
 
                 </table>
-
             </div>
         </div>
     </section> <!--/#cart_items-->
 
     <div class="container">
         <div class="row cart_total_inner">
-            <div class="col-lg-5">
-                @if(Session::get('cart'))
-                    <div class="cart_total_text">
-                        <div class="cart_head">
-                            Apply Coupon
-                        </div>
-                        <form method="POST" action="{{url('/check-coupon')}}">
-                            @csrf
-                            <input type="text" class="form-control" name="coupon" placeholder="Nhập mã giảm giá"><br>
-                            <input type="submit" class="btn btn-default check_coupon" name="check_coupon"
-                                   value="Tính mã giảm giá">
 
-                        </form>
-                    </div>
-                @endif
-            </div>
             <div class="col-lg-7">
                 <div class="cart_total_text">
                     <div class="cart_head">
                         Cart Total
                     </div>
+                    @if(isset($total))
                     <td colspan="2">
                         <div class="sub_total">
                             <h5> Tổng tiền :<span>{{number_format($total,0,',','.')}}đ</span></h5>
@@ -165,11 +150,11 @@
                                         </h5>
                                     </div>
                                     @php
-                                        $total_coupon = $total - $cou['coupon_number'];
+                                        $total = $total - $cou['coupon_number'];
 
                                     @endphp
                                     <div class="sub_total">
-                                        <h5> Tổng đã giảm : <span>{{number_format($total_coupon,0,',','.')}}đ</span>
+                                        <h5> Tổng đã giảm : <span>{{number_format($total,0,',','.')}}đ</span>
                                         </h5>
                                     </div>
                                     @endif
@@ -182,6 +167,7 @@
                     <div class="total">
                         <h4>Total <span>{{number_format($total,0,',','.')}}đ</span></h4>
                     </div>
+                    @endif
                     <div class="cart_footer">
                         @if(Session::get('customer_id'))
                             <a class="pest_btn" href="{{url('/checkout')}}">Đặt hàng</a>
@@ -190,6 +176,23 @@
                         @endif
                     </div>
                 </div>
+            </div>
+            </form>
+            <div class="col-lg-5">
+                @if(Session::get('cart'))
+                    <div class="cart_total_text">
+                        <div class="cart_head">
+                            Apply Coupon
+                        </div>
+                        <form method="POST" action="{{url('/check-coupon')}}">
+                            @csrf
+                            <input type="text" class="form-control" name="coupon" placeholder="Nhập mã giảm giá"><br>
+                            <input type="submit" class="btn btn-default check_coupon" name="check_coupon"
+                                   value="Tính mã giảm giá">
+
+                        </form>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
