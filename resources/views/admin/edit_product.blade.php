@@ -63,7 +63,7 @@
                                             <option value="{{$cate->category_id}}">{{$cate->category_name}}</option>
                                             @endif
                                         @endforeach
-                                            
+
                                     </select>
                                 </div>
                                  <div class="form-group">
@@ -76,7 +76,7 @@
                                             <option value="{{$brand->brand_id}}">{{$brand->brand_name}}</option>
                                              @endif
                                         @endforeach
-                                            
+
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -84,11 +84,11 @@
                                       <select name="product_status" class="form-control input-sm m-bot15">
                                             <option value="0">Ẩn</option>
                                             <option value="1">Hiển thị</option>
-                                            
+
                                     </select>
                                 </div>
-                               
-                                <button type="submit" name="add_product" class="btn btn-info">Cập nhật sản phẩm</button>
+
+                                <button type="submit"  class="btn btn-info">Cập nhật sản phẩm</button>
                                 </form>
                                 @endforeach
                             </div>

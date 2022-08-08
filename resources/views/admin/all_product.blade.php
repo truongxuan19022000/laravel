@@ -62,7 +62,7 @@
             <td>{{ $pro->product_quantity }}</td>
             <td>{{ number_format($pro->product_price,0,',','.') }}đ</td>
             <td>{{ number_format($pro->price_cost,0,',','.') }}đ</td>
-            <td><img src="public/uploads/product/{{ $pro->product_image }}" height="100" width="100"></td>
+            <td><img src="{{asset('uploads/product/'.$pro->product_image)}}" height="100" width="100"></td>
             <td>{{ $pro->category_name }}</td>
             <td>{{ $pro->ManufactureDate }}</td>
             <td>{{ $pro->ExpirationDate }}</td>

@@ -12,6 +12,7 @@
 */
 //Frontend
 
+use App\Jobs\SendMailOrder;
 use Illuminate\Support\Facades\Route;
 Route::get('/','HomeController@index' )->name('home');
 Route::get('/trang-chu','HomeController@index');
@@ -144,7 +145,7 @@ Route::post('/confirm-order','CheckoutController@confirm_order');
 
 //Order
 Route::get('/delete-order/{order_code}','OrderController@order_code');
-Route::get('/print-order/{checkout_code}','OrderController@print_order');
+Route::get('/print-order/{checkout_code}','OrderController@print_order')->name('print');
 Route::get('/manage-order','OrderController@manage_order');
 Route::get('/view-order/{order_code}','OrderController@view_order');
 Route::post('/update_order_qty','OrderController@update_order_qty');
@@ -167,4 +168,8 @@ Route::post('/insert-slider','SliderController@insert_slider');
 Route::get('/unactive-slide/{slide_id}','SliderController@unactive_slide');
 Route::get('/active-slide/{slide_id}','SliderController@active_slide');
 
-
+Route::get('test',function (){
+    $mail = dispatch(new SendMailOrder('xuannt1902@gmail.com'));
+    dd($mail);
+   return view('admin.dashboard.home_dashboard');
+});

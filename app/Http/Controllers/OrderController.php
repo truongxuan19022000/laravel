@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendMailOrder;
+use App\Jobs\SendMailVerifyOrder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Feeship;
@@ -44,17 +46,22 @@ class OrderController extends Controller
 	public function update_order_qty(Request $request){
 		//update order
 		$data = $request->all();
-		$order = Order::find($data['order_id']);
+        $order = Order::where('order_id', '=',$data['order_id'])->first();
+        $shipping = Shipping::where('shipping_id', $order['shipping_id'])->first();
+        $links = url('/print-order',$order['order_code']);
+        $mail = dispatch(new SendMailVerifyOrder($shipping->shipping_email,$links));
+
+        $order = Order::find($data['order_id']);
 		$order->order_status = $data['order_status'];
 		$order->save();
 		//order date
-		$order_date = $order->order_date;	
+		$order_date = $order->order_date;
 		$statistic = Statistic::where('order_date',$order_date)->get();
 		if($statistic){
-			$statistic_count = $statistic->count();	
+			$statistic_count = $statistic->count();
 		}else{
 			$statistic_count = 0;
-		}	
+		}
 
 		if($order->order_status==2){
 			//them
@@ -113,7 +120,7 @@ class OrderController extends Controller
 
 		}elseif($order->order_status!=2 && $order->order_status!=3){
 			foreach($data['order_product_id'] as $key => $product_id){
-				
+
 				$product = Product::find($product_id);
 				$product_quantity = $product->product_quantity;
 				$product_sold = $product->product_sold;
@@ -127,15 +134,13 @@ class OrderController extends Controller
 				}
 			}
 		}
-
-
+//		Send mail xác nhận đơn hàng
 	}
 	/* sử dụng pdf in hóa đơn */
 	public function print_order($checkout_code)
 	{
 		$pdf = App::make('dompdf.wrapper');
 		$pdf->loadHTML($this->print_order_convert($checkout_code));
-
 		return $pdf->stream();
 	}
 	/* Thực hiện cv in hóa đơn */
@@ -199,18 +204,18 @@ class OrderController extends Controller
 				</thead>
 				<tbody>';
 
-		$output .= '		
+		$output .= '
 					<tr>
 						<td>' . $customer->customer_name . '</td>
 						<td>' . $customer->customer_phone . '</td>
 						<td>' . $customer->customer_email . '</td>
-						
+
 					</tr>';
 
 
-		$output .= '				
+		$output .= '
 				</tbody>
-			
+
 		</table>
 
 		<p>Ship hàng tới</p>
@@ -226,20 +231,20 @@ class OrderController extends Controller
 				</thead>
 				<tbody>';
 
-		$output .= '		
+		$output .= '
 					<tr>
 						<td>' . $shipping->shipping_name . '</td>
 						<td>' . $shipping->shipping_address . '</td>
 						<td>' . $shipping->shipping_phone . '</td>
 						<td>' . $shipping->shipping_email . '</td>
 						<td>' . $shipping->shipping_notes . '</td>
-						
+
 					</tr>';
 
 
-		$output .= '				
+		$output .= '
 				</tbody>
-			
+
 		</table>
 
 		<p>Đơn hàng đặt</p>
@@ -269,7 +274,7 @@ class OrderController extends Controller
 				$product_coupon = 'không mã';
 			}
 
-			$output .= '		
+			$output .= '
 					<tr>
 						<td>' . $product->product_name . '</td>
 						<td>' . $product_coupon . '</td>
@@ -277,7 +282,7 @@ class OrderController extends Controller
 						<td>' . $product->product_sales_quantity . '</td>
 						<td>' . number_format($product->product_price, 0, ',', '.') . 'đ' . '</td>
 						<td>' . number_format($subtotal, 0, ',', '.') . 'đ' . '</td>
-						
+
 					</tr>';
 		}
 
@@ -296,9 +301,9 @@ class OrderController extends Controller
 				</td>
 		</tr>';
 
-		$output .= '				
+		$output .= '
 				</tbody>
-			
+
 		</table>
 
 			<table>
@@ -306,14 +311,14 @@ class OrderController extends Controller
 					<tr>
 						<th width="200px">Người lập phiếu</th>
 						<th width="800px">Người nhận</th>
-						
+
 					</tr>
 				</thead>
 				<tbody>';
 
-		$output .= '				
+		$output .= '
 				</tbody>
-			
+
 		</table>
 
 		';

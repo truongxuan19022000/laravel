@@ -3,6 +3,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendMailOrder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -25,7 +26,6 @@ class CheckoutController extends Controller
 
     public function confirm_order(Request $request){
         $data = $request->all();
-
         $shipping = new Shipping();
         $shipping->shipping_name = $data['shipping_name'];
         $shipping->shipping_email = $data['shipping_email'];
@@ -67,6 +67,7 @@ class CheckoutController extends Controller
                $order_details->save();
            }
         }
+        $mail = dispatch(new SendMailOrder($shipping->shipping_email));
         Session::forget('coupon');
         Session::forget('fee');
         Session::forget('cart');

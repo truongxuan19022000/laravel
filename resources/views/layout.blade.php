@@ -187,7 +187,7 @@
                         });
                         swal("Lỗi đặt hàng", "Bạn vui lòng điền đầy đủ thông tin", "error");
                         window.setTimeout(function () {
-                            location.href = 'gio-hang';
+                            window.location.preventDefault();
                         }, 3000);
                     } else {
                         swal("Đóng", "Đơn hàng chưa được gửi, làm ơn hoàn tất đơn hàng", "error");

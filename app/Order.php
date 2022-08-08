@@ -12,6 +12,8 @@ class Order extends Model
     ];
     protected $primaryKey = 'order_id';
  	protected $table = 'tbl_order';
+    public function customer(){
+        return $this->hasOne(Customer::class);
+    }
 
- 
 }

@@ -50,7 +50,7 @@
                                 </div>
                                  <div class="form-group">
                                     <label for="exampleInputPassword1">Danh mục sản phẩm</label>
-                                      <select name="product_cate" class="form-control input-sm m-bot15">
+                                      <select name="category_id" class="form-control input-sm m-bot15">
                                         @foreach($cate_product as $key => $cate)
                                             <option value="{{$cate->category_id}}">{{$cate->category_name}}</option>
                                         @endforeach
@@ -64,7 +64,7 @@
                                             <option value="1">Ẩn</option>
                                     </select>
                                 </div>
-                                <button  type="submit" name="add_product" class="btn btn-info">Thêm sản phẩm</button>
+                                <button  type="submit" class="btn btn-info">Thêm sản phẩm</button>
                                 </form>
                             </div>
 
