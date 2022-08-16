@@ -60,7 +60,7 @@ class ProductController extends Controller
         $today = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d');
         $all_product = DB::table('tbl_product')
             ->join('tbl_category_product', 'tbl_category_product.category_id', '=', 'tbl_product.category_id')
-            ->orderby('tbl_product.product_id', 'desc')->paginate(5);
+            ->orderby('tbl_product.product_id', 'desc')->get();
         $manager_product = view('admin.all_product')->with('all_product', $all_product)->with('today', $today);
         return view('admin_layout')->with('admin.all_product', $manager_product);
 
@@ -172,7 +172,6 @@ class ProductController extends Controller
         $data['product_desc'] = $request->product_desc;
         $data['product_content'] = $request->product_content;
         $data['category_id'] = $request->product_cate;
-        $data['brand_id'] = $request->product_brand;
         $data['ManufactureDate'] = $request->ManufactureDate;
         $data['ExpirationDate'] = $request->ExpirationDate;
         $data['product_status'] = $request->product_status;
@@ -248,5 +247,19 @@ class ProductController extends Controller
         $path = $request->file('file')->getRealPath();
         Excel::import(new ImportsExcelProduct, $path);
         return back();
+    }
+    public function expired(){
+        $today = Carbon::now('Asia/Ho_Chi_Minh')->format('Y/m/d');
+        $products = DB::table('tbl_product')
+            ->orderBy('product_id','desc')
+            ->whereDate('ExpirationDate','<', $today)->get();
+        return view('admin.product-status.Expired')->with('products',$products);
+    }
+    public function expire(){
+        $today = Carbon::now('Asia/Ho_Chi_Minh')->format('Y/m/d');
+        $after_day = Carbon::now('Asia/Ho_Chi_Minh')->addDay(2)->format('Y/m/d');
+        $products = DB::table('tbl_product')
+            ->whereBetween('ExpirationDate',[$today,$after_day])->get();
+        return view('admin.product-status.Expire')->with('products',$products);
     }
 }

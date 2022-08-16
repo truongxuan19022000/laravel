@@ -3997,3 +3997,71 @@ span.text-alert {
     text-align: center;
     font-weight: bold;
 }
+ .invoiceTop > ul {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-left: -20px;
+}
+ .invoiceTop > ul > li {
+    margin-left: 20px;
+    width: calc(25% - 20px);
+    padding: 18px 16px 14px;
+    border-radius: 8px;
+    color: #fff;
+}
+ .invoiceTop > ul > li:nth-child(1) {
+    background:  #0D1553;
+}
+ .invoiceTop > ul > li:nth-child(2) {
+    background: #1E2B8E;
+}
+ .invoiceTop > ul > li:nth-child(3) {
+    background: #2E64DB;
+}
+ .invoiceTop > ul > li:nth-child(4) {
+    background: #5389FF;
+}
+ .invoiceTop > ul > li .invoiceSta .invoiceSta-title {
+    font-size: 12px;
+    letter-spacing: 0.5px;
+}
+ .invoiceTop > ul > li .invoiceSta .invoiceSta-text {
+    font-size: 10px;
+}
+ .invoiceTop > ul > li .invoiceSta .invoiceSta-text .numberLarge,
+ .invoiceTop > ul > li .invoiceSta .invoiceSta-text .numberSmall {
+    font-weight: 700;
+    vertical-align: baseline;
+}
+ .invoiceTop > ul > li .invoiceSta .invoiceSta-text .numberLarge {
+    font-size: 25px;
+    line-height: 28px;
+}
+ .invoiceTop > ul > li .invoiceSta .invoiceSta-text .numberSmall {
+    font-size: 12px;
+}
+ .invoiceTop > ul > li .toList {
+    text-align: right;
+    margin-top: 10px;
+}
+ .invoiceTop > ul > li .toList a {
+    display: inline-block;
+    position: relative;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 500;
+    padding-right: 20px;
+}
+ .invoiceTop > ul > li .toList a:after {
+    position: absolute;
+    top: 6px;
+    right: 0;
+    content: "";
+    width: 5px;
+    height: 8px;
+    background: url(../images/common/icon-arrow-toList.svg) no-repeat;
+}
+

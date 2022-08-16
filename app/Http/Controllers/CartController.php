@@ -16,35 +16,52 @@ class CartController extends Controller
 {
     public function check_coupon(Request $request){
         $data = $request->all();
+        $cart = Session::get('cart');
         $coupon = Coupon::where('coupon_code',$data['coupon'])->first();
         if($coupon){
-            $count_coupon = $coupon->count();
-            if($count_coupon>0){
-                $coupon_session = Session::get('coupon');
-                if($coupon_session==true){
-                    $is_avaiable = 0;
-                    if($is_avaiable==0){
-                        $cou[] = array(
-                            'coupon_code' => $coupon->coupon_code,
-                            'coupon_condition' => $coupon->coupon_condition,
-                            'coupon_number' => $coupon->coupon_number,
-
-                        );
-                        Session::put('coupon',$cou);
+            if (!empty($coupon->product_id) ){
+                $isProduct = 0;
+                foreach ($cart as $product){
+                    if ($product['product_id'] == $coupon->product_id){
+                        $isProduct=1;
+                        break;
                     }
-                }else{
-                    $cou[] = array(
-                            'coupon_code' => $coupon->coupon_code,
-                            'coupon_condition' => $coupon->coupon_condition,
-                            'coupon_number' => $coupon->coupon_number,
-
-                        );
-                    Session::put('coupon',$cou);
                 }
-                Session::save();
-                return redirect()->back()->with('message','Thêm mã giảm giá thành công');
-            }
+                if ($isProduct == 1){
+                    $count_coupon = $coupon->count();
+                    if($count_coupon>0){
+                        $coupon_session = Session::get('coupon');
+                        if($coupon_session==true){
+                            $is_avaiable = 0;
+                            if($is_avaiable==0){
+                                $cou[] = array(
+                                    'coupon_code' => $coupon->coupon_code,
+                                    'coupon_condition' => $coupon->coupon_condition,
+                                    'coupon_number' => $coupon->coupon_number,
+                                    'coupon_time' => $coupon->coupon_time,
+                                    'product_id' => $coupon->product_id,
 
+                                );
+                                Session::put('coupon',$cou);
+                            }
+                        }else{
+                            $cou[] = array(
+                                'coupon_code' => $coupon->coupon_code,
+                                'coupon_condition' => $coupon->coupon_condition,
+                                'coupon_number' => $coupon->coupon_number,
+                                'coupon_time' => $coupon->coupon_time,
+                                'product_id' => $coupon->product_id,
+                            );
+                            Session::put('coupon',$cou);
+                        }
+                        Session::save();
+                        return redirect()->back()->with('message','Thêm mã giảm giá thành công');
+                    }
+                }
+                else{
+                    return redirect()->back()->with('message','Sản phẩm này không có khuyến mãi');
+                }
+            }
         }else{
             return redirect()->back()->with('error','Mã giảm giá không đúng');
         }

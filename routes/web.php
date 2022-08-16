@@ -87,6 +87,8 @@ Route::post('/update-brand-product/{brand_product_id}','BrandProduct@update_bran
 // Route::group(['middleware' => 'roles', 'roles'=>['admin','author']], function () {
 	Route::get('/add-product','ProductController@add_product');
 	Route::get('/edit-product/{product_id}','ProductController@edit_product');
+	Route::get('/product/expired','ProductController@expired')->name('product_expired');
+	Route::get('/product/expire','ProductController@expire')->name('product_expire');
 // });
 Route::get('users',
 		[
@@ -113,9 +115,9 @@ Route::post('/update-product/{product_id}','ProductController@update_product');
 Route::post('/check-coupon','CartController@check_coupon');
 
 Route::get('/unset-coupon','CouponController@unset_coupon');
-Route::get('/insert-coupon','CouponController@insert_coupon');
+Route::get('/insert-coupon','CouponController@insert_coupon')->name('add_coupon');
 Route::get('/delete-coupon/{coupon_id}','CouponController@delete_coupon');
-Route::get('/list-coupon','CouponController@list_coupon');
+Route::get('/list-coupon','CouponController@list_coupon')->name('list_coupon');
 Route::post('/insert-coupon-code','CouponController@insert_coupon_code');
 
 //Cart
@@ -169,7 +171,5 @@ Route::get('/unactive-slide/{slide_id}','SliderController@unactive_slide');
 Route::get('/active-slide/{slide_id}','SliderController@active_slide');
 
 Route::get('test',function (){
-    $mail = dispatch(new SendMailOrder('xuannt1902@gmail.com'));
-    dd($mail);
-   return view('admin.dashboard.home_dashboard');
+   return view('admin.product-status.Expired');
 });

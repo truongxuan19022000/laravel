@@ -136,11 +136,16 @@ class AdminController extends Controller
     {
         $this->AuthLogin();
         $today = Carbon::now('Asia/Ho_Chi_Minh')->format('Y/m/d');
+        $after_day = Carbon::now('Asia/Ho_Chi_Minh')->addDay(2)->format('Y/m/d');
+        $p_expire =  $products = DB::table('tbl_product')
+            ->whereBetween('ExpirationDate',[$today,$after_day])->get();
+        $p_expired = DB::table('tbl_product')->whereDate('ExpirationDate','<', $today)->get();
         $products = Product::Where('expiry','==',1)->count();
         $orders = Order::all()->count();
         $customers = Customer::all()->count();
         $users =User::all()->count();
-        return view('admin.dashboard')->with(compact('products','orders','customers','users'));
+        return view('admin.dashboard')->with(compact('products','p_expire','p_expired',
+            'orders','customers','users'));
     }
 
     public function filter_by_date(Request $request)
