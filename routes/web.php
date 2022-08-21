@@ -45,9 +45,11 @@ Route::post('/exportProduct-csv','ProductController@exportProduct_csv');
 Route::post('/importProduct-csv','ProductController@importProduct_csv');
 
 //Suppliers
-Route::get('/all-suppliers','SuppliersController@index');
+Route::get('/all-suppliers','SuppliersController@index')->name('all_suppliers');
 Route::get('/add-supplier','SuppliersController@add_supplier');
 Route::post('/save-suppliers','SuppliersController@store');
+Route::post('/edit-supplier/{id}','SuppliersController@update');
+Route::post('/delete-supplier/{id}','SuppliersController@destroy');
 Route::get('/print-supplier/{id_supplier}','SuppliersController@print_supplier');
 //end-Suppliers
 //warehouse
@@ -89,6 +91,7 @@ Route::post('/update-brand-product/{brand_product_id}','BrandProduct@update_bran
 	Route::get('/edit-product/{product_id}','ProductController@edit_product');
 	Route::get('/product/expired','ProductController@expired')->name('product_expired');
 	Route::get('/product/expire','ProductController@expire')->name('product_expire');
+	Route::post('/filter-price','ProductController@filter_price')->name('filter-price');
 // });
 Route::get('users',
 		[
@@ -171,5 +174,11 @@ Route::get('/unactive-slide/{slide_id}','SliderController@unactive_slide');
 Route::get('/active-slide/{slide_id}','SliderController@active_slide');
 
 Route::get('test',function (){
-   return view('admin.product-status.Expired');
+    $shipping = [
+        'shipping_email'=>'xuannt1902@gmail.com',
+      'shipping_name'=> 'xuan',
+        'shipping_phone'=> '098312838328'
+    ];
+    $mail = dispatch(new \App\Jobs\SendMailVerifyOrder($shipping,'http://127.0.0.1:8000/','3'));
+    echo 'thành công';
 });

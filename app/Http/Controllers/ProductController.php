@@ -66,53 +66,67 @@ class ProductController extends Controller
 
     }
 
-    public function save_product(Request $request)
+    public function save_product(Requests\Product $request)
     {
         $this->AuthLogin();
-        $data = $request->all();
-        $product = $this->productRepository->findProduct($data['product_name'], $data['category_id']);
+        $input = $request->all();
+        $data = array();
+        $product = $this->productRepository->findProduct($input['product_name'], $input['category_id']);
         if (!empty($product)) {
                 try {
+                        $data['product_code'] = $product->product_code;
                         $data['product_name'] = $product->product_name;
-                        $data['product_quantity'] = $product->product_quantity + $data['product_quantity'];
+                        $data['product_quantity'] = $product->product_quantity + $input['product_quantity'];
+                        $data['product_all'] = $product->product_quantity + $input['product_quantity'];
                         $data['product_price'] = $product->product_price;
                         $data['price_cost'] = $product->price_cost;
                         $data['product_desc'] = $product->product_desc;
                         $data['category_id'] = $product->category_id;
-                        $data['ExpirationDate'] = $product->ExpirationDate;
+                        $data['ExpirationDate'] = Carbon::parse($product->ExpirationDate)->format('Y/m/d');
                         $data['product_status'] = $product->product_status;
+                        $get_image = $request->file('product_image');
+                        if ($get_image) {
+                            $get_name_image = $get_image->getClientOriginalName();
+                            $name_image = current(explode('.', $get_name_image));
+                            $new_image = $name_image . rand(0, 99) . '.' . $get_image->getClientOriginalExtension();
+                            $get_image->move('uploads/product', $new_image);
+                            $data['product_image'] = $new_image;
+                            DB::table('tbl_product')->where('product_id', $product->product_id)->update($data);
+                            Session::put('message', 'update sản phẩm thành công');
+                            return Redirect::to('all-product');
+
+                        }
                     //update
                         DB::table('tbl_product')->where('product_id', $product->product_id)->update($data);
                         Session::put('message', 'Cập nhật sản phẩm thành công');
                         return Redirect::to('all-product');
                 } catch (\Throwable $ex) {
-                    dd($ex->getMessage());
+                    Log::info($ex->getMessage());
+                    DB::rollBack();
                     return Redirect::to('add-product');
                     Session::put('message', 'Thêm sản phẩm thất bại');
-                    DB::rollBack();
                 }
 
         } else {
             try {
                 $data = array();
                 $data['product_name'] = $request->product_name;
+                $data['product_code'] = $request->product_code;
                 $data['product_quantity'] = $request->product_quantity;
+                $data['product_all'] = $request->product_quantity;
                 $data['product_price'] = $request->product_price;
                 $data['price_cost'] = $request->price_cost;
                 $data['product_desc'] = $request->product_desc;
                 $data['product_content'] = $request->product_content;
                 $data['category_id'] = $request->category_id;
-                $data['ManufactureDate'] = $request->ManufactureDate;
-                $data['ExpirationDate'] = $request->ExpirationDate;
+                $data['ExpirationDate'] = Carbon::parse($request->ExpirationDate)->format('Y/m/d');
                 $data['product_status'] = $request->product_status;
-                $data['product_image'] = $request->product_status;
                 $get_image = $request->file('product_image');
-
                 if ($get_image) {
                     $get_name_image = $get_image->getClientOriginalName();
                     $name_image = current(explode('.', $get_name_image));
                     $new_image = $name_image . rand(0, 99) . '.' . $get_image->getClientOriginalExtension();
-                    $get_image->move('public/uploads/product', $new_image);
+                    $get_image->move('uploads/product', $new_image);
                     $data['product_image'] = $new_image;
                     DB::table('tbl_product')->insert($data);
                     Session::put('message', 'Thêm sản phẩm thành công');
@@ -125,6 +139,7 @@ class ProductController extends Controller
                 return Redirect::to('all-product');
             } catch (\Throwable $ex) {
                 Log::info($ex->getMessage());
+                DB::rollBack();
                 return Redirect::to('add-product');
                 Session::put('message', 'Thêm sản phẩm thất bại');
             }
@@ -261,5 +276,8 @@ class ProductController extends Controller
         $products = DB::table('tbl_product')
             ->whereBetween('ExpirationDate',[$today,$after_day])->get();
         return view('admin.product-status.Expire')->with('products',$products);
+    }
+    public function filter_price(Request $request){
+    dd($request->all());
     }
 }

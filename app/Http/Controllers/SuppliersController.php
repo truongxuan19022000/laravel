@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\suppliers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\App;
@@ -25,12 +26,16 @@ class SuppliersController extends Controller
      */
     public function index()
     {
-        $suppliers=suppliers::paginate(5);
+        $suppliers=DB::table('tbl_product')
+            ->join('tbl_suppliers','tbl_suppliers.product_id','=','tbl_product.product_id')
+            ->orderBy('id_supplier','desc')
+            ->get();
         return view('admin.all_suppliers')->with('suppliers',$suppliers);
     }
     public function add_supplier(){
         $this->AuthLogin();
-    	return view('admin.add_supplier');
+        $products = DB::table('tbl_product')->get();
+    	return view('admin.add_supplier',compact('products'));
     }
     /**
      * Show the form for creating a new resource.
@@ -39,7 +44,7 @@ class SuppliersController extends Controller
      */
     public function create()
     {
-      
+
     }
 
     /**
@@ -51,17 +56,13 @@ class SuppliersController extends Controller
     public function store(Request $request)
     {
         $suppliers=new suppliers();
-        $suppliers->supplier_name=$request->supplier_name;
         $suppliers->material_name=$request->material_name;
         $suppliers->quantity=$request->quantity;
         $suppliers->unit=$request->unit;
-        $suppliers->date=$request->date;
-        $suppliers->price=$request->price;
-        $suppliers->total=$request->price*$request->quantity;
-
+        $suppliers->product_id=$request->product_id;
         $suppliers->save();
         Session::put('message','Thêm nguyên liệu thành công');
-    	return Redirect::to('add-supplier');
+    	return Redirect::route('all_suppliers');
     }
 
     /**
@@ -72,7 +73,7 @@ class SuppliersController extends Controller
      */
     public function show(suppliers $suppliers)
     {
-        
+
     }
 
     /**
@@ -93,9 +94,14 @@ class SuppliersController extends Controller
      * @param  \App\suppliers  $suppliers
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, suppliers $suppliers)
+    public function update(Request $request, $id)
     {
-        //
+        $data = array();
+        $data['material_name'] = $request->material_name;
+        $data['quantity'] = $request->quantity;
+        $data['unit'] = $request->unit;
+        $data['product_id'] = $request->product_id;
+        DB::table('tbl_suppliers')->where('id_supplier', $id)->update($data);
     }
 
     /**
@@ -104,9 +110,10 @@ class SuppliersController extends Controller
      * @param  \App\suppliers  $suppliers
      * @return \Illuminate\Http\Response
      */
-    public function destroy(suppliers $suppliers)
+    public function destroy($id)
     {
-        //
+        DB::table('tbl_suppliers')->where('id_supplier', $id)->delete();
+        Session::put('message', 'Xóa sản phẩm thành công');
     }
     /* sử dụng pdf in hóa đơn */
 	public function print_supplier($id_supplier)
@@ -149,7 +156,7 @@ class SuppliersController extends Controller
 				</thead>
 				<tbody>';
 
-		$output .= '		
+		$output .= '
 					<tr>
 						<td>' . $suppliers->supplier_name . '</td>
 						<td>' . $suppliers->material_name . '</td>
@@ -157,19 +164,19 @@ class SuppliersController extends Controller
 						<td>' . $suppliers->unit . '</td>
 						<td>' . $suppliers->price . '</td>
 						<td>' . $suppliers->total . '</td>
-						
+
 					</tr>';
 
 
-		$output .= '				
+		$output .= '
 				</tbody>
-			
+
 		</table>
         <p style="margin-top:30px;font-weight:bold;">Người xuất hóa đơn</p>
         <p>(Ký ghi rõ họ tên)</p>
-        
+
         ';
         return $output;
-		
+
     }
 }

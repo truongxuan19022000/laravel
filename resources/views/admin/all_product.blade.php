@@ -5,28 +5,7 @@
     <div class="panel-heading">
       Liệt kê sản phẩm
     </div>
-    <div class="row w3-res-tb">
-      <div class="col-sm-5 m-b-xs">
-        <select class="input-sm form-control w-sm inline v-middle">
-          <option value="0">Bulk action</option>
-          <option value="1">Delete selected</option>
-          <option value="2">Bulk edit</option>
-          <option value="3">Export</option>
-        </select>
-        <button class="btn btn-sm btn-default">Apply</button>
-      </div>
-      <div class="col-sm-4">
-      </div>
-      <div class="col-sm-3">
-        <div class="input-group">
-          <input type="text" class="input-sm form-control" placeholder="Search">
-          <span class="input-group-btn">
-            <button class="btn btn-sm btn-default" type="button">Go!</button>
-          </span>
-        </div>
-      </div>
-    </div>
-    <div class="table-responsive">
+    <div class="table-responsive" style="padding: 25px;">
       <?php
 
       use Illuminate\Support\Facades\Session;
@@ -37,17 +16,16 @@
         Session::put('message', null);
       }
       ?>
-      <table class="table table-striped b-t b-light">
+      <table id="product_table" class="table table-striped table-bordered" style="width:100%">
         <thead>
           <tr>
             <th>STT</th>
             <th>Tên sản phẩm</th>
-            <th>Số lượng</th>
+            <th>SL</th>
             <th>Giá bán</th>
             <th>Giá gốc</th>
             <th>Hình sản phẩm</th>
             <th>Danh mục</th>
-            <th>Ngày sản xuất</th>
             <th>Ngày hết hạn</th>
             <th>Hạn</th>
             <th style="width:30px;"></th>
@@ -64,10 +42,9 @@
             <td>{{ number_format($pro->price_cost,0,',','.') }}đ</td>
             <td><img src="{{asset('uploads/product/'.$pro->product_image)}}" height="100" width="100"></td>
             <td>{{ $pro->category_name }}</td>
-            <td>{{ $pro->ManufactureDate }}</td>
             <td>{{ $pro->ExpirationDate }}</td>
             <td>
-              @if($pro->ExpirationDate>$today)
+              @if(\Carbon\Carbon::parse($pro->ExpirationDate) > $today)
               <span class="text text-success">Còn hạn</span>
               @else
               <span class="text text-danger">Hết hạn</span>
@@ -76,7 +53,7 @@
 
 
             <td>
-              @if($pro->ExpirationDate>$today)
+              @if(\Carbon\Carbon::parse($pro->ExpirationDate) > $today)
               <a href="{{URL::to('/edit-product/'.$pro->product_id)}}" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-pencil-square-o text-success text-active"></i></a>
                 @endif
@@ -87,37 +64,51 @@
           </tr>
           @endforeach
         </tbody>
+          <tfoot>
+          <tr>
+              <th>STT</th>
+              <th>Tên sản phẩm</th>
+              <th>Số lượng</th>
+              <th>Giá bán</th>
+              <th>Giá gốc</th>
+              <th>Hình sản phẩm</th>
+              <th>Danh mục</th>
+              <th>Ngày sản xuất</th>
+              <th>Ngày hết hạn</th>
+              <th>Hạn</th>
+              <th style="width:30px;"></th>
+          </tr>
+          </tfoot>
       </table>
+            <!-----import data---->
+            <form action="{{url('importProduct-csv')}}" method="POST" enctype="multipart/form-data">
+                @csrf
 
-      <!-----import data---->
-      <form action="{{url('importProduct-csv')}}" method="POST" enctype="multipart/form-data">
-          @csrf
+                <input type="file" name="file" accept=".xlsx"><br>
 
-        <input type="file" name="file" accept=".xlsx"><br>
+                <input type="submit" value="Import file Excel" name="import_csv" class="btn btn-warning">
+            </form>
 
-       <input type="submit" value="Import file Excel" name="import_csv" class="btn btn-warning">
-      </form>
-
-    <!-----export data---->
-       <form action="{{url('exportProduct-csv')}}" method="POST">
-          @csrf
-       <input type="submit" value="Export file Excel" name="export_csv" class="btn btn-success">
-      </form>
-
+            <!-----export data---->
+            <form action="{{url('exportProduct-csv')}}" method="POST" style="margin-top: 10px;">
+                @csrf
+                <input type="submit" value="Export file Excel" name="export_csv" class="btn btn-success">
+            </form>
     </div>
     <footer class="panel-footer">
       <div class="row">
-
-        <div class="col-sm-5 text-center">
-          <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
-        </div>
         <div class="col-sm-7 text-right text-center-xs">
-          <ul class="pagination pagination-sm m-t-none m-b-none">
-            {!!$all_product->links()!!}
-          </ul>
+
         </div>
       </div>
     </footer>
   </div>
 </div>
+@push('scripts')
+    <script>
+        $(document).ready( function () {
+            $('#product_table').DataTable();
+        } );
+    </script>
+@endpush
 @endsection

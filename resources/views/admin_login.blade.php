@@ -27,6 +27,39 @@
             background-size: cover;
 
         }
+        .btn {
+
+            box-sizing: border-box;
+            appearance: none;
+            background-color: transparent;
+            border: 2px solid  rgba(251, 139, 166, 0.70);
+            border-radius: 0.6em;
+            color: rgb(228, 162, 208);
+            cursor: pointer;
+            display: flex;
+            align-self: center;
+            font-size: 1rem;
+            font-weight: 400;
+            margin: 20px;
+            padding: 1.2em 2.8em;
+            text-decoration: none;
+            text-align: center;
+            text-transform: uppercase;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;}
+        .btn:hover{
+            border: 1px solid rgb(228, 162, 208);
+        }
+        .fifth {
+        / / border: 0;
+            border-radius: 50px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            transition: color 150ms ease-in-out;
+        }
+
+
 
         #square {
             position: relative;
@@ -309,12 +342,10 @@
                     <div class="formError-text">{{$message}}</div>
                 </div>
                 @enderror
+                    <div style="margin: 20px;"> <input style=" margin:auto;
+                    display:block;" class="btn fifth " type="submit" id="login" value="Sign In" name="login"></div>
+
             </form>
-            <button class="animated infinite pulse button btn btn-info">
-                <span><i class="fa fa-twitter" aria-hidden="true"></i></span><span id="twitter">
-                   <input class="login100-form-btn" type="submit" id="login" value="Sign In" name="login">
-                    </span>
-            </button>
             <h3 id="footer">By continuing you agree to our <span id="terms">terms & conditions.</span></h3>
         </div>
     </div>

@@ -66,19 +66,6 @@
 
                                     </select>
                                 </div>
-                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Thương hiệu</label>
-                                      <select name="product_brand" class="form-control input-sm m-bot15">
-                                        @foreach($brand_product as $key => $brand)
-                                             @if($cate->category_id==$pro->category_id)
-                                            <option selected value="{{$brand->brand_id}}">{{$brand->brand_name}}</option>
-                                             @else
-                                            <option value="{{$brand->brand_id}}">{{$brand->brand_name}}</option>
-                                             @endif
-                                        @endforeach
-
-                                    </select>
-                                </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Hiển thị</label>
                                       <select name="product_status" class="form-control input-sm m-bot15">

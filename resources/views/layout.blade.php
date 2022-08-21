@@ -161,6 +161,7 @@
                         var shipping_phone = $('.shipping_phone').val();
                         var shipping_notes = $('.shipping_notes').val();
                         var shipping_method = $('.payment_select').val();
+                        var shipping_city = $('.shipping_city').val();
                         var order_fee = $('.order_fee').val();
                         var order_coupon = $('.order_coupon').val();
                         var _token = $('input[name="_token"]').val();
@@ -176,19 +177,22 @@
                                 _token: _token,
                                 order_fee: order_fee,
                                 order_coupon: order_coupon,
-                                shipping_method: shipping_method
+                                shipping_method: shipping_method,
+                                shipping_city: shipping_city
                             },
                             success: function () {
                                 swal("Đơn hàng", "Đơn hàng của bạn đã được gửi thành công", "success");
                                 window.setTimeout(function () {
                                     location.href = '/';
                                 }, 3000);
+                            },
+                            error: function (request, status, error) {
+                                swal("Lỗi đặt hàng", "Bạn vui lòng điền đầy đủ thông tin", "error");
+                                window.setTimeout(function () {
+                                    window.location.preventDefault();
+                                }, 3000);
                             }
-                        });
-                        swal("Lỗi đặt hàng", "Bạn vui lòng điền đầy đủ thông tin", "error");
-                        window.setTimeout(function () {
-                            window.location.preventDefault();
-                        }, 3000);
+                            });
                     } else {
                         swal("Đóng", "Đơn hàng chưa được gửi, làm ơn hoàn tất đơn hàng", "error");
                     }
@@ -273,14 +277,14 @@
             var xaid = $('.wards').val();
             var _token = $('input[name="_token"]').val();
             if (matp == '' && maqh == '' && xaid == '') {
-                alert('Làm ơn chọn để tính phí vận chuyển');
+                alert('Vui lòng chọn tỉnh thành, quận huyện');
             } else {
                 $.ajax({
                     url: '{{url('/calculate-fee')}}',
                     method: 'POST',
                     data: {matp: matp, maqh: maqh, xaid: xaid, _token: _token},
                     success: function () {
-                        location.reload();
+                        window.location.preventDefault();
                     }
                 });
             }
