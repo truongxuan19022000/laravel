@@ -277,6 +277,17 @@ class ProductController extends Controller
             ->whereBetween('ExpirationDate',[$today,$after_day])->get();
         return view('admin.product-status.Expire')->with('products',$products);
     }
+    public function productSaled(){
+        $today = Carbon::now('Asia/Ho_Chi_Minh')->format('m');
+        $today_day = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d');
+        $after_day = Carbon::now('Asia/Ho_Chi_Minh')->addDay(2)->format('Y/m/d');
+        $products = DB::table('tbl_order')
+            ->join('tbl_order_details','tbl_order.order_id','=','tbl_order_details.order_id')
+            ->join('tbl_product','tbl_order_details.product_id','=','tbl_product.product_id')
+            ->orWhereDate('tbl_order.order_date','=',$today_day)
+            ->get();
+        return view('admin.product-status.ProductSaled')->with('products',$products);
+    }
     public function filter_price(Request $request){
     dd($request->all());
     }

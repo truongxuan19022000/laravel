@@ -10,20 +10,20 @@
                     <h2>Billing Details</h2>
                 </div>
                 <div class="billing_form_area">
-                    <form method="POST" class="billing_form row"
+                    <form method="POST" class="billing_form row" action="{{route('vn_Payment')}}"
                           id="contactForm" novalidate="novalidate">
                         @csrf
                         <div class="form-group col-md-6">
                             <label for="first">Tên người nhận</label>
                             <input type="text" class="form-control shipping_name" id="shipping_name" name="shipping_name"
                                    value="{{old('shipping_name')}}"
-                                   placeholder="shipping_name">
+                                   placeholder="Name">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="last">Số điện thoại người nhận</label>
                             <input type="text" class="form-control shipping_phone" id="shipping_phone" name="shipping_phone"
                                    value="{{old('shipping_phone')}}"
-                                   placeholder="shipping_phone">
+                                   placeholder="Phone">
                         </div>
                         <div class="form-group col-md-12">
                             <label for="company">Email người gửi</label>
@@ -40,7 +40,7 @@
                             <label for="company">Địa chỉ người nhận</label>
                             <input type="text" class="form-control shipping_address" id="shipping_address" name="shipping_address"
                                    value="{{old('shipping_address')}}"
-                                   placeholder="shipping_address">
+                                   placeholder="Address">
                         </div>
                         <div class="form-group col-md-12">
                             <label for="address">Ghi chú đơn hàng</label>
@@ -67,17 +67,15 @@
                             <label for="state1">Chọn hình thức thanh toán</label>
                             <select name="payment_select"
                                     class="form-control input-sm m-bot15 payment_select">
-                                <option value="0">Qua chuyển khoản</option>
+                                <option value="0" selected>Thanh toán VNPAY</option>
                                 <option value="1">Tiền mặt</option>
                             </select>
                         </div>
                         <div class="form-group col-md-12">
-                            <input type="button" value="Xác nhận đơn hàng" name="send_order"
-                                   class="btn btn-primary btn-sm send_order">
+                            <input type="submit" value="Xác nhận đơn hàng" name="redirect"
+                                   class="btn btn-primary btn-sm send_order" hidden>
                         </div>
-                    </form>
-                    <form>
-                        @csrf
+
                         <div class="form-group col-md-12">
                             <label for="exampleInputPassword1">Chọn thành phố</label>
                             <select name="city" id="city" class="form-control input-sm m-bot15 choose city">
@@ -106,9 +104,8 @@
                             <input type="button" value="Tính phí vận chuyển" name="calculate_order"
                                    class="btn btn-primary btn-sm calculate_delivery">
                         </div>
-                    </form>
 
-                    <div class="select_check col-md-12">
+                    <div style="margin-top: 30px;" class="select_check col-md-12">
                         <div class="table-responsive cart_info">
                             <form action="{{url('/update-cart')}}" method="POST">
                                 @csrf
@@ -211,7 +208,6 @@
                                     @endif
                                     </tbody>
                                 </table>
-                            </form>
                         </div>
                     </div>
                 </div>
@@ -280,6 +276,9 @@
                                 @endphp
                                 <div class="total">
                                     <h3>Total <span>{{@@$total_after_fee ? number_format($total_after_fee,0,',','.') : number_format($total,0,',','.')}}đ</span></h3>
+                                    <input type="text"  name="total_price" class="shipping_city"
+                                           value="{{@@$total_after_fee ? $total_after_fee : $total}}"
+                                           hidden>
                                 </div>
                             @endif
                         </div>
@@ -343,10 +342,16 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" value="submit" class="btn pest_btn send_order">place order</button>
+                        <button type="submit" name="redirect" value="submit" class="btn pest_btn send_order">Thanh toán đơn hàng</button>
                     </div>
                 </div>
             </div>
         </div>
+        </form>
+
     </div>
+    <form class="billing_form row" novalidate="novalidate">
+    @csrf
+    </form>
+
 @endsection

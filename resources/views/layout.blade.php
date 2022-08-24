@@ -140,7 +140,7 @@
 <script src="{{asset('layout/js/theme.js')}}"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $('.send_order').click(function () {
+        $('.send_orderss').click(function () {
             console.log($('.shipping_email').val());
             swal({
                     title: "Xác nhận đơn hàng",
@@ -284,7 +284,7 @@
                     method: 'POST',
                     data: {matp: matp, maqh: maqh, xaid: xaid, _token: _token},
                     success: function () {
-                        window.location.preventDefault();
+                        location.reload();
                     }
                 });
             }

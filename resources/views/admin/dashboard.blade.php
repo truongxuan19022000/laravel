@@ -39,9 +39,9 @@
                         <a href="#">一覧へ</a>
                     </div>
                 </li>
-                <li>
+                <li onclick="window.location.href='{{route('product_sale')}}'">
                     <div class="invoiceSta">
-                        <p class="invoiceSta-title">Tổng số đơn hàng</p>
+                        <p class="invoiceSta-title">Tổng sản phẩm bán được</p>
                         <p class="invoiceSta-text"><span class="numberLarge f-roboto">{{$orders}}</span></p>
                     </div>
                     <div class="toList">

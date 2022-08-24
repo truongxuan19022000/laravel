@@ -26,19 +26,102 @@ use Carbon\Carbon;
 
 class CheckoutController extends Controller
 {
+    public function check_order(){
+        $input = Session::get('Check_order');
+        return $this->confirm_order($input);
+    }
+    public function vnPayment(Request $request){
+        $input= $request->all();
+        if ($input['payment_select'] != 0){
+            return $this->confirm_order($input);
+        }
+        else
+            Session::put('Check_order',$input);
+            Session::save();
+            {
+                date_default_timezone_set('Asia/Ho_Chi_Minh');
+                $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
+                $vnp_Returnurl = route('check_order');
+                $vnp_TmnCode = "7OT1XPF0";//Mã website tại VNPAY
+                $vnp_HashSecret = "SJFPRLHQKGBDMHGSULUKAJAGEKPBXNGU"; //Chuỗi bí mật
 
-    public function confirm_order(Request $request)
+                $vnp_TxnRef = date('YmdHis');//Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
+                $vnp_OrderInfo = 'Thanh toán thời trang';
+                $vnp_OrderType = 'billpayment';
+                $vnp_Amount = $input['total_price'] * 100;
+                $vnp_Locale = 'VN';
+                //        $vnp_BankCode = 'NCB';
+                                $vnp_IpAddr = $_SERVER['REMOTE_ADDR'];
+                //Add Params of 2.0.1 Version
+                //Billing
+
+                $inputData = array(
+                    "vnp_Version" => "2.1.0",
+                    "vnp_TmnCode" => $vnp_TmnCode,
+                    "vnp_Amount" => $vnp_Amount,
+                    "vnp_Command" => "pay",
+                    "vnp_CreateDate" => date('YmdHis'),
+                    "vnp_CurrCode" => "VND",
+                    "vnp_IpAddr" => $vnp_IpAddr,
+                    "vnp_Locale" => $vnp_Locale,
+                    "vnp_OrderInfo" => $vnp_OrderInfo,
+                    "vnp_OrderType" => $vnp_OrderType,
+                    "vnp_ReturnUrl" => $vnp_Returnurl,
+                    "vnp_TxnRef" => $vnp_TxnRef
+                );
+
+                if (isset($vnp_BankCode) && $vnp_BankCode != "") {
+                    $inputData['vnp_BankCode'] = $vnp_BankCode;
+                }
+                if (isset($vnp_Bill_State) && $vnp_Bill_State != "") {
+                    $inputData['vnp_Bill_State'] = $vnp_Bill_State;
+                }
+
+//var_dump($inputData);
+                ksort($inputData);
+                $query = "";
+                $i = 0;
+                $hashdata = "";
+                foreach ($inputData as $key => $value) {
+                    if ($i == 1) {
+                        $hashdata .= '&' . urlencode($key) . "=" . urlencode($value);
+                    } else {
+                        $hashdata .= urlencode($key) . "=" . urlencode($value);
+                        $i = 1;
+                    }
+                    $query .= urlencode($key) . "=" . urlencode($value) . '&';
+                }
+
+                $vnp_Url = $vnp_Url . "?" . $query;
+                if (isset($vnp_HashSecret)) {
+                    $vnpSecureHash =   hash_hmac('sha512', $hashdata, $vnp_HashSecret);//
+                    $vnp_Url .= 'vnp_SecureHash=' . $vnpSecureHash;
+                }
+                $returnData = array('code' => '00'
+                , 'message' => 'success'
+                , 'data' => $vnp_Url);
+                if (isset($_POST['redirect'])) {
+                    header('Location: ' . $vnp_Url);
+                    die();
+                } else {
+                    echo json_encode($returnData);
+                }
+        }
+
+    }
+    public function confirm_order($data)
     {
-        try {
-            $data = $request->all();
             $shipping = new Shipping();
             $shipping->shipping_name = $data['shipping_name'];
             $shipping->shipping_email = $data['shipping_email'];
             $shipping->shipping_phone = $data['shipping_phone'];
             $shipping->shipping_address = $data['shipping_address'];
             $shipping->shipping_notes = $data['shipping_notes'];
-            $shipping->shipping_method = $data['shipping_method'];
+            $shipping->shipping_method = $data['payment_select'];
+            if (!empty($data['shipping_city']))
             $shipping->shipping_city = $data['shipping_city'];
+            else
+                $shipping->shipping_city = 1;
             $shipping->save();
             $shipping_id = $shipping->shipping_id;
 
@@ -58,11 +141,13 @@ class CheckoutController extends Controller
             $order_date = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d');;
             $order->created_at = $today;
             $order->order_date = $order_date;
+            $order->order_by_month = Carbon::now('Asia/Ho_Chi_Minh')->format('m');
             $order->save();
 
             if (Session::get('cart') == true) {
                 foreach (Session::get('cart') as $key => $cart) {
                     $order_details = new OrderDetails;
+                    $order_details->order_id = $order->order_id;
                     $order_details->order_code = $checkout_code;
                     $order_details->product_id = $cart['product_id'];
                     $order_details->product_name = $cart['product_name'];
@@ -78,12 +163,9 @@ class CheckoutController extends Controller
             Session::forget('fee');
             Session::forget('shipping_city');
             Session::forget('cart');
-        }  catch (\Throwable $ex) {
-            Log::info($ex->getMessage());
-        }
+
 
     }
-
     public function del_fee()
     {
         Session::forget('fee');

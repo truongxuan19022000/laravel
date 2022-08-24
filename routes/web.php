@@ -91,6 +91,7 @@ Route::post('/update-brand-product/{brand_product_id}','BrandProduct@update_bran
 	Route::get('/edit-product/{product_id}','ProductController@edit_product');
 	Route::get('/product/expired','ProductController@expired')->name('product_expired');
 	Route::get('/product/expire','ProductController@expire')->name('product_expire');
+	Route::get('/product/sale','ProductController@productSaled')->name('product_sale');
 	Route::post('/filter-price','ProductController@filter_price')->name('filter-price');
 // });
 Route::get('users',
@@ -137,6 +138,7 @@ Route::get('/del-all-product','CartController@delete_all_product');
 Route::get('/dang-nhap','CheckoutController@login_checkout');
 Route::get('/del-fee','CheckoutController@del_fee');
 
+
 Route::get('/logout-checkout','CheckoutController@logout_checkout');
 Route::post('/add-customer','CheckoutController@add_customer');
 Route::post('/order-place','CheckoutController@order_place');
@@ -146,7 +148,9 @@ Route::get('/payment','CheckoutController@payment');
 Route::post('/save-checkout-customer','CheckoutController@save_checkout_customer');
 Route::post('/calculate-fee','CheckoutController@calculate_fee');
 Route::post('/select-delivery-home','CheckoutController@select_delivery_home');
-Route::post('/confirm-order','CheckoutController@confirm_order');
+Route::post('/confirm-order','CheckoutController@confirm_order')->name('confirm_order');
+Route::get('/confirm-check-order','CheckoutController@check_order')->name('check_order');
+Route::post('/vn-payment','CheckoutController@vnPayment')->name('vn_Payment');
 
 //Order
 Route::get('/delete-order/{order_code}','OrderController@order_code');
@@ -174,11 +178,5 @@ Route::get('/unactive-slide/{slide_id}','SliderController@unactive_slide');
 Route::get('/active-slide/{slide_id}','SliderController@active_slide');
 
 Route::get('test',function (){
-    $shipping = [
-        'shipping_email'=>'xuannt1902@gmail.com',
-      'shipping_name'=> 'xuan',
-        'shipping_phone'=> '098312838328'
-    ];
-    $mail = dispatch(new \App\Jobs\SendMailVerifyOrder($shipping,'http://127.0.0.1:8000/','3'));
-    echo 'thành công';
+
 });
