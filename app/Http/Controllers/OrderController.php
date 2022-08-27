@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendMailOrder;
+use App\Jobs\SendMailVerifyOrder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use App\Feeship;
 use App\Shipping;
@@ -42,100 +46,136 @@ class OrderController extends Controller
 		$order_details->save();
 	}
 	public function update_order_qty(Request $request){
-		//update order
-		$data = $request->all();
-		$order = Order::find($data['order_id']);
-		$order->order_status = $data['order_status'];
-		$order->save();
-		//order date
-		$order_date = $order->order_date;	
-		$statistic = Statistic::where('order_date',$order_date)->get();
-		if($statistic){
-			$statistic_count = $statistic->count();	
-		}else{
-			$statistic_count = 0;
-		}	
+        DB::beginTransaction();
+        try {
+            //update order
+            $container=[];
+            $data = $request->all();
+            $order = Order::where('order_id', '=',$data['order_id'])->first();
+            $shipping = Shipping::where('shipping_id', $order['shipping_id'])->first();
+            if ($shipping->shipping_city == 3){
+                $time_shipping = 'Đơn hàng sẽ được giao trong 7 ngày kể từ ngày đặt';
+            }elseif ($shipping->shipping_city == 2){
+                $time_shipping = 'Đơn hàng sẽ được giao trong 4->5 ngày kể từ ngày đặt';
+            }else{
+                $time_shipping = 'Đơn hàng sẽ được giao trong 3->5 ngày kể từ ngày đặt';
+            }
+            $links = url('/print-order',$order['order_code']);
+            $mail = dispatch(new SendMailVerifyOrder($shipping,$links,$time_shipping));
 
-		if($order->order_status==2){
-			//them
-			$total_order = 0;
-			$sales = 0;
-			$profit = 0;
-			$quantity = 0;
+            $order = Order::find($data['order_id']);
+            $order->order_status = $data['order_status'];
+            $order->save();
+            //order date
+            $order_date = $order->order_date;
+            $order_by_month = Carbon::parse($order->order_date)->format('m');
+            $statistic = Statistic::where('order_date',$order_date)->get();
+            if($statistic){
+                $statistic_count = $statistic->count();
+            }else{
+                $statistic_count = 0;
+            }
+            $total_order = 0;
+            $sales = 0;
+            $profit = 0;
+            $quantity = 0;
 
-			foreach($data['order_product_id'] as $key => $product_id){
+            foreach($data['order_product_id'] as $key => $product_id){
+                //Ton kho
+                $product = Product::find($product_id);
+                $product_quantity = $product->product_quantity;
+                $container['product_id'] = $product_id;
+                $container['t_quantity'] = $product_quantity;
+                $product_sold = $product->product_sold;
+                //them
+                $product_price = $product->product_price;
+                $price_cost = $product->price_cost;
+                $now = Carbon::now('Asia/Ho_Chi_Minh')->toDateString();
 
-				$product = Product::find($product_id);
-				$product_quantity = $product->product_quantity;
-				$product_sold = $product->product_sold;
-				//them
-				$product_price = $product->product_price;
-				$price_cost = $product->price_cost;
-				$now = Carbon::now('Asia/Ho_Chi_Minh')->toDateString();
+                foreach($data['quantity'] as $key2 => $qty){
 
-				foreach($data['quantity'] as $key2 => $qty){
+                    if($key==$key2){
+                        $pro_remain = $product_quantity - $qty;
+                        $product->product_quantity = $pro_remain;
+                        $product->product_sold = $product_sold + $qty;
+                        $container['b_quantity'] = $qty;
+                        $container['c_quantity'] = $pro_remain;
+                        DB::table('tbl_warehouse')->insert($container);
+                        $product->save();
+                        //update doanh thu
+                        $quantity+=$qty;
+                        $total_order+=1;
+                        $sales+=$product_price*$qty;
+                        $profit += ($product_price*$qty)-($price_cost*$qty);
+                    }
 
-					if($key==$key2){
-						$pro_remain = $product_quantity - $qty;
-						$product->product_quantity = $pro_remain;
-						$product->product_sold = $product_sold + $qty;
-						$product->save();
-						//update doanh thu
-						$quantity+=$qty;
-						$total_order+=1;
-						$sales+=$product_price*$qty;
-						$profit += ($product_price*$qty)-($price_cost*$qty);
-					}
+                }
+            }
+            if($order->order_status==2){
+                //them
+                //update doanh so db
+                if($statistic_count>0){
+                    $statistic_update = Statistic::where('order_date',$order_date)->first();
+                    $statistic_update->sales = $statistic_update->sales + $sales;
+                    $statistic_update->profit =  $statistic_update->profit + $profit;
+                    $statistic_update->quantity =  $statistic_update->quantity + $quantity;
+                    $statistic_update->total_order = $statistic_update->total_order + $total_order;
+                    $statistic_update->save();
 
-				}
-			}
-			//update doanh so db
-			if($statistic_count>0){
-				$statistic_update = Statistic::where('order_date',$order_date)->first();
-				$statistic_update->sales = $statistic_update->sales + $sales;
-				$statistic_update->profit =  $statistic_update->profit + $profit;
-				$statistic_update->quantity =  $statistic_update->quantity + $quantity;
-				$statistic_update->total_order = $statistic_update->total_order + $total_order;
-				$statistic_update->save();
+                }elseif($order->order_status==3){
+                    $statistic_update = Statistic::where('order_date',$order_date)->first();
+                    $statistic_update->sales = $statistic_update->sales - $sales;
+                    $statistic_update->profit =  $statistic_update->profit - $profit;
+                    $statistic_update->quantity =  $statistic_update->quantity - $quantity;
+                    $statistic_update->total_order = $statistic_update->total_order - $total_order;
+                    $statistic_update->save();
+                }
+                else{
+                    $statistic_new = new Statistic();
+                    $statistic_new->order_date = $order_date;
+                    $statistic_new->order_by_month = $order_by_month;
+                    $statistic_new->sales = $sales;
+                    $statistic_new->profit =  $profit;
+                    $statistic_new->quantity =  $quantity;
+                    $statistic_new->total_order = $total_order;
+                    $statistic_new->save();
+                }
+            }
+            else{
+                foreach($data['order_product_id'] as $key => $product_id){
 
-			}else{
+                    $product = Product::find($product_id);
+                    $product_quantity = $product->product_quantity;
+                    $product_sold = $product->product_sold;
+                    foreach($data['quantity'] as $key2 => $qty){
+                        if($key==$key2){
+                            $pro_remain = $product_quantity + $qty;
+                            $product->product_quantity = $pro_remain;
+                            $product->product_sold = $product_sold - $qty;
+                            $product->save();
+                        }
+                    }
+                }
+                $statistic_update = Statistic::where('order_date',$order_date)->first();
+                $statistic_update->sales = $statistic_update->sales - $sales;
+                $statistic_update->profit =  $statistic_update->profit - $profit;
+                $statistic_update->quantity =  $statistic_update->quantity - $quantity;
+                $statistic_update->total_order = $statistic_update->total_order - $total_order;
+                $statistic_update->save();
+            }
+            DB::commit();
+        } catch (\Throwable $ex) {
+            Log::info($ex->getMessage());
+            DB::rollBack();
+        }
 
-				$statistic_new = new Statistic();
-				$statistic_new->order_date = $order_date;
-				$statistic_new->sales = $sales;
-				$statistic_new->profit =  $profit;
-				$statistic_new->quantity =  $quantity;
-				$statistic_new->total_order = $total_order;
-				$statistic_new->save();
-			}
-
-
-
-		}elseif($order->order_status!=2 && $order->order_status!=3){
-			foreach($data['order_product_id'] as $key => $product_id){
-				
-				$product = Product::find($product_id);
-				$product_quantity = $product->product_quantity;
-				$product_sold = $product->product_sold;
-				foreach($data['quantity'] as $key2 => $qty){
-						if($key==$key2){
-								$pro_remain = $product_quantity + $qty;
-								$product->product_quantity = $pro_remain;
-								$product->product_sold = $product_sold - $qty;
-								$product->save();
-						}
-				}
-			}
-		}
-
-
+//		Send mail xác nhận đơn hàng
 	}
 	/* sử dụng pdf in hóa đơn */
 	public function print_order($checkout_code)
 	{
 		$pdf = App::make('dompdf.wrapper');
 		$pdf->loadHTML($this->print_order_convert($checkout_code));
-
 		return $pdf->stream();
 	}
 	/* Thực hiện cv in hóa đơn */
@@ -199,18 +239,18 @@ class OrderController extends Controller
 				</thead>
 				<tbody>';
 
-		$output .= '		
+		$output .= '
 					<tr>
 						<td>' . $customer->customer_name . '</td>
 						<td>' . $customer->customer_phone . '</td>
 						<td>' . $customer->customer_email . '</td>
-						
+
 					</tr>';
 
 
-		$output .= '				
+		$output .= '
 				</tbody>
-			
+
 		</table>
 
 		<p>Ship hàng tới</p>
@@ -226,20 +266,20 @@ class OrderController extends Controller
 				</thead>
 				<tbody>';
 
-		$output .= '		
+		$output .= '
 					<tr>
 						<td>' . $shipping->shipping_name . '</td>
 						<td>' . $shipping->shipping_address . '</td>
 						<td>' . $shipping->shipping_phone . '</td>
 						<td>' . $shipping->shipping_email . '</td>
 						<td>' . $shipping->shipping_notes . '</td>
-						
+
 					</tr>';
 
 
-		$output .= '				
+		$output .= '
 				</tbody>
-			
+
 		</table>
 
 		<p>Đơn hàng đặt</p>
@@ -269,7 +309,7 @@ class OrderController extends Controller
 				$product_coupon = 'không mã';
 			}
 
-			$output .= '		
+			$output .= '
 					<tr>
 						<td>' . $product->product_name . '</td>
 						<td>' . $product_coupon . '</td>
@@ -277,7 +317,7 @@ class OrderController extends Controller
 						<td>' . $product->product_sales_quantity . '</td>
 						<td>' . number_format($product->product_price, 0, ',', '.') . 'đ' . '</td>
 						<td>' . number_format($subtotal, 0, ',', '.') . 'đ' . '</td>
-						
+
 					</tr>';
 		}
 
@@ -296,9 +336,9 @@ class OrderController extends Controller
 				</td>
 		</tr>';
 
-		$output .= '				
+		$output .= '
 				</tbody>
-			
+
 		</table>
 
 			<table>
@@ -306,14 +346,14 @@ class OrderController extends Controller
 					<tr>
 						<th width="200px">Người lập phiếu</th>
 						<th width="800px">Người nhận</th>
-						
+
 					</tr>
 				</thead>
 				<tbody>';
 
-		$output .= '				
+		$output .= '
 				</tbody>
-			
+
 		</table>
 
 		';
@@ -352,7 +392,7 @@ class OrderController extends Controller
 	}
 	public function manage_order()
 	{
-		$order = Order::orderby('created_at', 'DESC')->paginate(5);
+		$order = Order::orderby('created_at', 'DESC')->paginate(10);
 		return view('admin.manage_order')->with(compact('order'));
 	}
 }

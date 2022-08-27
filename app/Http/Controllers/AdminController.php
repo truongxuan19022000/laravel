@@ -85,7 +85,7 @@ class AdminController extends Controller
         $provider = Socialite::driver('facebook')->user();
         $account = Social::where('provider', 'facebook')->where('provider_user_id', $provider->getId())->first();
         if ($account) {
-            //login in vao trang quan tri  
+            //login in vao trang quan tri
             $account_name = Login::where('admin_id', $account->user)->first();
             Session::put('admin_name', $account_name->admin_name);
             Session::put('admin_id', $account_name->admin_id);
@@ -136,24 +136,27 @@ class AdminController extends Controller
     {
         $this->AuthLogin();
         $today = Carbon::now('Asia/Ho_Chi_Minh')->format('Y/m/d');
+        $month = Carbon::now('Asia/Ho_Chi_Minh')->format('m');
+        $after_day = Carbon::now('Asia/Ho_Chi_Minh')->addDay(2)->format('Y/m/d');
+        $p_expire =  $products = DB::table('tbl_product')
+            ->whereBetween('ExpirationDate',[$today,$after_day])->get();
+        $p_expired = DB::table('tbl_product')
+            ->whereDate('ExpirationDate','<', $today)->get();
         $products = Product::Where('expiry','==',1)->count();
         $orders = Order::all()->count();
         $customers = Customer::all()->count();
         $users =User::all()->count();
-        return view('admin.dashboard')->with(compact('products','orders','customers','users'));
+        $profit = Statistic::where('order_by_month',$month)->sum('profit');
+        return view('admin.dashboard.content')->with(compact('products','p_expire','p_expired',
+            'orders','customers','users','profit'));
     }
 
     public function filter_by_date(Request $request)
     {
-
         $data = $request->all();
-
         $from_date = $data['from_date'];
         $to_date = $data['to_date'];
-
         $get = Statistic::whereBetween('order_date', [$from_date, $to_date])->orderBy('order_date', 'ASC')->get();
-
-
         foreach ($get as $key => $val) {
 
             $chart_data[] = array(
@@ -178,7 +181,7 @@ class AdminController extends Controller
     {
         //$data = $request->all();
         $data = $request->validate([
-            //validation laravel 
+            //validation laravel
             'admin_email' => 'required',
             'admin_password' => 'required',
             'g-recaptcha-response' => new Captcha(),    //dòng kiểm tra Captcha

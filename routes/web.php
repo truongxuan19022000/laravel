@@ -12,6 +12,8 @@
 */
 //Frontend
 
+use App\Jobs\SendMailOrder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 Route::get('/','HomeController@index' )->name('home');
 Route::get('/trang-chu','HomeController@index');
@@ -21,11 +23,11 @@ Route::post('/tim-kiem','HomeController@search');
 //Danh muc san pham trang chu
 Route::get('/danh-muc/{slug_category_product}','CategoryProduct@show_category_home');
 Route::get('/thuong-hieu/{brand_slug}','BrandProduct@show_brand_home');
-Route::get('/chi-tiet/{product_id}','ProductController@details_product')->name('product_detail');
+Route::get('/chi-tiet/{product_id}','ProductController@details_product')->name('checkout');
 
 //Backend
 Route::get('/admin','AdminController@index');
-Route::get('/dashboard','AdminController@show_dashboard');
+Route::get('/dashboard','AdminController@show_dashboard')->name('show_dashboard');
 Route::get('/logout','AdminController@logout');
 Route::post('/admin-dashboard','AdminController@dashboard');
 Route::post('/filter-by-date','AdminController@filter_by_date');
@@ -44,9 +46,11 @@ Route::post('/exportProduct-csv','ProductController@exportProduct_csv');
 Route::post('/importProduct-csv','ProductController@importProduct_csv');
 
 //Suppliers
-Route::get('/all-suppliers','SuppliersController@index');
+Route::get('/all-suppliers','SuppliersController@index')->name('all_suppliers');
 Route::get('/add-supplier','SuppliersController@add_supplier');
 Route::post('/save-suppliers','SuppliersController@store');
+Route::post('/edit-supplier/{id}','SuppliersController@update');
+Route::post('/delete-supplier/{id}','SuppliersController@destroy');
 Route::get('/print-supplier/{id_supplier}','SuppliersController@print_supplier');
 //end-Suppliers
 //warehouse
@@ -86,6 +90,10 @@ Route::post('/update-brand-product/{brand_product_id}','BrandProduct@update_bran
 // Route::group(['middleware' => 'roles', 'roles'=>['admin','author']], function () {
 	Route::get('/add-product','ProductController@add_product');
 	Route::get('/edit-product/{product_id}','ProductController@edit_product');
+	Route::get('/product/expired','ProductController@expired')->name('product_expired');
+	Route::get('/product/expire','ProductController@expire')->name('product_expire');
+	Route::get('/product/sale','ProductController@productSaled')->name('product_sale');
+	Route::post('/filter-price','ProductController@filter_price')->name('filter-price');
 // });
 Route::get('users',
 		[
@@ -112,9 +120,9 @@ Route::post('/update-product/{product_id}','ProductController@update_product');
 Route::post('/check-coupon','CartController@check_coupon');
 
 Route::get('/unset-coupon','CouponController@unset_coupon');
-Route::get('/insert-coupon','CouponController@insert_coupon');
+Route::get('/insert-coupon','CouponController@insert_coupon')->name('add_coupon');
 Route::get('/delete-coupon/{coupon_id}','CouponController@delete_coupon');
-Route::get('/list-coupon','CouponController@list_coupon');
+Route::get('/list-coupon','CouponController@list_coupon')->name('list_coupon');
 Route::post('/insert-coupon-code','CouponController@insert_coupon_code');
 
 //Cart
@@ -131,20 +139,24 @@ Route::get('/del-all-product','CartController@delete_all_product');
 Route::get('/dang-nhap','CheckoutController@login_checkout');
 Route::get('/del-fee','CheckoutController@del_fee');
 
+
 Route::get('/logout-checkout','CheckoutController@logout_checkout');
 Route::post('/add-customer','CheckoutController@add_customer');
 Route::post('/order-place','CheckoutController@order_place');
 Route::post('/login-customer','CheckoutController@login_customer');
-Route::get('/checkout','CheckoutController@checkout');
+Route::get('/checkout','CheckoutController@checkout')->name('billing');
 Route::get('/payment','CheckoutController@payment');
 Route::post('/save-checkout-customer','CheckoutController@save_checkout_customer');
 Route::post('/calculate-fee','CheckoutController@calculate_fee');
 Route::post('/select-delivery-home','CheckoutController@select_delivery_home');
-Route::post('/confirm-order','CheckoutController@confirm_order');
+Route::post('/confirm-order','CheckoutController@confirm_order')->name('confirm_order');
+Route::get('/confirm-check-order','CheckoutController@check_order')->name('check_order');
+Route::post('/vn-payment','CheckoutController@vnPayment')->name('vn_Payment');
+Route::get('/billing-complete','CheckoutController@billingComplete')->name('billingComplete');
 
 //Order
 Route::get('/delete-order/{order_code}','OrderController@order_code');
-Route::get('/print-order/{checkout_code}','OrderController@print_order');
+Route::get('/print-order/{checkout_code}','OrderController@print_order')->name('print');
 Route::get('/manage-order','OrderController@manage_order');
 Route::get('/view-order/{order_code}','OrderController@view_order');
 Route::post('/update_order_qty','OrderController@update_order_qty');
@@ -167,4 +179,6 @@ Route::post('/insert-slider','SliderController@insert_slider');
 Route::get('/unactive-slide/{slide_id}','SliderController@unactive_slide');
 Route::get('/active-slide/{slide_id}','SliderController@active_slide');
 
-
+Route::get('test',function (){
+    return view('admin.dashboard.content');
+});

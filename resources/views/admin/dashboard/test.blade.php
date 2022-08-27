@@ -31,6 +31,7 @@
     <script src="{{asset('backend/js/morris.js')}}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <style>
+
         table thead{
             white-space: nowrap;
         }
@@ -72,7 +73,6 @@
             }
         }
     </style>
-    @stack('scripts')
 </head>
 <body>
 <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
@@ -1215,6 +1215,7 @@
 
     });
 </script>
+@stack('scripts')
 <script type="text/javascript" charset="utf8"
         src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" charset="utf8"

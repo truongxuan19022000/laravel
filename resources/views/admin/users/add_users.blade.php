@@ -1,10 +1,9 @@
-@extends('admin_layout')
+@extends('admin.dashboard.test')
 @section('admin_content')
-<div class="row">
+<div class="row" style="padding: 25px;">
             <div class="col-lg-12">
                     <section class="panel">
                         <header class="panel-heading">
-                           Thêm user
                         </header>
                          <?php
 
@@ -37,7 +36,7 @@
                                     <label for="exampleInputEmail1">Password</label>
                                     <input type="text" name="admin_password" class="form-control" id="exampleInputEmail1" placeholder="Slug">
                                 </div>
-                             
+
                                 <button type="submit" name="add_category_product" class="btn btn-info">Thêm users</button>
                                 </form>
                             </div>

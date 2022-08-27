@@ -9,34 +9,35 @@
     <meta name="robots" content="INDEX,FOLLOW"/>
     <link rel="canonical" href="{{$url_canonical}}"/>
     <meta name="author" content="">
-    <link rel="icon" type="image/x-icon" href=""/>
+    <link rel="icon" type="image/x-icon" href="{{asset('layout/img/fav-icon.png')}}"/>
 <!--//-------Seo--------->
     <title>{{$meta_title}}</title>
     <!-- Css layout bánh -->
-    <link href="{{asset('public/layout/css/font-awesome.min.css')}}" rel="stylesheet">
+    <link href="{{asset('layout/css/font-awesome.min.css')}}" rel="stylesheet">
 
 
-    <link href="{{asset('public/layout/vendors/linearicons/style.css')}}" rel="stylesheet">
-    <link href="{{asset('public/layout/vendors/flat-icon/flaticon.css')}}" rel="stylesheet">
+    <link href="{{asset('layout/vendors/linearicons/style.css')}}" rel="stylesheet">
+    <link href="{{asset('layout/vendors/flat-icon/flaticon.css')}}" rel="stylesheet">
     <!-- Bootstrap -->
-    <link href="{{asset('public/layout/css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{asset('public/layout/css/font-awesome.min.css')}}" rel="stylesheet">
+    <link href="{{asset('layout/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('layout/css/font-awesome.min.css')}}" rel="stylesheet">
     <!-- Rev slider css -->
-    <link href="{{asset('public/layout/vendors/revolution/css/settings.css')}}" rel="stylesheet">
-    <link href="{{asset('public/layout/vendors/revolution/css/layers.css')}}" rel="stylesheet">
-    <link href="{{asset('public/layout/vendors/revolution/css/navigation.css')}}" rel="stylesheet">
-    <link href="{{asset('public/layout/vendors/animate-css/animate.css')}}" rel="stylesheet">
+    <link href="{{asset('layout/vendors/revolution/css/settings.css')}}" rel="stylesheet">
+    <link href="{{asset('layout/vendors/revolution/css/layers.css')}}" rel="stylesheet">
+    <link href="{{asset('layout/vendors/revolution/css/navigation.css')}}" rel="stylesheet">
+    <link href="{{asset('layout/vendors/animate-css/animate.css')}}" rel="stylesheet">
 
     <!-- Extra plugin css -->
-    <link href="{{asset('public/layout/vendors/owl-carousel/owl.carousel.min.css')}}" rel="stylesheet">
-    <link href="{{asset('public/layout/vendors/magnifc-popup/magnific-popup.css')}}" rel="stylesheet">
-{{--    <link href="{{asset('public/frontend/css/style.css')}}" rel="stylesheet">--}}
-    <link href="{{asset('public/frontend/css/style.css')}}" rel="stylesheet">
-    <link href="{{asset('public/layout/css/responsive.css')}}" rel="stylesheet">
+    <link href="{{asset('layout/vendors/owl-carousel/owl.carousel.min.css')}}" rel="stylesheet">
+    <link href="{{asset('layout/vendors/magnifc-popup/magnific-popup.css')}}" rel="stylesheet">
+    <link href="{{asset('layout/vendors/nice-select/css/nice-select.css')}}" rel="stylesheet">
+{{--    <link href="{{asset('frontend/css/style.css')}}" rel="stylesheet">--}}
+    <link href="{{asset('frontend/css/style.css?')}}{{\Carbon\Carbon::now()->format('h:i:s')}}" rel="stylesheet">
+    <link href="{{asset('layout/css/responsive.css?')}}{{\Carbon\Carbon::now()->format('h:i:s')}}" rel="stylesheet">
     <!-- Css layout bánh -->
-    <link href="{{asset('public/frontend/css/sweetalert.css')}}" rel="stylesheet">
+    <link href="{{asset('frontend/css/sweetalert.css?')}}{{\Carbon\Carbon::now()->format('h:i:s')}}" rel="stylesheet">
     <!-- Layout moi  -->
-
+    @stack('custom-css')
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
@@ -97,15 +98,15 @@
 <!-- Footer -->
 
 
-<script src="{{asset('public/frontend/js/jquery.js')}}"></script>
-<script src="{{asset('public/frontend/js/bootstrap.min.js')}}"></script>
-<script src="{{asset('public/frontend/js/jquery.scrollUp.min.js')}}"></script>
-<script src="{{asset('public/frontend/js/price-range.js')}}"></script>
-<script src="{{asset('public/frontend/js/jquery.prettyPhoto.js')}}"></script>
-<script src="{{asset('public/frontend/js/main.js')}}"></script>
+<script src="{{asset('frontend/js/jquery.js?')}}{{\Carbon\Carbon::now()->format('h:i:s')}}"></script>
+<script src="{{asset('frontend/js/bootstrap.min.js?')}}{{\Carbon\Carbon::now()->format('h:i:s')}}"></script>
+<script src="{{asset('frontend/js/jquery.scrollUp.min.js')}}"></script>
+<script src="{{asset('frontend/js/price-range.js')}}"></script>
+<script src="{{asset('frontend/js/jquery.prettyPhoto.js')}}"></script>
+<script src="{{asset('frontend/js/main.js')}}"></script>
 
 
-<script src="{{asset('public/frontend/js/sweetalert.min.js')}}"></script>
+<script src="{{asset('frontend/js/sweetalert.min.js?')}}{{\Carbon\Carbon::now()->format('h:i:s')}}"></script>
 {{--  <script src="https://www.paypal.com/sdk/js?client-id=sb"></script>
  <script>paypal.Buttons().render('body');</script> --}}
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
@@ -113,33 +114,34 @@
 <script async defer crossorigin="anonymous"
         src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v6.0&appId=2339123679735877&autoLogAppEvents=1"></script>
 <!-- Js layout moi -->
-<script src="{{asset('public/layout/js/jquery-3.2.1.min.js')}}"></script>
-<script src="{{asset('public/layout/js/popper.min.js')}}"></script>
-<script src="{{asset('public/layout/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('layout/js/jquery-3.2.1.min.js?')}}{{\Carbon\Carbon::now()->format('h:i:s')}}"></script>
+<script src="{{asset('layout/js/popper.min.js')}}"></script>
+<script src="{{asset('layout/js/bootstrap.min.js')}}"></script>
 <!-- Rev slider js -->
-<script src="{{asset('public/layout/vendors/revolution/js/jquery.themepunch.tools.min.js')}}"></script>
-<script src="{{asset('public/layout/vendors/revolution/js/jquery.themepunch.revolution.min.js')}}"></script>
-<script src="{{asset('public/layout/vendors/revolution/js/extensions/revolution.extension.actions.min.js')}}"></script>
-<script src="{{asset('public/layout/vendors/revolution/js/extensions/revolution.extension.video.min.js')}}"></script>
+<script src="{{asset('layout/vendors/revolution/js/jquery.themepunch.tools.min.js')}}"></script>
+<script src="{{asset('layout/vendors/revolution/js/jquery.themepunch.revolution.min.js')}}"></script>
+<script src="{{asset('layout/vendors/revolution/js/extensions/revolution.extension.actions.min.js')}}"></script>
+<script src="{{asset('layout/vendors/revolution/js/extensions/revolution.extension.video.min.js')}}"></script>
 <script
-    src="{{asset('public/layout/vendors/revolution/js/extensions/revolution.extension.slideanims.min.js')}}"></script>
+    src="{{asset('layout/vendors/revolution/js/extensions/revolution.extension.slideanims.min.js')}}"></script>
 <script
-    src="{{asset('public/layout/vendors/revolution/js/extensions/revolution.extension.layeranimation.min.js')}}"></script>
+    src="{{asset('layout/vendors/revolution/js/extensions/revolution.extension.layeranimation.min.js')}}"></script>
 <script
-    src="{{asset('public/layout/vendors/revolution/js/extensions/revolution.extension.navigation.min.js')}}"></script>
+    src="{{asset('layout/vendors/revolution/js/extensions/revolution.extension.navigation.min.js')}}"></script>
 <!-- Extra plugin js -->
-<script src="{{asset('public/layout/vendors/owl-carousel/owl.carousel.min.js')}}"></script>
-<script src="{{asset('public/layout/vendors/magnifc-popup/jquery.magnific-popup.min.js')}}"></script>
-<script src="{{asset('public/layout/vendors/datetime-picker/js/moment.min.js')}}"></script>
-<script src="{{asset('public/layout/vendors/datetime-picker/js/bootstrap-datetimepicker.min.js')}}"></script>
-<script src="{{asset('public/layout/vendors/nice-select/js/jquery.nice-select.min.js')}}"></script>
-<script src="{{asset('public/layout/vendors/jquery-ui/jquery-ui.min.js')}}"></script>
-<script src="{{asset('public/layout/vendors/lightbox/simpleLightbox.min.js')}}"></script>
+<script src="{{asset('layout/vendors/owl-carousel/owl.carousel.min.js')}}"></script>
+<script src="{{asset('layout/vendors/magnifc-popup/jquery.magnific-popup.min.js')}}"></script>
+<script src="{{asset('layout/vendors/datetime-picker/js/moment.min.js')}}"></script>
+<script src="{{asset('layout/vendors/datetime-picker/js/bootstrap-datetimepicker.min.js')}}"></script>
+<script src="{{asset('layout/vendors/nice-select/js/jquery.nice-select.min.js')}}"></script>
+<script src="{{asset('layout/vendors/jquery-ui/jquery-ui.min.js?')}}{{\Carbon\Carbon::now()->format('h:i:s')}}"></script>
+<script src="{{asset('layout/vendors/lightbox/simpleLightbox.min.js')}}"></script>
 
-<script src="{{asset('public/layout/js/theme.js')}}"></script>
+<script src="{{asset('layout/js/theme.js')}}"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        $('.send_order').click(function () {
+        $('.send_orderss').click(function () {
+            console.log($('.shipping_email').val());
             swal({
                     title: "Xác nhận đơn hàng",
                     text: "Đơn hàng sẽ không được hoàn trả khi đặt,bạn có muốn đặt không?",
@@ -159,6 +161,7 @@
                         var shipping_phone = $('.shipping_phone').val();
                         var shipping_notes = $('.shipping_notes').val();
                         var shipping_method = $('.payment_select').val();
+                        var shipping_city = $('.shipping_city').val();
                         var order_fee = $('.order_fee').val();
                         var order_coupon = $('.order_coupon').val();
                         var _token = $('input[name="_token"]').val();
@@ -174,15 +177,22 @@
                                 _token: _token,
                                 order_fee: order_fee,
                                 order_coupon: order_coupon,
-                                shipping_method: shipping_method
+                                shipping_method: shipping_method,
+                                shipping_city: shipping_city
                             },
                             success: function () {
                                 swal("Đơn hàng", "Đơn hàng của bạn đã được gửi thành công", "success");
+                                window.setTimeout(function () {
+                                    location.href = '/';
+                                }, 3000);
+                            },
+                            error: function (request, status, error) {
+                                swal("Lỗi đặt hàng", "Bạn vui lòng điền đầy đủ thông tin", "error");
+                                window.setTimeout(function () {
+                                    window.location.preventDefault();
+                                }, 3000);
                             }
-                        });
-                        window.setTimeout(function () {
-                            location.reload();
-                        }, 3000);
+                            });
                     } else {
                         swal("Đóng", "Đơn hàng chưa được gửi, làm ơn hoàn tất đơn hàng", "error");
                     }
@@ -205,7 +215,6 @@
             if (parseInt(cart_product_qty) > parseInt(cart_product_quantity)) {
                 alert('Làm ơn đặt nhỏ hơn ' + cart_product_quantity);
             } else {
-
                 $.ajax({
                     url: '{{url('/add-cart-ajax')}}',
                     method: 'POST',
@@ -268,7 +277,7 @@
             var xaid = $('.wards').val();
             var _token = $('input[name="_token"]').val();
             if (matp == '' && maqh == '' && xaid == '') {
-                alert('Làm ơn chọn để tính phí vận chuyển');
+                alert('Vui lòng chọn tỉnh thành, quận huyện');
             } else {
                 $.ajax({
                     url: '{{url('/calculate-fee')}}',
@@ -283,6 +292,6 @@
     });
 </script>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-
+    @stack('min-script')
 </body>
 </html>
