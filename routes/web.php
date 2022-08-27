@@ -13,6 +13,7 @@
 //Frontend
 
 use App\Jobs\SendMailOrder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 Route::get('/','HomeController@index' )->name('home');
 Route::get('/trang-chu','HomeController@index');
@@ -26,7 +27,7 @@ Route::get('/chi-tiet/{product_id}','ProductController@details_product')->name('
 
 //Backend
 Route::get('/admin','AdminController@index');
-Route::get('/dashboard','AdminController@show_dashboard');
+Route::get('/dashboard','AdminController@show_dashboard')->name('show_dashboard');
 Route::get('/logout','AdminController@logout');
 Route::post('/admin-dashboard','AdminController@dashboard');
 Route::post('/filter-by-date','AdminController@filter_by_date');
@@ -151,6 +152,7 @@ Route::post('/select-delivery-home','CheckoutController@select_delivery_home');
 Route::post('/confirm-order','CheckoutController@confirm_order')->name('confirm_order');
 Route::get('/confirm-check-order','CheckoutController@check_order')->name('check_order');
 Route::post('/vn-payment','CheckoutController@vnPayment')->name('vn_Payment');
+Route::get('/billing-complete','CheckoutController@billingComplete')->name('billingComplete');
 
 //Order
 Route::get('/delete-order/{order_code}','OrderController@order_code');
@@ -178,5 +180,5 @@ Route::get('/unactive-slide/{slide_id}','SliderController@unactive_slide');
 Route::get('/active-slide/{slide_id}','SliderController@active_slide');
 
 Route::get('test',function (){
-
+    return view('admin.dashboard.content');
 });

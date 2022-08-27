@@ -1,4 +1,4 @@
-@extends('admin_layout')
+@extends('admin.dashboard.test')
 @section('admin_content')
     @push('styles')
     @endpush
@@ -15,7 +15,8 @@
                 <li onclick="window.location.href='{{route('product_expired')}}'">
                     <div class="invoiceSta">
                         <p class="invoiceSta-title">Sản phẩm hết hạn</p>
-                        <p class="invoiceSta-text"><span class="numberLarge f-roboto">{{count($p_expired)}}</span>（当月増加数：<span class="numberSmall f-roboto">10</span>）</p>
+                        <p class="invoiceSta-text"><span class="numberLarge f-roboto">{{count($p_expired)}}</span>（当月増加数：<span
+                                class="numberSmall f-roboto">10</span>）</p>
                     </div>
                     <div class="toList">
                         <a href="#">Quản lý一</a>
@@ -24,7 +25,8 @@
                 <li onclick="window.location.href='{{route('product_expire')}}'">
                     <div class="invoiceSta">
                         <p class="invoiceSta-title">Sản phẩn đến hạn</p>
-                        <p class="invoiceSta-text"><span class="numberLarge f-roboto">{{count($p_expire)}}</span>（当月増加数：<span class="numberSmall f-roboto">10</span>）</p>
+                        <p class="invoiceSta-text"><span class="numberLarge f-roboto">{{count($p_expire)}}</span>（当月増加数：<span
+                                class="numberSmall f-roboto">10</span>）</p>
                     </div>
                     <div class="toList">
                         <a href="#">Quản lý一</a>
@@ -53,40 +55,37 @@
         </div>
         <!-- /.row -->
         <br><br>
-        <div class="row ">
             <p class="title_thongke">Thống kê đơn hàng doanh số</p>
             <form autocomplete="off">
                 @csrf
-                <div class="col-md-2">
-                    <p>Từ ngày: <input type="date" id="datepicker" class="form-control"></p>
+                <div class="row">
+                    <div class="form-group">
+                        <p>Từ ngày: <input type="date" id="datepicker" class="form-control"></p>
 
-                    <input type="button" id="btn-dashboard-filter" class="btn btn-primary btn-sm"
-                           value="Lọc kết quả">
+                        <input type="button" id="btn-dashboard-filter" class="btn btn-primary btn-sm"
+                               value="Lọc kết quả">
+                    </div>
+
+                    <div class="form-group">
+                        <p>Đến ngày: <input type="date" id="datepicker2" class="form-control"></p>
+
+                    </div>
+
+                    <div class="form-group">
+                        <p>
+                            Lọc theo:
+                            <select class="dashboard-filter form-control">
+                                <option>--Chọn--</option>
+                                <option value="thang9">Trong tháng 9</option>
+                                <option value="7ngay">7 ngày qua</option>
+                                <option value="thangtruoc">tháng trước</option>
+                                <option value="thangnay">tháng này</option>
+                                <option value="365ngayqua">365 ngày qua</option>
+                            </select>
+                        </p>
+                    </div>
                 </div>
-
-                <div class="col-md-2">
-                    <p>Đến ngày: <input type="date" id="datepicker2" class="form-control"></p>
-
-                </div>
-
-                <div class="col-md-2">
-                    <p>
-                        Lọc theo:
-                        <select class="dashboard-filter form-control">
-                            <option>--Chọn--</option>
-                            <option value="thang9">Trong tháng 9</option>
-                            <option value="7ngay">7 ngày qua</option>
-                            <option value="thangtruoc">tháng trước</option>
-                            <option value="thangnay">tháng này</option>
-                            <option value="365ngayqua">365 ngày qua</option>
-                        </select>
-                    </p>
-                </div>
-
             </form>
-
-
-        </div>
         <div id="myfirstchart" style="height: 250px;"></div>
     </div>
     <br><br>
@@ -96,7 +95,6 @@
             <div id="donut"></div>
         </div>
         <!-- /.card -->
-
     </div>
     @push('scripts')
         <script></script>

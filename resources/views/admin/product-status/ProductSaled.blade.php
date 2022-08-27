@@ -1,9 +1,8 @@
-@extends('admin_layout')
+@extends('admin.dashboard.test')
 @section('admin_content')
-    <div class="table-agile-info">
+    <div class="table-agile-info" style="padding: 25px;">
         <div class="panel panel-default">
             <div class="panel-heading">
-                Liệt kê sản phẩm đã bán
             </div>
             <div class="table-responsive" style="padding: 25px;">
                 <?php

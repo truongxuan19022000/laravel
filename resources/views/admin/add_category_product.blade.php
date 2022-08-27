@@ -1,10 +1,9 @@
-@extends('admin_layout')
+@extends('admin.dashboard.test')
 @section('admin_content')
-<div class="row">
+<div class="row" style="padding: 25px;">
             <div class="col-lg-12">
                     <section class="panel">
                         <header class="panel-heading">
-                           Thêm danh mục sản phẩm
                         </header>
                          <?php
                          use Illuminate\Support\Facades\Session;
@@ -40,10 +39,10 @@
                                       <select name="category_product_status" class="form-control input-sm m-bot15">
                                            <option value="0">Hiển thị</option>
                                             <option value="1">Ẩn</option>
-                                            
+
                                     </select>
                                 </div>
-                               
+
                                 <button type="submit" name="add_category_product" class="btn btn-info">Thêm danh mục</button>
                                 </form>
                             </div>

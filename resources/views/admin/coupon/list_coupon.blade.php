@@ -1,9 +1,8 @@
-@extends('admin_layout')
+@extends('admin.dashboard.test')
 @section('admin_content')
-    <div class="table-agile-info">
+    <div class="table-agile-info" style="padding: 25px;">
   <div class="panel panel-default">
     <div class="panel-heading">
-      Liệt kê mã giảm giá
     </div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
@@ -13,7 +12,7 @@
           <option value="2">Bulk edit</option>
           <option value="3">Export</option>
         </select>
-        <button class="btn btn-sm btn-default">Apply</button>                
+        <button class="btn btn-sm btn-default">Apply</button>
       </div>
       <div class="col-sm-4">
       </div>
@@ -37,22 +36,22 @@
       <table class="table table-striped b-t b-light">
         <thead>
           <tr>
-           
+
 
             <th>Tên mã giảm giá</th>
             <th>Mã giảm giá</th>
             <th>Số lượng giảm giá</th>
             <th>Điều kiện giảm giá</th>
             <th>Số giảm</th>
-          
-            
-           
+
+
+
           </tr>
         </thead>
         <tbody>
           @foreach($coupon as $key => $cou)
           <tr>
-          
+
             <td>{{ $cou->coupon_name }}</td>
             <td>{{ $cou->coupon_code }}</td>
             <td>{{ $cou->coupon_time }}</td>
@@ -63,7 +62,7 @@
                 Giảm theo %
                 <?php
                  }else{
-                ?>  
+                ?>
                 Giảm theo tiền
                 <?php
                }
@@ -77,15 +76,15 @@
                 Giảm {{$cou->coupon_number}} %
                 <?php
                  }else{
-                ?>  
+                ?>
                 Giảm {{$cou->coupon_number}} k
                 <?php
                }
               ?>
             </span></td>
-           
+
             <td>
-             
+
               <a onclick="return confirm('Bạn có chắc là muốn xóa mã này ko?')" href="{{URL::to('/delete-coupon/'.$cou->coupon_id)}}" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-times text-danger text"></i>
               </a>
@@ -97,11 +96,11 @@
     </div>
     <footer class="panel-footer">
       <div class="row">
-        
+
         <div class="col-sm-5 text-center">
           <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
         </div>
-        <div class="col-sm-7 text-right text-center-xs">                
+        <div class="col-sm-7 text-right text-center-xs">
           <ul class="pagination pagination-sm m-t-none m-b-none">
              {!!$coupon->links()!!}
           </ul>

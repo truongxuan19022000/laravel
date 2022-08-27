@@ -1,6 +1,6 @@
 @extends('admin_layout')
 @section('admin_content')
-<div class="row">
+<div class="row" style="padding: 25px;">
             <div class="col-lg-12">
                     <section class="panel">
                         <header class="panel-heading">
@@ -28,13 +28,9 @@
                                     <label for="exampleInputEmail1">SL sản phẩm</label>
                                     <input type="text" data-validation="number" data-validation-error-msg="Làm ơn điền số lượng" name="product_quantity" class="form-control" id="convert_slug" value="{{$pro->product_quantity}}">
                                 </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Ngày sản xuất</label>
-                                    <input type="text" value="{{$pro->ManufactureDate}}"  name="ManufactureDate" class="form-control"  id="priceban">
-                                </div>
                                  <div class="form-group">
                                     <label for="exampleInputEmail1">Ngày hết hạn</label>
-                                    <input type="text" value="{{$pro->ExpirationDate}}"  name="ExpirationDate" class="form-control" id="pricesp" >
+                                    <input type="date" value="{{$pro->ExpirationDate}}"  name="ExpirationDate" class="form-control" id="" >
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Giá bán</label>
@@ -46,8 +42,8 @@
                                 </div>
                                   <div class="form-group">
                                     <label for="exampleInputEmail1">Hình ảnh sản phẩm</label>
-                                    <input type="file" name="product_image" class="form-control" id="exampleInputEmail1">
-                                    <img src="{{URL::to('public/uploads/product/'.$pro->product_image)}}" height="100" width="100">
+                                    <input type="file" name="product_image" class="form-control" id="exampleInputEmail1" >
+                                    <img src="{{URL::to('uploads/product/'.$pro->product_image)}}" height="100" width="200" style="padding: 10px;">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Mô tả sản phẩm</label>

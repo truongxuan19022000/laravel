@@ -163,8 +163,20 @@ class CheckoutController extends Controller
             Session::forget('fee');
             Session::forget('shipping_city');
             Session::forget('cart');
+            return $this->billingComplete($order_details);
 
-
+    }
+    public function billingComplete($order_details){
+        $product_detail = DB::table('tbl_product')
+            ->join('tbl_order_details','tbl_product.product_id','=','tbl_order_details.product_id')
+            ->where('tbl_product.product_id','=',$order_details->product_id)
+            ->first();
+        $url_canonical = \Illuminate\Support\Facades\Request::url();
+        $category= DB::table('tbl_category_product')->get();
+        $meta_desc = "Chuyên bán những bánh ngọt ,các loại bánh";
+        $meta_keywords = "bánh ngọt, bánh mặn, bánh trái cây, bánh kem, bánh crepe, bánh pizza, bánh su kem";
+        $meta_title = "Cake Bakery";
+        return view('pages.billing.billing_complete',compact('meta_keywords','meta_desc','meta_title','url_canonical','category','product_detail'));
     }
     public function del_fee()
     {

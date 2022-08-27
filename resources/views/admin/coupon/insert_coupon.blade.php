@@ -1,10 +1,9 @@
-@extends('admin_layout')
+@extends('admin.dashboard.test')
 @section('admin_content')
-<div class="row">
+<div class="row" style="padding: 25px;">
             <div class="col-lg-12">
                     <section class="panel">
                         <header class="panel-heading">
-                           Thêm mã giảm giá
                         </header>
                          <?php
                             $message = Session::get('message');

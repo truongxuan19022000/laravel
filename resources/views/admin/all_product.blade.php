@@ -1,9 +1,8 @@
-@extends('admin_layout')
+@extends('admin.dashboard.test')
 @section('admin_content')
 <div class="table-agile-info">
   <div class="panel panel-default">
     <div class="panel-heading">
-      Liệt kê sản phẩm
     </div>
     <div class="table-responsive" style="padding: 25px;">
       <?php
@@ -45,9 +44,9 @@
             <td>{{ $pro->ExpirationDate }}</td>
             <td>
               @if(\Carbon\Carbon::parse($pro->ExpirationDate) > $today)
-              <span class="text text-success">Còn hạn</span>
+              <span class="badge badge-success">Còn hạn</span>
               @else
-              <span class="text text-danger">Hết hạn</span>
+              <span class="badge badge-danger">Hết hạn</span>
               @endif
             </td>
 

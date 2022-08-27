@@ -149,7 +149,7 @@
                         <div class="input-group">
 
                             <input type="text" class="form-control" type="text" class="form-control" placeholder="Search Product.."
-                                   id="myInput" onfocus="myFunction()" onkeyup="filterFunction()" onblur="myFunction()">
+                                   id="myInput" onfocus="myFunction()" onkeyup="filterFunction()">
                             <div id="myDropdown" class="dropdown-content" style="width: 100%;">
                                 <div id="find">
                                     @foreach($all_product as $key => $product)

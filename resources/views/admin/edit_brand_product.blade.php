@@ -1,10 +1,9 @@
 @extends('admin_layout')
 @section('admin_content')
-<div class="row">
+<div class="row" style="padding: 25px;">
             <div class="col-lg-12">
                     <section class="panel">
                         <header class="panel-heading">
-                           Cập nhật thương hiệu sản phẩm
                         </header>
                          <?php
                          use Illuminate\Support\Facades\Session;
@@ -36,14 +35,14 @@
                                       <select name="brand_product_status" class="form-control input-sm m-bot15">
                                             <option value="0">Ẩn</option>
                                             <option value="1">Hiển thị</option>
-                                            
+
                                     </select>
                                 </div>
                                 <button type="submit" name="update_brand_product" class="btn btn-info">Cập nhật danh mục</button>
                                 </form>
                             </div>
-                            @endforeach 
-                             
+                            @endforeach
+
                           {{--   <div class="position-center">
                                 <form role="form" action="{{URL::to('/update-brand-product/'.$edit_brand_product->brand_id)}}" method="post">
                                     {{ csrf_field() }}
@@ -59,11 +58,11 @@
                                     <label for="exampleInputPassword1">Mô tả danh mục</label>
                                     <textarea style="resize: none" rows="8" class="form-control" name="brand_product_desc" id="exampleInputPassword1" >{{$edit_brand_product->brand_desc}}</textarea>
                                 </div>
-                               
+
                                 <button type="submit" name="update_brand_product" class="btn btn-info">Cập nhật danh mục</button>
                                 </form>
                             </div> --}}
-                           
+
                         </div>
                     </section>
 

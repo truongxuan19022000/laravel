@@ -48,7 +48,7 @@ class OrderController extends Controller
 	public function update_order_qty(Request $request){
         DB::beginTransaction();
         try {
-//update order
+            //update order
             $container=[];
             $data = $request->all();
             $order = Order::where('order_id', '=',$data['order_id'])->first();
@@ -68,51 +68,51 @@ class OrderController extends Controller
             $order->save();
             //order date
             $order_date = $order->order_date;
+            $order_by_month = Carbon::parse($order->order_date)->format('m');
             $statistic = Statistic::where('order_date',$order_date)->get();
             if($statistic){
                 $statistic_count = $statistic->count();
             }else{
                 $statistic_count = 0;
             }
+            $total_order = 0;
+            $sales = 0;
+            $profit = 0;
+            $quantity = 0;
 
+            foreach($data['order_product_id'] as $key => $product_id){
+                //Ton kho
+                $product = Product::find($product_id);
+                $product_quantity = $product->product_quantity;
+                $container['product_id'] = $product_id;
+                $container['t_quantity'] = $product_quantity;
+                $product_sold = $product->product_sold;
+                //them
+                $product_price = $product->product_price;
+                $price_cost = $product->price_cost;
+                $now = Carbon::now('Asia/Ho_Chi_Minh')->toDateString();
+
+                foreach($data['quantity'] as $key2 => $qty){
+
+                    if($key==$key2){
+                        $pro_remain = $product_quantity - $qty;
+                        $product->product_quantity = $pro_remain;
+                        $product->product_sold = $product_sold + $qty;
+                        $container['b_quantity'] = $qty;
+                        $container['c_quantity'] = $pro_remain;
+                        DB::table('tbl_warehouse')->insert($container);
+                        $product->save();
+                        //update doanh thu
+                        $quantity+=$qty;
+                        $total_order+=1;
+                        $sales+=$product_price*$qty;
+                        $profit += ($product_price*$qty)-($price_cost*$qty);
+                    }
+
+                }
+            }
             if($order->order_status==2){
                 //them
-                $total_order = 0;
-                $sales = 0;
-                $profit = 0;
-                $quantity = 0;
-
-                foreach($data['order_product_id'] as $key => $product_id){
-                    //Ton kho
-                    $product = Product::find($product_id);
-                    $product_quantity = $product->product_quantity;
-                    $container['product_id'] = $product_id;
-                    $container['t_quantity'] = $product_quantity;
-                    $product_sold = $product->product_sold;
-                    //them
-                    $product_price = $product->product_price;
-                    $price_cost = $product->price_cost;
-                    $now = Carbon::now('Asia/Ho_Chi_Minh')->toDateString();
-
-                    foreach($data['quantity'] as $key2 => $qty){
-
-                        if($key==$key2){
-                            $pro_remain = $product_quantity - $qty;
-                            $product->product_quantity = $pro_remain;
-                            $product->product_sold = $product_sold + $qty;
-                            $container['b_quantity'] = $qty;
-                            $container['c_quantity'] = $pro_remain;
-                            DB::table('tbl_warehouse')->insert($container);
-                            $product->save();
-                            //update doanh thu
-                            $quantity+=$qty;
-                            $total_order+=1;
-                            $sales+=$product_price*$qty;
-                            $profit += ($product_price*$qty)-($price_cost*$qty);
-                        }
-
-                    }
-                }
                 //update doanh so db
                 if($statistic_count>0){
                     $statistic_update = Statistic::where('order_date',$order_date)->first();
@@ -122,20 +122,26 @@ class OrderController extends Controller
                     $statistic_update->total_order = $statistic_update->total_order + $total_order;
                     $statistic_update->save();
 
-                }else{
-
+                }elseif($order->order_status==3){
+                    $statistic_update = Statistic::where('order_date',$order_date)->first();
+                    $statistic_update->sales = $statistic_update->sales - $sales;
+                    $statistic_update->profit =  $statistic_update->profit - $profit;
+                    $statistic_update->quantity =  $statistic_update->quantity - $quantity;
+                    $statistic_update->total_order = $statistic_update->total_order - $total_order;
+                    $statistic_update->save();
+                }
+                else{
                     $statistic_new = new Statistic();
                     $statistic_new->order_date = $order_date;
+                    $statistic_new->order_by_month = $order_by_month;
                     $statistic_new->sales = $sales;
                     $statistic_new->profit =  $profit;
                     $statistic_new->quantity =  $quantity;
                     $statistic_new->total_order = $total_order;
                     $statistic_new->save();
                 }
-
-
-
-            }elseif($order->order_status!=2 && $order->order_status!=3){
+            }
+            else{
                 foreach($data['order_product_id'] as $key => $product_id){
 
                     $product = Product::find($product_id);
@@ -150,6 +156,12 @@ class OrderController extends Controller
                         }
                     }
                 }
+                $statistic_update = Statistic::where('order_date',$order_date)->first();
+                $statistic_update->sales = $statistic_update->sales - $sales;
+                $statistic_update->profit =  $statistic_update->profit - $profit;
+                $statistic_update->quantity =  $statistic_update->quantity - $quantity;
+                $statistic_update->total_order = $statistic_update->total_order - $total_order;
+                $statistic_update->save();
             }
             DB::commit();
         } catch (\Throwable $ex) {
@@ -380,7 +392,7 @@ class OrderController extends Controller
 	}
 	public function manage_order()
 	{
-		$order = Order::orderby('created_at', 'DESC')->paginate(5);
+		$order = Order::orderby('created_at', 'DESC')->paginate(10);
 		return view('admin.manage_order')->with(compact('order'));
 	}
 }

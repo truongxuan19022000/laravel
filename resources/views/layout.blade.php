@@ -9,7 +9,7 @@
     <meta name="robots" content="INDEX,FOLLOW"/>
     <link rel="canonical" href="{{$url_canonical}}"/>
     <meta name="author" content="">
-    <link rel="icon" type="image/x-icon" href=""/>
+    <link rel="icon" type="image/x-icon" href="{{asset('layout/img/fav-icon.png')}}"/>
 <!--//-------Seo--------->
     <title>{{$meta_title}}</title>
     <!-- Css layout bánh -->

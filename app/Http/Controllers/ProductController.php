@@ -284,7 +284,8 @@ class ProductController extends Controller
         $products = DB::table('tbl_order')
             ->join('tbl_order_details','tbl_order.order_id','=','tbl_order_details.order_id')
             ->join('tbl_product','tbl_order_details.product_id','=','tbl_product.product_id')
-            ->orWhereDate('tbl_order.order_date','=',$today_day)
+            ->where('order_by_month','=',$today)
+            ->orderBy('order_date','desc')
             ->get();
         return view('admin.product-status.ProductSaled')->with('products',$products);
     }
